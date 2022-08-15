@@ -1,6 +1,6 @@
 <h3>Détails Produit </h3> 
 <div class="container">
-    
+  <div [ngClass]="{'alert alert-warning text-center': message!==''}">{{message}}</div>
     <div class="card mb-3" *ngFor="let produit of singleProduit">
         <div class="row g-0">
           <div class="col-md-4">
@@ -8,8 +8,8 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-            <button class="btn btn-outline-primary me-5"><a [routerLink]="['/produit']">Retour sur liste produit</a></button>
-            <button class="btn btn-warning btn-lg float-end">Ajouter au panier</button>
+            <button class="btn btn-outline-primary me-5" (click)="onBack()">Retour</button>
+            <button class="btn btn-warning btn-md float-end" (click)="AjoutPanier(produit)">Ajout panier</button>
              
               <h5 class="card-title">{{produit.name | titlecase}}</h5>
               <p class="card-text">{{produit.prix}} DH</p>

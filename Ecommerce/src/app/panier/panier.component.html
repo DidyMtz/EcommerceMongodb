@@ -1,0 +1,68 @@
+<h3>Panier Produit </h3> 
+<div class="container">
+    
+    <div class="card mb-3" *ngFor="let produit of panier; let i =index">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{produit.photo}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+            <button class="btn btn-outline-danger me-5 float-end" (click)="supprimer(i)">Supprimer</button>
+             
+              <h5 class="card-title">{{produit.name | titlecase}}</h5>
+              <p class="card-text">{{produit.prix}} DH</p>
+              <p class="card-text"><small class="text-muted">{{produit.description}}</small></p>
+               </div>
+          </div>
+         
+        </div>
+       
+      </div>
+      <div [ngClass]="{'result':somme!= 0}" *ngIf="somme!= 0">
+        <tr><td style="width:85%">Total des achats</td><td>{{somme}} DH</td></tr> 
+      </div>
+
+
+
+
+
+
+      
+
+      <!--Modal-->
+
+
+
+      <h2>Finaliser l'achat</h2>
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Paiement
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
