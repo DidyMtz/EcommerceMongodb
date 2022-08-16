@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +10,9 @@ import { AfficheProduitComponent } from './affiche-produit/affiche-produit.compo
 import { DetailsProduitComponent } from './details-produit/details-produit.component';
 import { ErrorComponent } from './error/error.component';
 import { PanierComponent } from './panier/panier.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,11 +22,14 @@ import { PanierComponent } from './panier/panier.component';
     AfficheProduitComponent,
     DetailsProduitComponent,
     ErrorComponent,
-    PanierComponent
+    PanierComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MdbCarouselModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

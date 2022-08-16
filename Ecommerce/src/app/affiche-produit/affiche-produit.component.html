@@ -1,5 +1,7 @@
+
+<app-carousel></app-carousel>
 <h3>Liste Produit</h3>
-<div [ngClass]="{'alert alert-warning text-center': message!==''}">{{message}}</div>
+<div [ngClass]="{'alert alert-warning text-center sticky-top': message!==''}">{{message}}</div>
 <div class="container">
     <div class="card" style="width: 18rem;" *ngFor="let produit of listProduit; let i =index">
         <img src="{{produit.photo}}" class="card-img-top" alt="...">
@@ -8,7 +10,7 @@
           <p class="card-text">{{produit.description}}</p>
           <p class="card-text-prix">{{produit.prix}} DH</p>
           <a class="btn btn-outline-primary me-2" (click)="display(i)">Voir</a>
-          <a class="btn btn-primary" (click)="AjouterPanier(produit)">Ajout panier</a>
+          <a class="btn btn-warning" (click)="AjouterPanier(produit)">Ajout panier</a>
          
         </div>
       </div>

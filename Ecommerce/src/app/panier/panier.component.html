@@ -10,7 +10,7 @@
             <div class="card-body">
             <button class="btn btn-outline-danger me-5 float-end" (click)="supprimer(i)">Supprimer</button>
              
-              <h5 class="card-title">{{produit.name | titlecase}}</h5>
+              <h5 class="card-title">{{produit.name | titlecase}} </h5>
               <p class="card-text">{{produit.prix}} DH</p>
               <p class="card-text"><small class="text-muted">{{produit.description}}</small></p>
                </div>
@@ -21,8 +21,15 @@
       </div>
       <div [ngClass]="{'result':somme!= 0}" *ngIf="somme!= 0">
         <tr><td style="width:85%">Total des achats</td><td>{{somme}} DH</td></tr> 
+        <!-- Button to Open the Modal -->
+        <div class="container2 mt-4 mb-5">     
+          <button type="button" class="btn btn-primary float-end" data-toggle="modal" data-target="#myModal">
+            Suivant
+          </button></div>
       </div>
+      
 
+   
 
 
 
@@ -34,11 +41,8 @@
 
 
 
-      <h2>Finaliser l'achat</h2>
-  <!-- Button to Open the Modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Paiement
-  </button>
+     
+  
 
   <!-- The Modal -->
   <div class="modal" id="myModal">
@@ -47,18 +51,38 @@
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
+          <h4 class="modal-title">Infos Client</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
-          Modal body..
+          
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="tel" class="form-control" id="floatingtel" placeholder="Téléphone">
+            <label for="floatingtel">Téléphone</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingAdresse" placeholder="Adresse">
+            <label for="floatingAdresse">Adresse</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingrefAdresse" placeholder="Réference Adresse">
+            <label for="floatingrefAdresse">Réference Adresse</label>
+          </div>
+
+
+
+
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-succes me-5" data-dismiss="modal">Suivant</button><button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
         
       </div>

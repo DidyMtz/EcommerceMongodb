@@ -3,4 +3,6 @@ export interface Produit{
     prix:number;
     photo:string;
     description?:string;
+    allergene?:string;
+    favori?:boolean;
 }
