@@ -1,18 +1,19 @@
 
-<div class="containers">
-  <h3>Détails Produit </h3> 
-  <button class="btn btn-outline-primary mx-5 mb-3" (click)="onBack()">Retour</button>
-  <div [ngClass]="{'alert alert-warning text-center stick-top': message!==''}">{{message}}</div>
+ <div style="background-color:rgba(255, 166, 0, 0.1);">
+  
+  <h5>Détails Produit<button class="btn btn-outline-primary mx-5 mb-2 mt-3" (click)="onBack()">Retour</button>
+  </h5>
+  <div [ngClass]="{'alert alert-success text-center sticky-top': message!==''}">{{message}}</div>
     
-</div>
-
 <div class="container-detail">
   
-  <div class="card text-bg-light mb-3 mt-4" style="width: 55vh;" *ngFor="let produit of singleProduit">
+  <div class="card text-bg-light mb-3 mt-4" *ngFor="let produit of singleProduit">
     <img src="{{produit.photo}}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">{{produit.name | titlecase}} - {{produit.prix}} DH</h5>
-      <p class="card-text">Allergène : </div>
+      <h5 class="card-title">{{produit.name | titlecase}} - {{produit.prix*count}} DH</h5>
+      <p class="card-text">Allergène : </p>
+      <span><button class="btn btn-outline-primary me-3" (click)="Dcounter()">-</button>{{count}}<button class="btn btn-outline-primary mx-3" (click)="counter()">+</button></span>
+    </div>
     <ul class="list-group list-group-flush">
      
       <li class="list-group-item">{{produit.description}}</li>
@@ -20,6 +21,7 @@
     <div class="card-body">
       <a href="#" class="card-link">Ratings</a>
    </div>
-    <button class="btn btn-warning btn-lg float-end" (click)="AjoutPanier(produit)">Ajout panier</button>
+    <button class="btn btn-warning btn-lg mb-2" (click)="AjoutPanier(produit)">Ajout panier</button>
   </div>
+</div>
 </div>

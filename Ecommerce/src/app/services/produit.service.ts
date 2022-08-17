@@ -6,6 +6,7 @@ import { Produit } from '../produit';
 })
 export class ProduitService {
 
+  count: number = 1;
   produits : any[] = [
     
     {name:'Allocco ', prix: 20, photo:'../../assets/img/alloco.jpg', description:'Alloco grillé sur feu doux à la sauce de persil et mouscade.'},
@@ -27,16 +28,23 @@ export class ProduitService {
     {name:'Frites', prix: 20, photo:'../../assets/img/frites.jpeg', description:'Frites croustillantes, dorées à feu doux. Excellent accompagnement.'},
     
   ]
-  panier : any[] = [];
+  panier : Produit[] = [];
 
   constructor() { }
 
 
   AjoutPanier(produit:Produit){
     
-    return this.panier.push(produit);
+    if(this.panier.indexOf(produit) != -1)
+   {  
+   alert( produit.name + " ajouté au panier!");
+   }else{
+    this.panier.push(produit);
+   }
+    return this.panier;
   }
 
+  /*
   countElt = (produit:Produit) => {
 
     let count = 0;
@@ -47,5 +55,17 @@ export class ProduitService {
     });
     return count;
 
-  }
+  }*/
+
+  
+counter(){
+  this.count ++; 
+  return this.count;
+}
+
+
+Dcounter(){
+  if(this.count > 1){this.count --;}  
+   return this.count;
+}
 }

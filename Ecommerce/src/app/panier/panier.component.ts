@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Produit } from './../produit';
 import { ProduitService } from './../services/produit.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,9 +13,9 @@ export class PanierComponent implements OnInit {
   panier: any[] = [];
   somme: number = 0;
   count : number = 0;
-  counts : any = {};
+  nbr_article: number = 0;
 
-  constructor(private produitservice: ProduitService) { }
+  constructor(private produitservice: ProduitService, private route:Router) { }
 
   ngOnInit(): void {
     this.panier = this.produitservice.panier;
@@ -22,20 +23,10 @@ export class PanierComponent implements OnInit {
     
 
     //somme des achats
-    this.somme = this.panier.reduce((s,p)=> { return s + p.prix;},0);
-
-   //test array
+    this.somme = this.panier.reduce((s,p)=> { return s + (p.prix*p.nbr);},0);
+    this.nbr_article = this.panier.length;
 
    
-   this.panier.forEach(element => {
-     this.counts[element] = (this.counts[element] || 0) + 1;
-   });
-   // 👇️ {one: 3, two: 2, three: 1}
-   console.log(this.counts);
-
-
-
-
 
   }
 
@@ -48,13 +39,21 @@ export class PanierComponent implements OnInit {
     this.somme = this.panier.reduce((s,p)=> { return s + p.prix;},0);
     
   }
-  countElt(produit:Produit){
-
-   this.count = this.produitservice.countElt(produit);
-   
-  }
 
   
+ onBack(){
+  this.route.navigate(['/produit']);
+
+}
+  
  
+counter(){
+ this.count = this.produitservice.counter(); 
+}
+
+
+Dcounter(){
+  this.count = this.produitservice.Dcounter(); 
+}
  
 }

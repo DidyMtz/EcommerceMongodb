@@ -18,6 +18,7 @@ export class AfficheProduitComponent implements OnInit {
   ngOnInit(): void {
 
     this.listProduit = this.produitservice.produits;
+   
   }
 
   display(id:number){
@@ -28,12 +29,16 @@ export class AfficheProduitComponent implements OnInit {
   AjouterPanier(produit:Produit){
     
    this.produitservice.AjoutPanier(produit);
+
    // alert(produit.name+" ajouté au panier");
    this.message = produit.name+" ajouté au panier";
-   
+ 
    setTimeout(()=> {
     this.message = "";
    },2000);
    
   }
+
+
+
 }

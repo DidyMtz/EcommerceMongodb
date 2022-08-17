@@ -1,14 +1,32 @@
-.container{
-    max-width: 80vh;
-    top:20px;
-}
-.result{
-    background-color: blue;
-    color:aliceblue;
-    font-size: 24px;
-    display:block;
-}
-h3{
 
-    margin: 20px;
+
+h5{
+    margin: 15px;
+}
+.text{
+    font-size: 24px;
+    font-weight: bold;
+}
+.card{
+    height: 17vh;
+    
+
+    img{
+        width:25vh;
+        height: 15vh;
+        padding: 5px;
+        border-radius: 10%;
+    }
+    .card-title{
+        font-size: 24px;
+
+
+    }
+    .card-text{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .text-muted{
+        font-size: medium;
+    }
 }
