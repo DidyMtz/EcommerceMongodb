@@ -3,7 +3,7 @@
 
 <div [ngClass]="{'alert alert-success text-center sticky-top': message!==''}">{{message}}</div>
 
-<div class="alert alert-light" *ngFor="let level of categorie"><h3 class="alert alert-warning">{{level[0].categorie}}</h3>
+<div class="alert alert-light" *ngFor="let level of categorie"><h3 class="alert alert-info">{{level[0].categorie}}</h3>
 <div class="container" >
 
     <div class="card" style="width: 18rem;" *ngFor="let produit of level; let i =index">

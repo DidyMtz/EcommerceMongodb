@@ -2,14 +2,14 @@
 
 .container-carousel{
     
-    background-color: rgb(247, 184, 68);
+   //background-color: rgb(247, 184, 68);
     display:grid;
     
-    grid-template-columns: auto 60rem auto;
+    grid-template-columns: auto 50rem auto;
     justify-content: center;
     align-content: center;  
     align-items: center;  
-    gap:15px;
+    gap:20px;
     width: 100%;
    
 
@@ -21,13 +21,11 @@
     height:auto;
     
 }
-.div1 .div2{
+.div1, .div2{
 
     background-color: aliceblue;
     width: auto;
     height: auto;
-
-  
-
+    font-size: 18px;
 
 }
