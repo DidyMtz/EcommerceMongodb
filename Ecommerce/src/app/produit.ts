@@ -6,4 +6,5 @@ export class Produit{
     allergene?:string;
     favori?:boolean;
     nbr?: number;
+    categorie?:string;
 }

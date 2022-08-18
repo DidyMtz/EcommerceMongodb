@@ -12,18 +12,34 @@ export class AfficheProduitComponent implements OnInit {
 
   listProduit: any[] = [];
   message : string = '';
+  categorie : any[] = [];
 
   constructor(private route: Router, private produitservice: ProduitService) { }
 
   ngOnInit(): void {
 
-    this.listProduit = this.produitservice.produits;
+       
+    this.produitservice.categorie.forEach(elt =>{
+
+      this.listProduit = this.produitservice.produits.filter((i) => i.categorie === elt);
+      this.categorie.push(this.listProduit);
+    });
    
+  
+
+     
   }
 
-  display(id:number){
+  display(produit: Produit){
 
-    this.route.navigate(['/details-produit/'+id]);
+    //recuperer le nom de la categorie
+   let categorie_name : any = produit.categorie;let newArray : any[] = []; 
+   
+    newArray = this.produitservice.produits.filter((i) => i.categorie === categorie_name);
+    let id = newArray.indexOf(produit);
+    let name = produit.name;
+    //console.log(newArray);
+    this.route.navigate(['/details-produit/'+id+'/'+name]);
   }
 
   AjouterPanier(produit:Produit){

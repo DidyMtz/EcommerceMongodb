@@ -13,6 +13,7 @@ import { PanierComponent } from './panier/panier.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DetailsProduitComponent,
     ErrorComponent,
     PanierComponent,
-    CarouselComponent
+    CarouselComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

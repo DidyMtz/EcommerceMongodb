@@ -14,6 +14,7 @@ export class DetailsProduitComponent implements OnInit {
   id!: any;
   singleProduit : Produit[] = [];
   message : string = "";
+  name: any = "";
   subject! : Subscription;  
   produitSelected: Produit[] = [];
   count : number = 1;
@@ -25,10 +26,14 @@ export class DetailsProduitComponent implements OnInit {
     this.produitSelected = this.produitservice.produits;
     this.subject = this.activeRoute.paramMap.subscribe( params => {
       this.id = params.get('id');
+      this.name = params.get('id1');
 
     });
-    this.singleProduit = this.produitservice.produits.filter(i => this.produitservice.produits.indexOf(i) == this.id);
-    //console.log( this.singleProduit);
+   /* Filtrer par nom*/
+    
+    this.singleProduit = this.produitSelected.filter(i => i.name === this.name);
+    //console.log(this.singleProduit);
+    
     
   }
 

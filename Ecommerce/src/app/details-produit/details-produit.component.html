@@ -1,4 +1,4 @@
-
+<!--
  <div style="background-color:rgba(255, 166, 0, 0.1);">
   
   <h5>Détails Produit<button class="btn btn-outline-primary mx-5 mb-2 mt-3" (click)="onBack()">Retour</button>
@@ -25,3 +25,64 @@
   </div>
 </div>
 </div>
+
+
+
+
+-->
+
+
+
+
+<button class="btn btn-outline-primary mx-5 mb-2 mt-3" (click)="onBack()">Ajouter Produit</button>
+
+
+<div [ngClass]="{'alert alert-success text-center sticky-top': message!==''}">{{message}}</div>
+<div class="container">
+
+  <div class="row">
+  
+   <div class="col-md-8">
+    <div  class="alert alert-info"><h3>Détails Produit </h3></div>
+ 
+     <div class="card text-bg mb-3" *ngFor="let produit of singleProduit; let i =index">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{produit.photo}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+             
+              <h5 class="card-title">{{produit.name | titlecase}} - {{produit.description}} </h5>
+              <p class="card-text"><small class="text-muted">Allergène :</small></p>
+              
+              <p class="card-text mx-2">
+                <button class="btn btn-outline-info me-2" (click)="Dcounter()">-</button>{{count}}<button class="btn btn-outline-info mx-2" (click)="counter()">+</button>
+                <label class="alert alert-light prix mx-5">Prix : {{produit.prix*count}} Dhs</label></p>
+              
+              <p class="card-text">                
+              <button class="btn btn-primary btn-lg float-end" (click)="AjoutPanier(produit)">Ajouter au panier</button>
+              </p>
+               </div>
+          </div>
+                  
+        </div>
+       
+      </div>
+    </div>
+    <div class="col-md-4 alert-info p-4">
+
+        <h4 class="alert-heading">LIVRAISON</h4>
+        <hr>
+        
+       <p class="mt-2">Frais de livraison non inclus à ce stade. Livraison <b>immédiate</b>.<br>Dépendant de votre localisation.</p>
+       <p>Taux d'expédition des commandes: Excellent. </p> 
+       <p>Score Qualité: Excellent</p>
+        
+        <p>Avis des consommateurs: Excellent</p>
+            <button type="button" class="btn btn-outline-primary btn-lg mt-3 m-3" routerLink="/panier">
+           Voir Panier
+        </button>
+      </div>
+     
+    </div>

@@ -1,17 +1,33 @@
+
+
 .container-carousel{
     
     background-color: rgb(247, 184, 68);
-    display:flex;
+    display:grid;
+    
+    grid-template-columns: auto 60rem auto;
     justify-content: center;
-    align-content: center;    
+    align-content: center;  
+    align-items: center;  
+    gap:15px;
     width: 100%;
    
 
 }
 
 .carousel{
-    margin: 20px;
-    width:120vh;
-    height:55vh;
+  
+    width:auto;
+    height:auto;
     
+}
+.div1 .div2{
+
+    background-color: aliceblue;
+    width: auto;
+    height: auto;
+
+  
+
+
 }

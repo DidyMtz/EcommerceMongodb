@@ -1,16 +1,22 @@
 
 <app-carousel></app-carousel>
-<h3>Liste Produit</h3>
+
 <div [ngClass]="{'alert alert-success text-center sticky-top': message!==''}">{{message}}</div>
-<div class="container">
-    <div class="card" style="width: 18rem;" *ngFor="let produit of listProduit; let i =index">
+
+<div class="alert alert-light" *ngFor="let level of categorie"><h3 class="alert alert-warning">{{level[0].categorie}}</h3>
+<div class="container" >
+
+    <div class="card" style="width: 18rem;" *ngFor="let produit of level; let i =index">
+      <ng-container >
         <img src="{{produit.photo}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{produit.name}}</h5>
           <p class="card-text">{{produit.description}}</p>
           <p class="card-text-prix">{{produit.prix}} DH</p>
-          <a class="btn btn-outline-primary btn-lg me-2" (click)="display(i)">Voir</a>
+          <a class="btn btn-outline-primary btn-lg me-2" (click)="display(produit)">Voir</a>
          <!-- <button class="{{ (!produit.selected)? 'btn btn-warning': 'clicked'}}" (click)="selected(produit)">Ajout panier</button>-->
-      </div>
-      </div>
+        </div>
+      </ng-container>
+    </div>
+    </div>
 </div>
