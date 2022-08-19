@@ -2,30 +2,43 @@
 
 .container-carousel{
     
-   //background-color: rgb(247, 184, 68);
+    //background-color: #fff;
     display:grid;
-    
-    grid-template-columns: auto 50rem auto;
+    margin: 15px auto auto auto;
+    grid-template-columns: 290px 700px 290px;
     justify-content: center;
     align-content: center;  
     align-items: center;  
-    gap:20px;
-    width: 100%;
+    //gap:5px;
+    width: 90%;
    
 
 }
 
 .carousel{
   
+    margin: 20px;
     width:auto;
     height:auto;
+
+    img{
+        width: auto;
+        height: 380px;
+    }
     
 }
 .div1, .div2{
 
-    background-color: aliceblue;
-    width: auto;
-    height: auto;
-    font-size: 18px;
+    //background-color: aliceblue;
+    //font-size: 14px;
+    width:auto;
+    height:410px;
+   
+    a{
+        color:rgba(78, 78, 78, 0.9);
+        
+    }
+
 
 }
+

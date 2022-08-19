@@ -1,12 +1,17 @@
 
 <app-carousel></app-carousel>
 
+<div class="bcontainer">
+
+
 <div [ngClass]="{'alert alert-success text-center sticky-top': message!==''}">{{message}}</div>
 
-<div class="alert alert-light" *ngFor="let level of categorie"><h3 class="alert alert-info">{{level[0].categorie}}</h3>
+<div *ngFor="let level of categorie">
+  
+  <h5 class="titre">{{level[0].categorie}}</h5>
 <div class="container" >
 
-    <div class="card" style="width: 18rem;" *ngFor="let produit of level; let i =index">
+    <div class="card" style="width: auto" *ngFor="let produit of level; let i =index">
       <ng-container >
         <img src="{{produit.photo}}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -19,4 +24,7 @@
       </ng-container>
     </div>
     </div>
+</div>
+
+
 </div>

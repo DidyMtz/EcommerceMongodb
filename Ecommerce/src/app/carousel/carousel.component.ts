@@ -8,13 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarouselComponent implements OnInit {
 
-  singleProduit : any[] = [];
+  carousel : any[] = [];
 
   constructor(private produitservice : ProduitService) { }
 
   ngOnInit(): void {
 
-    this.singleProduit = this.produitservice.carousel;
+    this.carousel = this.produitservice.carousel;
   }
+
+  
 
 }

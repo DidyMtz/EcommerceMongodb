@@ -1,18 +1,26 @@
+
+.bcontainer{
+    width: 85%;
+    margin: auto;
+}
 .container{
     display: grid;
-    grid-template-columns: repeat(4, 1fr) ;
-    gap: 5px;
+    grid-template-columns: repeat(5, 1fr) ;
+    gap: 10px;
+    width: 100%;
+  
    
     
 }
-h3{
-   font-size:20px;
-    margin: 2vh;
 
+.titre{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: rgb(61, 61, 61);
 }
 img{
-    width:35vh;
-    height: 26vh;
+    width:auto;
+    height: 30vh;
     padding:5px;
     border-radius: 10%;
 }
