@@ -1,44 +1,30 @@
-
-
 .container-carousel{
-    
-    //background-color: #fff;
-    display:grid;
-    margin: 15px auto auto auto;
-    grid-template-columns: 290px 700px 290px;
-    justify-content: center;
-    align-content: center;  
-    align-items: center;  
-    //gap:5px;
-    width: 90%;
-   
+  background-color: #fff;
+ // border: 1px solid black;
+  width: 100%;
+  height: 400px;
+  margin-top: 10px;
 
-}
+/* To place the letter at the center */
+  display: grid;
+  align-items:center;
+  grid-template-columns: auto 620px auto;
 
-.carousel{
+  .sliderimg{
+    height: 381px;  
+    padding: 10px;
+  }
+  /*@media screen and (max-width:500px){
+    .sliderimg{
+
+    height: 182px;  
+    width: 300px;
+    }
+  }*/
+  .div1, .div2{
+    height: 382px;
+    background-color: #fff;   
+    padding: 10px;
+  }
   
-    margin: 20px;
-    width:auto;
-    height:auto;
-
-    img{
-        width: auto;
-        height: 380px;
-    }
-    
 }
-.div1, .div2{
-
-    //background-color: aliceblue;
-    //font-size: 14px;
-    width:auto;
-    height:410px;
-   
-    a{
-        color:rgba(78, 78, 78, 0.9);
-        
-    }
-
-
-}
-
