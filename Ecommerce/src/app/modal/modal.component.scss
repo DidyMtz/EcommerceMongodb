@@ -1,0 +1,22 @@
+.prod{
+    display:grid;
+    grid-template-columns: auto auto;
+    padding:10px;
+    margin:20px;
+
+
+    img{
+        width:200px;
+        height: 200px;
+    }
+    .aff{
+        display: grid;
+        grid-template-rows: auto auto;
+        padding:20px;
+
+        .text{
+            font-size: 26px;
+            color:gray;
+        }
+    }
+}

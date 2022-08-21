@@ -39,7 +39,7 @@ export class AfficheProduitComponent implements OnInit {
     let id = newArray.indexOf(produit);
     let name = produit.name;
     //console.log(newArray);
-    this.route.navigate(['/details-produit/'+id+'/'+name]);
+    this.route.navigate(['/details-produit/'+name]);
   }
 
   AjouterPanier(produit:Produit){

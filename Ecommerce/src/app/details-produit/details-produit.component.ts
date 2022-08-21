@@ -25,7 +25,7 @@ export class DetailsProduitComponent implements OnInit {
   ngOnInit(): void {
     this.produitSelected = this.produitservice.produits;
     this.subject = this.activeRoute.paramMap.subscribe( params => {
-      this.id = params.get('id');
+     // this.id = params.get('id');
       this.name = params.get('id1');
 
     });
@@ -66,7 +66,7 @@ counter(){
 
 Dcounter(){
   if(this.count > 1){this.count --;}  
-   return this.count;
+  
 }
 /*
 selected(produit:Produit){

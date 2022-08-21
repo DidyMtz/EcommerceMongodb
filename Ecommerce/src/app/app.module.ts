@@ -15,6 +15,9 @@ import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
+import { ModalComponent } from './modal/modal.component';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +30,16 @@ import { FooterComponent } from './footer/footer.component';
     PanierComponent,
     CarouselComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    ModalComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MdbCarouselModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MdbModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
