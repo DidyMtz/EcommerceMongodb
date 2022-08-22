@@ -1,4 +1,6 @@
+import { Router, NavigationEnd } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Produit } from '../produit';
 
 @Injectable({
@@ -7,6 +9,8 @@ import { Produit } from '../produit';
 export class ProduitService {
 
   count: number = 1;
+  routes : BehaviorSubject<string> = new BehaviorSubject<string>("");
+  message : BehaviorSubject<string> = new BehaviorSubject<string>("");
   produits : any[] = [
     
     {name:'Allocco ', prix: 20, photo:'../../assets/img/alloco.jpg', description:'Alloco grillé sur feu doux à la sauce de persil et mouscade.', categorie:'Accompagnement'},
@@ -36,19 +40,21 @@ export class ProduitService {
 
   categorie : any[] = ['Plat principal', 'Accompagnement','Boisson'];
 
-  constructor() { }
+  constructor(private route: Router) { }
 
 
   AjoutPanier(produit:Produit){
     
     if(this.panier.indexOf(produit) != -1)
    {  
-   alert( produit.name + " ajouté au panier!");
+   //alert( produit.name + " ajouté au panier!");
    }else{
     this.panier.push(produit);
    }
     return this.panier;
   }
+
+
 
   /*
   countElt = (produit:Produit) => {
@@ -74,4 +80,6 @@ Dcounter(){
   if(this.count > 1){this.count --;}  
    return this.count;
 }
+
+onReceive = (message : string ) => { this.message.next(message);}
 }

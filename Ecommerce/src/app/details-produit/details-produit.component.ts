@@ -1,7 +1,7 @@
 import { ProduitService } from './../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription, BehaviorSubject } from 'rxjs';
 import { Produit } from '../produit';
 
 @Component({
@@ -13,7 +13,7 @@ export class DetailsProduitComponent implements OnInit {
 
   id!: any;
   singleProduit : Produit[] = [];
-  message : string = "";
+  message : BehaviorSubject<string> = new BehaviorSubject<string>("");
   name: any = "";
   subject! : Subscription;  
   produitSelected: Produit[] = [];
@@ -42,12 +42,9 @@ export class DetailsProduitComponent implements OnInit {
     let id = this.singleProduit.indexOf(produit);
     this.singleProduit[id].nbr = this.count; 
     this.produitservice.AjoutPanier(produit);
-    this.message = produit.name+" ajouté au panier";
+    this.produitservice.onReceive(produit.name+"("+produit.nbr+") ajouté au panier");
    
-    setTimeout(()=> {
-     this.message = "";
-    },2000);
-    
+    this.onBack();
   }
 
   ngOnDestroy() {

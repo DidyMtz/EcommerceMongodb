@@ -20,6 +20,7 @@ export class NavComponent implements OnInit {
   currentRoute :string | null = null;
   islogged: boolean = false;
   search : Produit[] = [];
+  message : string | null = null;
 
   constructor(private modalService: MdbModalService, private route:Router, private activedroute:ActivatedRoute, private produitservice: ProduitService) {
     
@@ -40,7 +41,7 @@ export class NavComponent implements OnInit {
               this.classe = true;
             }
             
-            console.log(this.classe);
+           // console.log(this.classe);
       
       }
   });
@@ -50,6 +51,7 @@ export class NavComponent implements OnInit {
   goTo(destination:string){
         
     this.route.navigate([destination]);
+  
 
   }  
 
