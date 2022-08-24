@@ -1,30 +1,36 @@
 .container-carousel{
   background-color: #fff;
- // border: 1px solid black;
-  width: 100%;
-  height: 450px;
-  margin-top: 10px;
-
-/* To place the letter at the center */
   display: grid;
   align-items:center;
-  grid-template-columns: auto 620px auto;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-auto-rows: minmax(100px,auto);
+  
 
   .sliderimg{
-    height: 400px;  
-    padding: 10px;
+  width: auto;
+  height:380px;
+  padding: 10px;
   }
-  /*@media screen and (max-width:500px){
+ /* @media screen and (max-width:500px){
     .sliderimg{
 
-    height: 182px;  
-    width: 300px;
+    height: auto;  
+    width: 1rem;
     }
   }*/
-  .div1, .div2{
-    height: 400px;
-    background-color: #fff;  
-    padding: 10px;
+  .div1{
+   
+   background-color: #fff;  
+   padding-top: 10px;
+   padding-left: 20px;
+   font-size: small;
   }
+  .div2{
+   
+    background-color: #fff;  
+    padding-top: 10px;
+    padding-right: 15px;
+    font-size: small;
+   }
   
 }

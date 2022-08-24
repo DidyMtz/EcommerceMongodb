@@ -27,34 +27,22 @@
 */
 
 .produit-container{
-   // background-color: azure;
-   // border: 1px solid black;
-    width: 100%;
-    height: auto;
-    padding:5px;
-   
-/* To place the letter at the center */
-  display: grid;
-  //place-items: center;
-  .trait{
-    border: 3px solid gray;
-    width:100%;
-  }
-  .titre{
-    padding: 15px;
+  // background-color: azure;
+   margin-top: 20px;
+   margin-bottom: 20px;
 
-   }
   .container{
     display:grid;
     grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(50px,auto);
     gap:10px;
-
+    padding: 10px ;
+    
     img{
-        width:200px;
-        height:150px;
-        padding:10px;
+        height:200px;
         align-self: center;
         border-radius: 10%;
+        padding: 10px;
     }
   }
 }
@@ -62,9 +50,11 @@
 
 .produit-annexe{
     background-color: yellow;
-    border: 1px solid black;
-    width: 100%;
-    height: 20rem;
+   // border: 1px solid black;
+   
+    height: 30rem;
+    padding: 5px;
+   
 
 /* To place the letter at the center */
   //display: grid;
