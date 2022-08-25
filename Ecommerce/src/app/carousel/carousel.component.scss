@@ -1,36 +1,28 @@
-.container-carousel{
+@media (min-width:900px){
+.container_carousel{
   background-color: #fff;
   display: grid;
   align-items:center;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-auto-rows: minmax(100px,auto);
-  
+  grid-template-columns: 1fr 2fr auto;
 
   .sliderimg{
-  width: auto;
-  height:380px;
-  padding: 10px;
+  max-width: 650px;
+  height:400px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   }
- /* @media screen and (max-width:500px){
-    .sliderimg{
-
-    height: auto;  
-    width: 1rem;
-    }
-  }*/
+  
   .div1{
-   
-   background-color: #fff;  
-   padding-top: 10px;
-   padding-left: 20px;
+   padding: 20px;
    font-size: small;
+   height:400px;
   }
   .div2{
    
-    background-color: #fff;  
-    padding-top: 10px;
-    padding-right: 15px;
+    padding: 20px;
     font-size: small;
+    height:400px;
    }
   
+}
 }

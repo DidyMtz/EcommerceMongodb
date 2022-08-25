@@ -29,7 +29,7 @@ export class ProduitService {
 
   carousel :Produit[] =[
     {name:'Porc Braisé', prix: 120, photo:'../../assets/img/slider/porc3.jpg', description:'Porc braisé sur feu doux à la sauce de persil et mouscade'},
-   {name:'Brochette Boeuf', prix: 110, photo:'../../assets/img/slider/steak1.jpg', description:'Brochettes braisé sur feu doux à la sauce de persil et mouscade.', categorie:'Plat principal'},
+    {name:'Brochette Boeuf', prix: 110, photo:'../../assets/img/slider/steak1.jpg', description:'Brochettes braisé sur feu doux à la sauce de persil et mouscade.', categorie:'Plat principal'},
     {name:'Riz', prix: 30, photo:'../../assets/img/slider/fried-rice2.jpg', description:'Riz basmati. Accompagnement de luxe pour vos plats.', categorie:'Accompagnement'},
     {name:'Porc Braisé', prix: 120, photo:'../../assets/img/slider/porc2.jpg', description:'Porc braisé sur feu doux à la sauce de persil et mouscade'},
     {name:'Poisson Braisé', prix: 90, photo:'../../assets/img/slider/fish1.jpg', description:'Poisson braisé sur feu doux à la sauce de persil et mouscade.', categorie:'Plat principal'},
