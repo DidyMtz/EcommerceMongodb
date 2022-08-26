@@ -1,15 +1,15 @@
 
-<button class="btn btn-outline-primary mx-5 mb-2 mt-3" (click)="onBack()">Ajouter Produit</button>
+<button class="btn btn-outline-primary mx-5 mb-5 mt-3" (click)="onBack()">Ajouter Produit</button>
 
-<div class="container">
+<div class="container mb-5">
     
   <div class="row">
-    <span *ngIf="somme == 0" class="alert alert-warning"><h3>Panier vide, Merci d'ajouter des produits</h3></span>
+    <span *ngIf="somme == 0" class="alert alert-warning text-center"><h3>Panier vide, Merci d'ajouter des produits</h3></span>
  
    <div class="col-md-9">
-    <div *ngIf="somme != 0" class="alert alert-info"><h3>Panier ({{nbr_article}})</h3></div>
+    <div *ngIf="somme != 0" class="alert alert-primary"><h3>Panier ({{nbr_article}})</h3></div>
  
-     <div class="card text-bg-light mb-3" *ngFor="let produit of panier; let i =index">
+     <div class="card text-bg m-1" *ngFor="let produit of panier; let i =index">
         <div class="row g-0">
           <div class="col-md-2">
             <img src="{{produit.photo}}" class="img-fluid rounded-start" alt="...">
@@ -35,16 +35,16 @@
     </div>
     <div class="col-md-3">
 
-       <div *ngIf="somme != 0" class="alert alert-info" role="alert">
+       <div *ngIf="somme != 0" >
         <h4 class="alert-heading">RESUME PANIER</h4>
         <hr>
         
-        <div class="row">
-          <div class="col text mt-3">Sous-total </div><div class="col text mt-3">{{somme}} Dhs</div>
+        <div class="row alert alert-info">
+          <p class="col text  mt-3">Sous-total </p><div class="col text mt-3">{{somme}} Dhs</div>
         </div>
-        <hr><p class="mt-2">Frais de livraison non inclus à ce stade. Livraison <b>immédiate</b>.<br>Dépendant de votre localisation.</p>
+        <div class="m-3"><p>Frais de livraison non inclus à ce stade.<br> Livraison <b>immédiate</b>.<br>Dépendant de votre localisation.</p></div>
        
-            <button type="button" class="btn btn-warning btn-lg mt-3 m-3" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-warning btn-lg " data-toggle="modal" data-target="#myModal">
           Commander {{somme}} Dhs
         </button>
       </div>

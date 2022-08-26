@@ -32,13 +32,7 @@ export class AfficheProduitComponent implements OnInit {
 
   display(produit: Produit){
 
-    //recuperer le nom de la categorie
-   let categorie_name : any = produit.categorie;let newArray : any[] = []; 
-   
-    newArray = this.produitservice.produits.filter((i) => i.categorie === categorie_name);
-    let id = newArray.indexOf(produit);
-    let name = produit.name;
-    //console.log(newArray);
+    let name = produit.name;   
     this.route.navigate(['/details-produit/'+name]);
   }
 

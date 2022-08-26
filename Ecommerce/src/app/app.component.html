@@ -1,11 +1,11 @@
 
 <app-nav></app-nav>
 
-<div class="global_container">
+
 
 <router-outlet></router-outlet>
 
-</div>
+
 <div #active *ngIf="affichemessage" [ngClass]="{'alert alert-success text-center sticky-bottom': messages}">{{messages}}</div>
 
 <app-footer></app-footer>

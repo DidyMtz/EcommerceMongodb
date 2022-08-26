@@ -4,6 +4,8 @@
   display: grid;
   align-items:center;
   grid-template-columns: 1fr 2fr auto;
+  width: 95%;
+  margin: 20px auto;
 
   .sliderimg{
   max-width: 650px;

@@ -60,19 +60,10 @@ counter(){
  this.count ++; 
 }
 
-
 Dcounter(){
   if(this.count > 1){this.count --;}  
   
 }
-/*
-selected(produit:Produit){
-  let id = this.produitSelected.indexOf(produit);
-  this.produitSelected[id].selected = !this.produitSelected[id].selected;
-  //this.AjouterPanier(produit);
-  
-}*/
-
 
 
 

@@ -22,7 +22,7 @@ export class NavComponent implements OnInit {
   search : Produit[] = [];
   message : string | null = null;
 
-  constructor(private modalService: MdbModalService, private route:Router, private activedroute:ActivatedRoute, private produitservice: ProduitService) {
+  constructor(private modalService: MdbModalService, private route:Router, private produitservice: ProduitService) {
     
    }
 
@@ -40,9 +40,7 @@ export class NavComponent implements OnInit {
             }else{
               this.classe = true;
             }
-            
-           // console.log(this.classe);
-      
+                  
       }
   });
       

@@ -19,6 +19,7 @@ import { ModalComponent } from './modal/modal.component';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { LoginComponent } from './auth/login/login.component';
 import { CarouselFooterComponent } from './carousel-footer/carousel-footer.component';
+import { ModalAlertComponent } from './modal-alert/modal-alert.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CarouselFooterComponent } from './carousel-footer/carousel-footer.compo
     FooterComponent,
     ModalComponent,
     LoginComponent,
-    CarouselFooterComponent
+    CarouselFooterComponent,
+    ModalAlertComponent
   ],
   imports: [
     BrowserModule,
