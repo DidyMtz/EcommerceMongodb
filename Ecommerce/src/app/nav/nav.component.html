@@ -25,8 +25,8 @@
         <button class="btn btn-primary" (click)="openModal(search.value)">Recherche</button>
     </ul>
   
-    <button *ngIf="islogged" class="btn btn-outline-danger me-2 " type="submit">Logout</button>
-    <button *ngIf="!islogged" class="btn btn-outline-primary me-2 " type="submit">LogIn</button>
+    <button *ngIf="islogged" class="btn btn-outline-danger me-2 " (click)="logout()" type="submit">Logout</button>
+    <button *ngIf="!islogged" class="btn btn-outline-primary me-2 " (click)="openModallogin()" type="submit">LogIn</button>
     
     <button class="btn btn-warning " routerLink="panier" type="submit"><span><i class="fas fa-shopping-cart"></i></span>Panier</button>
   

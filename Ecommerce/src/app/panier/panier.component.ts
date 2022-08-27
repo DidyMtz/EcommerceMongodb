@@ -1,7 +1,9 @@
+import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
 import { Produit } from './../produit';
 import { ProduitService } from './../services/produit.service';
 import { Component, OnInit } from '@angular/core';
+import { Personne } from '../personne';
 
 @Component({
   selector: 'app-panier',
@@ -14,8 +16,9 @@ export class PanierComponent implements OnInit {
   somme: number = 0;
   count : number = 0;
   nbr_article: number = 0;
+  client : Personne = new Personne();
 
-  constructor(private produitservice: ProduitService, private route:Router) { }
+  constructor(private produitservice: ProduitService, private auth:AuthService, private route:Router) { }
 
   ngOnInit(): void {
     this.panier = this.produitservice.panier;
@@ -26,6 +29,13 @@ export class PanierComponent implements OnInit {
     this.somme = this.panier.reduce((s,p)=> { return s + (p.prix*p.nbr);},0);
     this.nbr_article = this.panier.length;
 
+    if(this.auth.client == null) return 
+      this.auth.client.subscribe((personne : Personne) => {
+      this.client = personne;
+    });   
+    
+    //console.warn("resultat : "+this.client.email);
+  
    
 
   }
@@ -47,13 +57,5 @@ export class PanierComponent implements OnInit {
 }
   
  
-counter(){
- this.count = this.produitservice.counter(); 
-}
-
-
-Dcounter(){
-  this.count = this.produitservice.Dcounter(); 
-}
  
 }

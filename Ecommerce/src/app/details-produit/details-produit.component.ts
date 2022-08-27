@@ -28,6 +28,8 @@ export class DetailsProduitComponent implements OnInit {
      // this.id = params.get('id');
       this.name = params.get('id1');
 
+
+
     });
    /* Filtrer par nom*/
     

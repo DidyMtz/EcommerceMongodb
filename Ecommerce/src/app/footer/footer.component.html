@@ -1,4 +1,8 @@
+
 <app-carousel-footer></app-carousel-footer>
+
+<div *ngIf="affichemessage" [ngClass]="{'alert alert-success text-center sticky-bottom': messages}">{{messages}}</div>
+
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-dark text-muted mt-5">

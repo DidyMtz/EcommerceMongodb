@@ -14,9 +14,10 @@ export class CarouselFooterComponent implements OnInit {
 
   carousel : any[] = [];
   routes : string ="";
-  hide : boolean = false;
   count : number = 1;
-  modalRef2 : MdbModalRef<ModalAlertComponent> | null = null
+  modalRef2 : MdbModalRef<ModalAlertComponent> | null = null;
+  isPanierpage : boolean = false;
+
 
   constructor(private produitservice : ProduitService, private route : Router, private modalservice : MdbModalService) { }
 
@@ -24,19 +25,7 @@ export class CarouselFooterComponent implements OnInit {
   
     
   this.carousel.push(this.produitservice.carousel.reverse());
-  
-  this.route.events.subscribe((event) => {
-    if(event instanceof NavigationEnd){
-      this.routes = event.url;
-    }
-    if(this.routes.includes("/details")){
-      this.hide = true;
-      
-    }else{
-      this.hide = false;
-    }
-    
-  })
+   
 
   }
 
@@ -50,17 +39,14 @@ export class CarouselFooterComponent implements OnInit {
   AjouterPanier(p: Produit){
 
     p.nbr = 1;
-    this.produitservice.AjoutPanier(p);
-
-    //this.produitservice.message.next(p.name +" est ajouté au Panier");
-
+   // this.produitservice.AjoutPanier(p);
     this.modalRef2 = this.modalservice.open(ModalAlertComponent, {
+      modalClass:'modal-dialog modal-xl',
+      data : { title:"Alerte", produit : p}
+    });
 
-      modalClass:'modal-dialog modal-dialog-centered',
-      data : { title:"Alerte", produit : p.name}
-    })
+    
   }
-
-
+  
   
 }

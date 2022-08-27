@@ -1,4 +1,3 @@
-import { ProduitService } from './../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { Produit } from '../produit';
