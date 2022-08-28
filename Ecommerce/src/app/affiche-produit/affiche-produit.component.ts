@@ -21,38 +21,22 @@ export class AfficheProduitComponent implements OnInit {
 
   ngOnInit(): void {
 
-       
+       /*filtrer et remplir array par categorie */
     this.produitservice.categorie.forEach(elt =>{
-
       this.listProduit = this.produitservice.produits.filter((i) => i.categorie === elt);
       this.categorie.push(this.listProduit);
     });
-   
-  
-
-     
   }
 
-  display(produit: Produit){
-
-    let name = produit.name;   
-    //this.route.navigate(['/details-produit/'+name]);
+  AfficherModal(produit: Produit){
     this.openModal(produit);
   }
 
   AjouterPanier(produit:Produit){
     
    this.produitservice.AjoutPanier(produit);
-
-   // alert(produit.name+" ajouté au panier");
-
    this.message = produit.name+" ajouté au panier";
    
- 
-   /*setTimeout(()=> {
-    this.message = "";
-   },2000);
-   */
   }
   openModal(p:Produit){
 

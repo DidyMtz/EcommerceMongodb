@@ -4,27 +4,26 @@
 <div class="container mb-5">
     
   <div class="row">
-    <span *ngIf="somme == 0" class="alert alert-warning text-center"><h3>Panier vide, Merci d'ajouter des produits</h3></span>
- 
-   <div class="col-md-9">
-    <div *ngIf="somme != 0" class="alert alert-primary"><h3>Panier ({{nbr_article}})</h3></div>
+   <!-- <span *ngIf="message !=''" class="alert alert-warning text-center"><h3>{{message}}</h3></span>-->
+   <div  class="alert alert-primary"><h3>Panier ({{nbr_article}}) {{message}}</h3></div>
+   <div class="col-md-9">   
  
      <div class="card text-bg m-1" *ngFor="let produit of panier; let i =index">
         <div class="row g-0">
           <div class="col-md-2">
             <img src="{{produit.photo}}" class="img-fluid rounded-start" alt="...">
           </div>
-          <div class="col-md-8">
+          <div class="col-md-6">
             <div class="card-body">
              
               <h5 class="card-title">{{produit.name | titlecase}} </h5>
               <p class="card-text"><small class="text-muted">{{produit.description}}</small></p>
                </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-4">
             <div class="card-body">
-             <p class="card-text float-end">{{produit.prix}} * {{produit.nbr}} Dhs</p>
-             <button class="btn btn-outline-danger float-end" (click)="supprimer(i)">supprimer</button>
+             <p class="card-text text-muted float-start">{{produit.prix}} * {{produit.nbr}} Dhs <br>Discount: {{produit.Discount}}</p>
+             <button class="btn btn-danger float-end" aria-label="send" (click)="supprimer(i)">-</button>
            
                </div>
           </div>
@@ -33,22 +32,32 @@
        
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" *ngIf="message != 'vide'">
 
-       <div *ngIf="somme != 0" >
-        <h4 class="alert-heading">RESUME PANIER</h4>
+       <div>
+        <h5 class="alert-heading">RESUME PANIER (DHS)</h5>
         <hr>
-        
-        <div class="row alert alert-info">
-          <p class="col text  mt-3">Sous-total </p><div class="col text mt-3">{{somme}} Dhs</div>
-        </div>
-        <div class="m-3"><p>Frais de livraison non inclus à ce stade.<br> Livraison <b>immédiate</b>.<br>Dépendant de votre localisation.</p></div>
        
-            <button type="button" class="btn btn-warning btn-lg " data-toggle="modal" data-target="#myModal">
-          Commander {{somme}} Dhs
-        </button>
+        <div class="row alert-light card-text">
+          <p class="col-md-7 mt-3">Sous-total </p><p class="col-md-5 mt-3">{{somme}} </p>
+        </div>
+        <div class="row alert-light card-text">
+          <p class="col-md-7">Frais de livraison </p><p class="col-md-5 mt-3">{{shipping}}</p>
+        </div>
+        <div class="row alert-info card-text p-3">
+          <p class="col-md-12"><input #promo type="text" class="form-control" (change)="RecupPromoCode($event)" placeholder="Code promo"></p>
+        </div>
+        <div class="row alert p-3">
+          <p class="col-md-12"><input #allergene type="text" class="form-control" (change)="RecupAllergene($event)" placeholder="Allèrgene"></p>
+        </div>
+
+        <div class="row alert-info card-text">
+          <p class="col-md-7 mt-3">Total(incl. TVA) </p><p class="col-md-5 mt-3">{{getTVAprix(somme)}} </p>
+        </div>
       </div>
-     
+      <button type="button" class="btn btn-success btn-lg m-3 p-3 float-end" data-toggle="modal" data-target="#myModal">
+        Commander
+      </button>
     </div>
     </div>    
 

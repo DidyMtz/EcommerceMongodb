@@ -71,7 +71,7 @@ export class NavComponent implements OnInit {
 
       this.modalRef = this.modalService.open(LoginComponent, {
         animation: true,
-        containerClass:'modal-side modal-bottom-right',
+        containerClass:'modal-side modal-sm bottom',
         modalClass : 'modal-dialog',
         data : { title : "Authentification"}
       })
@@ -80,7 +80,7 @@ export class NavComponent implements OnInit {
   logout(){
     sessionStorage.removeItem("email");
     sessionStorage.clear();
-    this.route.navigateByUrl("/produit")
+    this.route.navigateByUrl("/")
     .then(() => {
       window.location.reload();
     })

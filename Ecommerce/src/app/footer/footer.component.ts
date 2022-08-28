@@ -29,10 +29,11 @@ export class FooterComponent implements OnInit {
     if(this.routes === "/panier"){
      
      this.affichemessage = false;
-     this.produitservice.message.next("panier");
+    // this.produitservice.message.next("");
      
     }else{
       this.affichemessage = true;
+
 
     }
   });
@@ -40,6 +41,11 @@ export class FooterComponent implements OnInit {
     this.messages = message;
 
    });
+  }
+  AfficherPanier(){
+    
+   /* mettre à jour message panier */
+    this.route.navigate(['/panier']);    
   }
   
   onDestroy(){

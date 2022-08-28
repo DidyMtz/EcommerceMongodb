@@ -1,7 +1,8 @@
 
 <app-carousel-footer></app-carousel-footer>
 
-<div *ngIf="affichemessage" [ngClass]="{'alert alert-success text-center sticky-bottom': messages}">{{messages}}</div>
+<div *ngIf="affichemessage" [ngClass]="{'alert alert-success text-center sticky-bottom': messages}">
+  {{messages}} <a (click)="AfficherPanier()" [hidden]="messages == ''" class="btn btn-warning m-1">Voir Panier</a></div>
 
 
 <!-- Footer -->

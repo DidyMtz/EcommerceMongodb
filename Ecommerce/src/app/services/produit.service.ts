@@ -40,19 +40,24 @@ export class ProduitService {
     {name:'Frites', prix: 20, photo:'../../assets/img/slider/bowl-1842294_1280.jpg', description:'Frites croustillantes, dorées à feu doux. Excellent accompagnement.'},
     
   ]
-  panier : Produit[] = [];
+  panier : Produit[] = [ {name:'Boeuf barbecue', prix: 110, photo:'../../assets/img/slider/barbecue-1239434_1280.jpg', description:'Boeuf barbecue sur feu doux à la sauce de persil et mouscade.', categorie:'Plat principal'},
+  {name:'Viande Braisée', prix: 90, photo:'../../assets/img/slider/bbq-4373644_1280.jpg', description:'Viande braisée au charbon avec la sauce de persil et mouscade.', categorie:'Plat principal'},
+  {name:'Saucisse Braisé', prix: 80, photo:'../../assets/img/slider/grilled-meat-6530766_1280.jpg', description:'Saucisse braisé sur feu doux à la sauce de persil et mouscade.', categorie:'Plat principal'},
+  {name:'Frites', prix: 20, photo:'../../assets/img/slider/bowl-1842294_1280.jpg', description:'Frites croustillantes, dorées à feu doux. Excellent accompagnement.'},
+  ];
 
   categorie : any[] = ['Plat principal', 'Accompagnement','Boisson'];
 
-  constructor() { }
+  constructor() {
+
+   }
 
 
   AjoutPanier(produit:Produit){
-    
-    if(this.panier.indexOf(produit) != -1)
-     return 
+    //sessionStorage.setItem('produit', produit.name);
+    if(this.panier.indexOf(produit) != -1) return 
     else this.panier.push(produit);
-     return this.panier;
+    return this.panier;
   }
 
   

@@ -13,39 +13,46 @@ import { Router, NavigationEnd } from '@angular/router';
 export class CarouselFooterComponent implements OnInit {
 
   carousel : any[] = [];
-  routes : string ="";
-  count : number = 1;
   modalRef2 : MdbModalRef<ModalAlertComponent> | null = null;
-  isPanierpage : boolean = false;
+  routes: string = "";
+  hideCarousel : boolean = false;
 
 
   constructor(private produitservice : ProduitService, private route : Router, private modalservice : MdbModalService) { }
 
   ngOnInit(): void {
   
-    
+  /* Remplissage provisoire carousel produit favoris */
   this.carousel.push(this.produitservice.carousel.reverse());
    
+  /* recuperer route 
+
+  
+    this.route.events.subscribe((event) => {
+      if(event instanceof NavigationEnd){
+        this.routes = event.url;
+      }
+      if(this.routes.includes('details'))
+      { this.hideCarousel = true;}else{ this.hideCarousel = false;}
+      
+    });*/
 
   }
 
+  /* Afficher modal */
+  AfficheModalAlert(p: Produit){
 
-  displaydetails(produit: Produit){
-
-    let name = produit.name;   
-    this.route.navigate(['/details-produit/'+name]);
-  }
-
-  AjouterPanier(p: Produit){
-
-    p.nbr = 1;
-   // this.produitservice.AjoutPanier(p);
-    this.modalRef2 = this.modalservice.open(ModalAlertComponent, {
-      modalClass:'modal-dialog modal-xl',
-      data : { title:"Alerte", produit : p}
-    });
-
+   /* if(this.routes.includes('panier')){
+      let id = p.name;
+      this.route.navigate(['/details-produit/'+id])
+    }else{}*/
+      this.modalRef2 = this.modalservice.open(ModalAlertComponent, {
+        modalClass:'modal-dialog modal-xl',
+        data : { title:"Alerte", produit : p}
+      });  
     
+
+        
   }
   
   

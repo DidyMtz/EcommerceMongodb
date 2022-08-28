@@ -46,11 +46,11 @@ counter(){
   this.messages = this.produit.name+" est ajouté au Panier";  
   this.produitservice.AjoutPanier(this.produit);
   this.produitservice.message.next(this.messages);
-  
-}
-AfficherPanier(){
 
-  this.route.navigate(['/panier']);
-  this.modalRef2.close();
+  setTimeout(() => {
+    this.route.navigate(['/produit']);
+    this.modalRef2.close();
+  },1000);
+  
 }
 }
