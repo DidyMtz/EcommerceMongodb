@@ -7,6 +7,5 @@ export class Produit{
     favori?:boolean;
     nbr?: number;
     categorie?:string;
-    promo?: [{code : '', datefin:'', discount: 5 | 0}];
     discount?:number = 0;
 }

@@ -12,7 +12,7 @@ import { ErrorComponent } from './error/error.component';
 import { PanierComponent } from './panier/panier.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { ModalComponent } from './modal/modal.component';
@@ -43,7 +43,8 @@ import { ModalAlertComponent } from './modal-alert/modal-alert.component';
     AppRoutingModule,
     MdbCarouselModule,
     ReactiveFormsModule,
-    MdbModalModule
+    MdbModalModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

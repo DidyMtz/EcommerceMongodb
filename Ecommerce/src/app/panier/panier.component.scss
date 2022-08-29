@@ -2,12 +2,28 @@
     background-color: #fff;
     padding: 5px;
 
+    img{
+        height:100px;
+        width: 120px;
+    }
+
     .row{
         margin: 5px;
 
         .card-text{
 
             font-size:medium;
+        }
+        .panier{
+            display: flex;
+          // background-color: rgb(171, 192, 248);
+           flex-direction: column;
+           flex-wrap: nowrap;
+           padding: 10px;
+        }
+        .messagePromo{
+            text-align: center;
+            color: gray;
         }
     }
 }

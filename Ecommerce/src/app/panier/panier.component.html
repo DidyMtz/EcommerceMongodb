@@ -22,7 +22,7 @@
           </div>
           <div class="col-md-4">
             <div class="card-body">
-             <p class="card-text text-muted float-start">{{produit.prix}} * {{produit.nbr}} Dhs <br>Discount: {{produit.Discount}}</p>
+             <p class="card-text text-muted float-start">{{produit.prix}} * {{produit.nbr}} Dhs <br>Discount(%): {{produit.discount * 100}}</p>
              <button class="btn btn-danger float-end" aria-label="send" (click)="supprimer(i)">-</button>
            
                </div>
@@ -32,30 +32,27 @@
        
       </div>
     </div>
-    <div class="col-md-3" *ngIf="message != 'vide'">
+    <div class="col-md-3 panier" *ngIf="message != 'vide'">
 
        <div>
         <h5 class="alert-heading">RESUME PANIER (DHS)</h5>
         <hr>
        
-        <div class="row alert-light card-text">
-          <p class="col-md-7 mt-3">Sous-total </p><p class="col-md-5 mt-3">{{somme}} </p>
+        <div class="row alert-primary card-text">
+          <p class="col-md-8 mt-3">Sous-total </p><p class="col-md-4 mt-3">{{sommeGeneral }} </p>
+       
+          <p class="col-md-8 mt-3">Frais de livraison </p><p class="col-md-4 mt-3">{{shipping}}</p>
         </div>
-        <div class="row alert-light card-text">
-          <p class="col-md-7">Frais de livraison </p><p class="col-md-5 mt-3">{{shipping}}</p>
-        </div>
-        <div class="row alert-info card-text p-3">
-          <p class="col-md-12"><input #promo type="text" class="form-control" (change)="RecupPromoCode($event)" placeholder="Code promo"></p>
-        </div>
-        <div class="row alert p-3">
-          <p class="col-md-12"><input #allergene type="text" class="form-control" (change)="RecupAllergene($event)" placeholder="Allèrgene"></p>
-        </div>
+        <div class="row alert-primary pt-3">
+          <p class="col-md-12"><input  type="text" class="form-control" (change)="RecupAllergene($event)" placeholder="Allèrgene"></p>
+          <p class=" col-md-12 messagePromo"><input  type="text" class="form-control" (change)="RecupPromoCode($event)" placeholder="Code promo">{{messagePromo}}</p>
+                </div>
 
-        <div class="row alert-info card-text">
-          <p class="col-md-7 mt-3">Total(incl. TVA) </p><p class="col-md-5 mt-3">{{getTVAprix(somme)}} </p>
+        <div class="row alert-primary card-text">
+          <p class="col-md-7 mt-3">Total(incl. TVA) </p><p class="col-md-5 mt-3">{{sommeGeneral+shipping}} </p>
         </div>
       </div>
-      <button type="button" class="btn btn-success btn-lg m-3 p-3 float-end" data-toggle="modal" data-target="#myModal">
+      <button type="button" class="btn btn-success btn-lg m-3 float-end" data-toggle="modal" data-target="#myModal">
         Commander
       </button>
     </div>
@@ -91,19 +88,19 @@
         <div class="modal-body">
           
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="email" class="form-control" id="floatingInput" value="{{client.email}}" placeholder="name@example.com">
             <label for="floatingInput">Email</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="tel" class="form-control" id="floatingtel" placeholder="Téléphone">
+            <input type="tel" class="form-control" id="floatingtel" value="{{client.tel}}" placeholder="Téléphone">
             <label for="floatingtel">Téléphone</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingAdresse" placeholder="Adresse">
+            <input type="text" class="form-control" id="floatingAdresse" value="{{client.adresse}}" placeholder="Adresse">
             <label for="floatingAdresse">Adresse</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingrefAdresse" placeholder="Réference Adresse">
+            <input type="text" class="form-control" id="floatingrefAdresse" value="{{client.reference}}" placeholder="Réference Adresse">
             <label for="floatingrefAdresse">Réference Adresse</label>
           </div>
 
