@@ -1,12 +1,13 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { AuthService } from './../services/auth.service';
 import { Personne } from './../personne';
 import { LoginComponent } from './../auth/login/login.component';
 import { Produit } from './../produit';
 import { ProduitService } from './../services/produit.service';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ModalComponent } from '../modal/modal.component';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+
 
 
 @Component({
@@ -17,7 +18,6 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 export class NavComponent implements OnInit {
 
   
-  modalRef: MdbModalRef<ModalComponent> | null = null;
   active: any | null = null;
   classe : boolean = false;
   currentRoute :string | null = null;
@@ -26,7 +26,11 @@ export class NavComponent implements OnInit {
   message : string | null = null;
   client : Personne = new Personne();
 
-  constructor(private auth: AuthService, private modalService: MdbModalService, private route:Router, private produitservice: ProduitService) {
+  constructor(
+    private activatedroute :ActivatedRoute, 
+    private auth: AuthService,
+    public dialog : Dialog,
+    private route:Router, private produitservice: ProduitService) {
     
    }
 
@@ -50,6 +54,12 @@ export class NavComponent implements OnInit {
       this.islogged = true;
      }
 
+
+    
+
+
+
+
   }
 
   goTo(destination:string){
@@ -61,30 +71,42 @@ export class NavComponent implements OnInit {
 
     this.search = this.produitservice.produits.filter(i => (i.name.toLowerCase()).includes(item.toLowerCase()));
 
-    this.modalRef = this.modalService.open(ModalComponent, {
-      modalClass: 'modal-dialog-centered modal-lg',
-      data : {title : "Resultat de recherche", produit : this.search}
+    const modalRef = this.dialog.open(ModalComponent, {
+      panelClass: 'my-dialog',
+      data : { produit : this.search}
     });
+    
   }
 
   openModallogin(){
 
-      this.modalRef = this.modalService.open(LoginComponent, {
-        animation: true,
-        containerClass:'modal-side modal-sm bottom',
-        modalClass : 'modal-dialog',
+      const modalRef = this.dialog.open(LoginComponent, {
+       
+        panelClass : 'my-dialog',
         data : { title : "Authentification"}
       })
+      
   }
 
   logout(){
     sessionStorage.removeItem("email");
     sessionStorage.clear();
-    this.route.navigateByUrl("/")
+   this.route.navigateByUrl("/")
     .then(() => {
       window.location.reload();
-    })
+    });
   }
+
+  
+
+reloadPage(){
+  
+  this.route.routeReuseStrategy.shouldReuseRoute = () => false;
+  this.route.navigate(['/produit'], {
+   relativeTo : this.activatedroute,
+   queryParamsHandling : "merge"
+  });
+}
 
   
 

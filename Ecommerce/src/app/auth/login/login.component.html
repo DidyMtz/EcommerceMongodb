@@ -1,10 +1,10 @@
-<div class="modal-header right">
+<div class="modal-header right ">
     <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
     <button
       type="button"
       class="btn-close"
       aria-label="Close"
-      (click)="modalRef.close()"
+      (click)="dialogRef.close()"
     ></button>
   </div>
  
@@ -26,6 +26,6 @@
     </div>
    
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger mx-5" (click)="modalRef.close()">Annuler</button>
+    <button type="button" class="btn btn-danger mx-5" (click)="dialogRef.close()">Annuler</button>
    
   </div>

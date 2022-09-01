@@ -1,8 +1,35 @@
+
+:host {
+  display:block;
+  background: #02c7f8d5;
+  position: absolute;
+  top:50%;
+  right: 0px;
+  width: 80%;
+  height: auto;
+  border-radius: 8px;
+  padding: 20px;
+  margin:10px;
+  animation: custom-dialog-enter 1s ease;
+  }
+  
+  @keyframes custom-dialog-enter {
+    from {
+      transform: scale(0) rotate(180deg);
+    }
+  
+    to {
+      transform: none;
+    }
+  }
+
+
 .prod{
     display:grid;
-    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
     padding:10px;
     margin:20px;
+    background-color: #fff;
 
 
     img{
@@ -11,7 +38,7 @@
     }
     .aff{
         display: grid;
-        grid-template-rows: auto auto;
+       
         padding:20px;
 
         .text{

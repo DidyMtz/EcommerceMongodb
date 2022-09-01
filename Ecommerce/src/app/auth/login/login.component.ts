@@ -1,9 +1,10 @@
-import { Router } from '@angular/router';
+import { DialogRef } from '@angular/cdk/dialog';
 import { Personne } from '../../personne';
 import { AuthService } from './../../services/auth.service';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -19,9 +20,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
       private auth : AuthService, 
-      public modalRef : MdbModalRef<LoginComponent>, 
+      public dialogRef: DialogRef, 
       private formbuid : FormBuilder,
-      private route: Router
+      private route : Router
       ) { }
 
   ngOnInit(): void {
@@ -50,11 +51,15 @@ export class LoginComponent implements OnInit {
     client.etat = true;
     this.auth.isConnected(client);
     sessionStorage.setItem("email", client.email);
+
    this.route.navigate(['/produit'])
    .then(()=>{
       window.location.reload();
     });
-    this.modalRef.close();
+  
+    this.dialogRef.close();
+
   }
+
 
 }

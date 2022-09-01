@@ -1,7 +1,7 @@
+import { DialogRef,DIALOG_DATA } from '@angular/cdk/dialog';
 import { ProduitService } from './../services/produit.service';
 import { Produit } from './../produit';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -20,12 +20,19 @@ export class ModalAlertComponent implements OnInit {
   messages : string | null = null;
   routes: string = "";
 
-  constructor(private route: Router, private produitservice: ProduitService, public modalRef2: MdbModalRef<ModalAlertComponent>) { }
+  constructor(
+    public dialogRef: DialogRef<string>,
+    private route: Router, 
+    private produitservice: ProduitService,
+    @Inject(DIALOG_DATA) public data: { produit: Produit}
+    ) { }
 
   ngOnInit(): void {
 
-    if(this.produit === null) return 
-    this.totalPrix = this.produit.prix ;
+    if(this.data.produit === null) return 
+    this.totalPrix = this.data.produit.prix ;
+
+   
   }
 
   
@@ -38,18 +45,18 @@ counter(){
    
  }
  
- AjoutPanier(){
+ AjoutPanier(p: Produit){
    
-
-  if(this.produit == null) return 
-  this.produit.nbr = this.count;   
-  this.messages = this.produit.name+" est ajouté au Panier";  
-  this.produitservice.AjoutPanier(this.produit);
+  
+  //if(this.produit == null) return 
+  p.nbr = this.count;   
+  this.messages = p.name+" est ajouté au Panier";  
+  this.produitservice.AjoutPanier(p);
   this.produitservice.message.next(this.messages);
 
   setTimeout(() => {
     this.route.navigate(['/produit']);
-    this.modalRef2.close();
+    this.dialogRef.close();
   },1000);
   
 }

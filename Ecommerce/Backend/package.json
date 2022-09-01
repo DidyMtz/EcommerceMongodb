@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DidyMtz/EcommerceMongodb/issues"
   },
-  "homepage": "https://github.com/DidyMtz/EcommerceMongodb#readme"
+  "homepage": "https://github.com/DidyMtz/EcommerceMongodb#readme",
+  "dependencies": {
+   
+  }
 }

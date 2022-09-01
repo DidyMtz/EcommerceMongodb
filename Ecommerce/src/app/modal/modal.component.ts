@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Produit } from '../produit';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,12 @@ export class ModalComponent implements OnInit {
   count : number = 1;
   newPrix: number = 1;
 
-  constructor(public modalRef: MdbModalRef<ModalComponent>, private route : Router) { }
+  constructor(
+    
+    @Inject(DIALOG_DATA) public data: { produit: any[]},
+     public dialogRef : DialogRef<string>,
+     private route : Router
+     ) { }
 
   ngOnInit(): void {
 
@@ -24,7 +29,7 @@ export class ModalComponent implements OnInit {
   
     search(p:Produit){
       this.route.navigate(['details-produit/'+p.name]);
-      this.modalRef.close();
+      
     }
   }
 

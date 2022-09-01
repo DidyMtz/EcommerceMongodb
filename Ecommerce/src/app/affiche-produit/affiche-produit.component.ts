@@ -1,5 +1,5 @@
+import { Dialog,DialogConfig } from '@angular/cdk/dialog';
 import { ModalAlertComponent } from './../modal-alert/modal-alert.component';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ProduitService } from './../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,9 +15,13 @@ export class AfficheProduitComponent implements OnInit {
   listProduit: any[] = [];
   message : string = '';
   categorie : any[] = [];
-  modalref : MdbModalRef<ModalAlertComponent> | null = null;
 
-  constructor(private modalService: MdbModalService, private route: Router, private produitservice: ProduitService) { }
+  constructor(
+   
+    public dialog : Dialog,
+    private route: Router, 
+    private produitservice: ProduitService
+    ) { }
 
   ngOnInit(): void {
 
@@ -40,10 +44,16 @@ export class AfficheProduitComponent implements OnInit {
   }
   openModal(p:Produit){
 
-    this.modalref = this.modalService.open(ModalAlertComponent, {
+    const dialogConfig = new DialogConfig();
 
-      modalClass: 'modal-dialog modal-xl',
-      data : {title : 'Détails Produit', produit : p}
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.hasBackdrop = true;
+    
+    //console.dir(dialogConfig)
+
+    const modalref = this.dialog.open(ModalAlertComponent,  {
+      data : { produit : p}
     })
 
 

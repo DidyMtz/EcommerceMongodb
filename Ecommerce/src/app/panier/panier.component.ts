@@ -85,9 +85,9 @@ RecupPromoCode(event: any){
 
  }else{
  this.promo.some((i)=> {if(i.code === event.target.value.toUpperCase()) this.discountPromo = i.discount; });
- console.warn("discountpromo "+ this.discountPromo);
+ //console.warn("discountpromo "+ this.discountPromo);
  this.sommeGeneral = this.sommeGeneral - this.sommeGeneral * this.discountPromo;
-  this.messagePromo =" Discount de "+this.discountPromo +"apres promo : ";
+  this.messagePromo =" Discount de "+this.discountPromo * 100 +"% accordé ! ";
  } 
   }
   

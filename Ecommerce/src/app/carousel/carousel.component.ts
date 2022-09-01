@@ -15,6 +15,8 @@ export class CarouselComponent implements OnInit {
   ngOnInit(): void {
 
     this.carousel = this.produitservice.carousel;
+    //console.warn(this.carousel);
+    
   }
 
   

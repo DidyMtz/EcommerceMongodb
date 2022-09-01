@@ -44,8 +44,8 @@
           <p class="col-md-8 mt-3">Frais de livraison </p><p class="col-md-4 mt-3">{{shipping}}</p>
         </div>
         <div class="row alert-primary pt-3">
-          <p class="col-md-12"><input  type="text" class="form-control" (change)="RecupAllergene($event)" placeholder="Allèrgene"></p>
-          <p class=" col-md-12 messagePromo"><input  type="text" class="form-control" (change)="RecupPromoCode($event)" placeholder="Code promo">{{messagePromo}}</p>
+          <p class="col-md-12"><input  type="text" class="form-control" (click)="RecupAllergene($event)" placeholder="Allèrgene"></p>
+          <p class=" col-md-12 messagePromo"><input  type="text" class="form-control" (mousemove)="RecupPromoCode($event)" placeholder="Code promo">{{messagePromo}}</p>
                 </div>
 
         <div class="row alert-primary card-text">
