@@ -1,9 +1,9 @@
 import { UserComponent } from './operation/user/user.component';
 import { ProduitComponent } from './operation/produit/produit.component';
-import { PanierComponent } from './panier/panier.component';
+import { PanierComponent } from './produit/panier/panier.component';
 import { ErrorComponent } from './error/error.component';
-import { DetailsProduitComponent } from './details-produit/details-produit.component';
-import { AfficheProduitComponent } from './affiche-produit/affiche-produit.component';
+import { DetailsProduitComponent } from './produit/details-produit/details-produit.component';
+import { AfficheProduitComponent } from './produit/affiche-produit/affiche-produit.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

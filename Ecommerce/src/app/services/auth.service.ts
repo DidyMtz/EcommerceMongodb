@@ -1,4 +1,4 @@
-import { Personne } from '../personne';
+import { Personne } from '../modal/personne';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
