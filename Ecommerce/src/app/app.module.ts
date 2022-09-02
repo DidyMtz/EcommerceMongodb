@@ -27,6 +27,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input'; 
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatStepperModule} from '@angular/material/stepper';
+
+ 
 
 @NgModule({
   declarations: [
@@ -56,8 +60,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
-    
+    MatSelectModule,
+    MatStepperModule,
+    MatCheckboxModule
   ],
   providers: [ProduitService, AuthService,Dialog],
   bootstrap: [AppComponent]

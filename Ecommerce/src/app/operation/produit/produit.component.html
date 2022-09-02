@@ -1,45 +1,116 @@
 
 <h5>Ajouter Produit</h5>
-<div class="form">
-    <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Input</mat-label>
-            <input matInput>
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Select</mat-label>
-            <mat-select>
-              <mat-option value="one">First option</mat-option>
-              <mat-option value="two">Second option</mat-option>
-            </mat-select>
-    </mat-form-field>
-          
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Favorite food</mat-label>
-      <input matInput placeholder="Ex. Pizza" value="Sushi">
-    </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Favorite food</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="Sushi">
-      </mat-form-field>
 
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Favorite food</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="Sushi">
-      </mat-form-field>
+<mat-stepper #stepper>
+  <mat-step [stepControl]="produitForm" errorMessage="Name is required.">
+    <form [formGroup]="produitForm" (click)="onSubmit()">
+      <ng-template matStepLabel>Fill out your name</ng-template>
 
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Favorite food</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="Sushi">
-      </mat-form-field>
+      
+      <div class="divform">
+
+        <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" placeholder="Name">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Favori ?</mat-label>
+                <mat-select formControlName="favori">
+                  <mat-option value="oui">Oui</mat-option>
+                  <mat-option value="non">non</mat-option>
+                </mat-select>
+        </mat-form-field>
+             
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Prix</mat-label>
+        <p>  <input matInput placeholder="Prix" formControlName="prix"></p>
+        </mat-form-field>
+        
+             <mat-form-field class="example-full-width"  appearance="fill" >
+            <mat-label>Catégorie ?</mat-label>
+            <mat-select formControlName="categorie" >
+              <mat-option value="{{categorie}}" *ngFor="let categorie of categories" >{{categorie}}</mat-option>
+           </mat-select>
+          </mat-form-field>
+    
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Discount</mat-label>
+            <input matInput placeholder="Discount" formControlName="discount">
+          </mat-form-field>
+    
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        </mat-form-field>
+    
+        <button  mat-raised-button color="primary">Enregistrer</button>
+     
+      </div>
+
+      <div>
+        <p>Go to a different step to see the error state</p>
+        <button mat-raised-button color="warn" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="allergeneForm" errorMessage="Address is required.">
+    
+      <ng-template matStepLabel>Fill out your address</ng-template>
+     
+
+<!--checkbox-->
+<div class="example-section" >
+  <h4> Liste d'allergènes:</h4>
+  <section class="example-section">
+    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+    <mat-checkbox class="example-margin" [disabled]="true">Disabled</mat-checkbox>
+  </section>
   
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Leave a comment</mat-label>
-      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-    </mat-form-field>
+  <section class="example-section">
+    <span class="example-list-section">
+      <mat-checkbox class="example-margin"
+                    [checked]="allComplete"
+                    [color]="task.color"
+                    [indeterminate]="someComplete()"
+                    (change)="setAll($event.checked)">
+        {{task.name}}
+      </mat-checkbox>
+    </span>
+    <span class="example-list-section">
+      <ul>
+        <li *ngFor="let subtask of task.subtasks">
+          <mat-checkbox [(ngModel)]="subtask.completed"
+                        [color]="subtask.color"
+                        (ngModelChange)="updateAllComplete()">
+            {{subtask.name}}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </span>
+  </section>
 
-    <button  mat-raised-button color="primary">Enregistrer</button>
-  </form>
-  
 </div>
+      <div>
+        <p>Go to a different step to see the error state</p>
+        <button mat-raised-button  matStepperPrevious>Back</button>
+        <button mat-raised-button color="warn" matStepperNext>Next</button>
+      </div>
+    
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    
+    <div class="divform">
+
+      <p>Upload photo.</p>
+    </div>
+    
+    
+   
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>

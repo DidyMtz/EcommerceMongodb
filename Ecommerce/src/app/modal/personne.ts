@@ -5,4 +5,5 @@ export class Personne{
     etat! : boolean;
     adresse! : string;
     reference! : string;
+    role?: string;
 }

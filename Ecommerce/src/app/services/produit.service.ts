@@ -12,6 +12,7 @@ export class ProduitService {
   shipping: number = 0;
   message : BehaviorSubject<string> = new BehaviorSubject<string>("");
   
+  
   promo : any[] = [
     {code : 'AAVV', datefin: '29/8/2022', discount: .1 },
     {code : 'BBHH', datefin: '28/8/2022', discount: .2 },
@@ -54,7 +55,7 @@ export class ProduitService {
  ];
 
   categorie : any[] = ['Plat principal', 'Accompagnement','Boisson'];
-  allergene : any[] = [];
+   allergene : any[] = ['céreale', 'crustacé', 'oeuf', 'arachide', 'poisson','soja'];
 
   constructor() {
 

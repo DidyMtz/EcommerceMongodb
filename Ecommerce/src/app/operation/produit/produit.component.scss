@@ -2,12 +2,13 @@ h5{
     margin:20px;
 }
 
-.form{
+.divform{
     
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin:20px;
+    width:50%;
+    margin:0 auto;
     padding: 10px;
 
 
@@ -20,4 +21,11 @@ h5{
   .example-full-width {
     width: 100%;
   }
+}
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
 }
