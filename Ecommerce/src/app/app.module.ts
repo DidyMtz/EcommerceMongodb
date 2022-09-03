@@ -5,6 +5,7 @@ import { ProduitService } from './services/produit.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatStepperModule} from '@angular/material/stepper';
+import { MatIconModule } from '@angular/material/icon';
 
  
 
@@ -62,7 +64,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatButtonModule,
     MatSelectModule,
     MatStepperModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [ProduitService, AuthService,Dialog],
   bootstrap: [AppComponent]

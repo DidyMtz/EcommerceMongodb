@@ -55,7 +55,9 @@ export class ProduitService {
  ];
 
   categorie : any[] = ['Plat principal', 'Accompagnement','Boisson'];
-   allergene : any[] = ['céreale', 'crustacé', 'oeuf', 'arachide', 'poisson','soja'];
+  allergene : any[] = ['céreale', 'crustacé', 'oeuf', 'arachide', 'poisson','soja'];
+  discount  : any[] = [0,5,10,15,20,25,30,35,40,45,50];
+
 
   constructor() {
 

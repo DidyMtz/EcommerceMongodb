@@ -3,7 +3,7 @@ export class Produit{
     prix:number = 0;
     photo:string ="";
     description?:string;
-    allergene?:string;
+    allergene?:any[];
     favori?:boolean;
     nbr?: number;
     categorie?:string;
