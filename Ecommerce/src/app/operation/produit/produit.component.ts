@@ -147,7 +147,8 @@ this.produit.allergene = this.task.subtasks?.filter((i) => {
    if(i.completed) return i;
    else return;});
 
-  console.warn(this.produit);
+   this.produitservice.postProduit(this.produit);
+  //console.warn(this.produit);
   
    
     

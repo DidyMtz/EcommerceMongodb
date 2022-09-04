@@ -1,14 +1,18 @@
 const express = require('express');
 const { default: mongoose } = require('mongoose');
+const bodyparser = require('body-parser');
+const cors = require('cors');
 require('dotenv/config');
 
 const app = express();
 
 
 //import routes
-const postRoute = require('./route/post');
+const postRoute = require('./route/posts');
 
 //middleware
+app.use(cors());
+app.use(bodyparser.json());
 app.use('/posts', postRoute);
 
 

@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Produit } from '../modal/produit';
 
@@ -11,6 +12,7 @@ export class ProduitService {
   count: number = 1;
   shipping: number = 0;
   message : BehaviorSubject<string> = new BehaviorSubject<string>("");
+  API_postproduit : string = environment.API_url+"/posts/";
   
   
   promo : any[] = [
@@ -59,9 +61,16 @@ export class ProduitService {
   discount  : any[] = [0,5,10,15,20,25,30,35,40,45,50];
 
 
-  constructor() {
+  constructor(private http: HttpClient) {
 
    }
+
+
+   postProduit(produit: Produit){
+
+    return this.http.post(this.API_postproduit, produit);
+   }
+
 
 
   AjoutPanier(produit:Produit){
