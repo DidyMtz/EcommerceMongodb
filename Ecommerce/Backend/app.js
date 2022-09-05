@@ -11,6 +11,7 @@ const app = express();
 const postRoute = require('./route/posts');
 
 //middleware
+app.use('/upload',express.static('upload'))
 app.use(cors());
 app.use(bodyparser.json());
 app.use('/posts', postRoute);
@@ -27,4 +28,4 @@ mongoose.connect( process.env.DB_CONNECTION, () => {
 })
 
 //listen
-app.listen(4000);
+app.listen(process.env.PORT);
