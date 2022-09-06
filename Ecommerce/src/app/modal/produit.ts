@@ -4,7 +4,7 @@ export class Produit{
     photo:string ="";
     description?:string;
     allergene?:any[];
-    favori?:boolean;
+    favori?:string;
     nbr?: number;
     categorie?:string;
     discount?:number = 0;

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@ang
 import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import { Produit } from 'src/app/modal/produit';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 
 export interface Task {
@@ -51,6 +51,7 @@ export class ProduitComponent implements OnInit {
 
 
   isLinear = false;
+  message: any;
 
   constructor(
               private builder: FormBuilder, 
@@ -142,15 +143,22 @@ export class ProduitComponent implements OnInit {
 
   onSubmit(){
 
-this.produit = this.produitForm.value;
-this.produit.allergene = this.task.subtasks?.filter((i) => {
+  this.produit = this.produitForm.value;
+  if(this.task.subtasks != null)
+  this.produit.allergene = this.task.subtasks.filter((i) => {
    if(i.completed) return i;
    else return;});
 
-   this.produitservice.postProduit(this.produit);
-  //console.warn(this.produit);
-  
-   
+   const postProduit = this.produitservice.postProduit(this.produit);
+   postProduit.subscribe(
+    (result: any) => {
+      if(result instanceof HttpErrorResponse) return result.error;
+      else
+      this.message = result.message;
+    }
+   );
+  console.warn(this.produit);
+    
     
   }
 
@@ -161,15 +169,9 @@ this.produit.allergene = this.task.subtasks?.filter((i) => {
     if (file) {
 
         this.fileName = file.name;
-       // const localpath = './Ecoomerce/Ecommerce/Ecommerce/src/app/assets/img/'+this.fileName;
-
         const formData = new FormData();
-
-        formData.append("thumbnail", file);
-
-        const upload$ = this.http.post("/api/thumbnail-upload", formData);
-       // const upload$ = this.http.post(localpath, formData);
-
+        formData.append("produitImage", file);
+        const upload$ = this.produitservice.postUpload(formData);
         upload$.subscribe();
     }
 }

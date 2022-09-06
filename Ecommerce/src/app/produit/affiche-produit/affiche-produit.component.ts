@@ -23,13 +23,28 @@ export class AfficheProduitComponent implements OnInit {
 
   ngOnInit(): void {
 
-       /*filtrer et remplir array par categorie */
+    this.getProduits();
+    
+      /* filtrer et remplir array par categorie 
+      
     this.produitservice.categorie.forEach(elt =>{
-      this.listProduit = this.produitservice.produits.filter((i) => i.categorie === elt);
-      this.categorie.push(this.listProduit);
+      if(this.listProduit != null)
+      this.categorie.push(this.listProduit.filter((i) => i.categorie === "Plat principal"));
     });
+
+    console.log(this.categorie);*/
+    
   }
 
+  getProduits(){
+    this.produitservice.getProduit().subscribe(
+      (err) => console.log(err),
+      (res: any) => {this.listProduit.push(res);
+       
+      }
+      
+    )
+  }
 
   AjouterPanier(produit:Produit){
     

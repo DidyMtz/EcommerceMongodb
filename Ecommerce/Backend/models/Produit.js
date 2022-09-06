@@ -10,7 +10,7 @@ const PostSchema = mongoose.Schema({
     photo: String ,
     description: String,
     allergene :  Array,
-    favori : Boolean,
+    favori : String,
     categorie : String,
     discount  : Number
 

@@ -12,7 +12,9 @@ export class ProduitService {
   count: number = 1;
   shipping: number = 0;
   message : BehaviorSubject<string> = new BehaviorSubject<string>("");
-  API_postproduit : string = environment.API_url+"/posts/";
+  API_postproduit = environment.API_url+"/posts/";
+  API_imageUpload = environment.API_url+"/posts/upload";
+  API_getproduit = environment.API_url+"/posts/";
   
   
   promo : any[] = [
@@ -20,7 +22,8 @@ export class ProduitService {
     {code : 'BBHH', datefin: '28/8/2022', discount: .2 },
     {code : 'XXYY', datefin: '29/8/2022', discount: .3 }
   ];
-  produits : any[] = [
+  produits : any[] = [];
+  produitss : any[] = [
     
     {name:'Allocco ', prix: 20, photo:'../../assets/img/alloco.jpg', description:'Alloco grillé sur feu doux à la sauce de persil et mouscade.', categorie:'Accompagnement', discount:.5},
     {name:'Poulet Braisé', prix: 100, photo:'../../assets/img/Poulet-Braise.jpg', description:'Poulet braisé sur feu doux à la sauce de persil et mouscade.', categorie:'Plat principal', discount:0},
@@ -67,8 +70,15 @@ export class ProduitService {
 
 
    postProduit(produit: Produit){
-
     return this.http.post(this.API_postproduit, produit);
+   }
+   postUpload(formdata : FormData){
+    return this.http.post(this.API_imageUpload, formdata);
+   }
+
+   getProduit(){
+    return this.http.get(this.API_getproduit);
+   
    }
 
 

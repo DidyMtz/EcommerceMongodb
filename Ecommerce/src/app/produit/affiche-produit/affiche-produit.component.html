@@ -2,12 +2,12 @@
 
 
 <div class="produit_container">
-<div *ngFor="let level of categorie">
+<div >
   
-  <h3 class="m-2 text-muted text-center">{{level[0].categorie}}</h3>
+  <h3 class="m-2 text-muted text-center"></h3>
 
 <div class="container">
-    <div class="card" *ngFor="let produit of level; let i =index">
+    <div class="card" *ngFor="let produit of listProduit; let i =index">
      
         <img src="{{produit.photo}}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -23,3 +23,28 @@
 
 
 </div>
+
+
+<!--
+<div class="produit_container">
+  <div *ngFor="let level of categorie">
+    
+    <h3 class="m-2 text-muted text-center">{{level.categorie}}</h3>
+  
+  <div class="container">
+      <div class="card" *ngFor="let produit of level; let i =index">
+       
+          <img src="{{produit.photo}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{produit.name}}</h5>
+            <p class="card-text">{{produit.description}}</p>
+            <p class="card-text-prix">{{produit.prix}} DH</p>
+            <a class="btn btn-outline-primary btn-lg me-2" (click)="AjouterPanier(produit)">Voir</a>
+    </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  </div>-->
