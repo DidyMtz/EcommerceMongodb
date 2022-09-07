@@ -1,4 +1,5 @@
 export class Produit{
+    _id?: number
     name :string = "";
     prix:number = 0;
     photo:string ="";

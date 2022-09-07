@@ -9,7 +9,7 @@ let cheminProduit = null;
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination : function(req, file, cb){
-        cb(null, 'upload');
+        cb(null, '../src/assets/img/upload');
     },
     filename : function(req, file, cb){
 
@@ -91,10 +91,11 @@ router.post('/', upload.single('produitImage') ,async (req,res) => {
    
        try{
        const savedProduit = await produit.save();
-     // console.log(produit)
-       res.status(200).json(produit);
+      // res.status(200).json(savedProduit);
+       res.status(200).json({message: " Enregistrement effectué avec succès !"});
+
        }catch(err){
-           res.json({message: err});
+           res.json({message: err+" Erreur"});
        }
    });
    

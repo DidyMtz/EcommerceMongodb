@@ -31,8 +31,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
-
- 
+import {MatExpansionModule} from '@angular/material/expansion';
+import { AjoutProduitComponent } from './operation/produit/ajout-produit/ajout-produit.component';import {MatTabsModule} from '@angular/material/tabs';
+import { ModifProduitComponent } from './operation/produit/modif-produit/modif-produit.component';
+import { SuppProduitComponent } from './operation/produit/supp-produit/supp-produit.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,10 @@ import { MatIconModule } from '@angular/material/icon';
     FooterComponent,
     ModalComponent,
     LoginComponent,
-    CarouselFooterComponent
+    CarouselFooterComponent,
+    AjoutProduitComponent,
+    ModifProduitComponent,
+    SuppProduitComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +71,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatStepperModule,
     MatCheckboxModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule,
+    MatTabsModule
+
   ],
   providers: [ProduitService, AuthService,Dialog],
   bootstrap: [AppComponent]

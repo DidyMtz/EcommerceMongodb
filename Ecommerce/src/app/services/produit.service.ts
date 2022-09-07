@@ -15,6 +15,8 @@ export class ProduitService {
   API_postproduit = environment.API_url+"/posts/";
   API_imageUpload = environment.API_url+"/posts/upload";
   API_getproduit = environment.API_url+"/posts/";
+  API_getOneproduit = environment.API_url+"/posts/:produitID";
+
   
   
   promo : any[] = [
@@ -23,7 +25,7 @@ export class ProduitService {
     {code : 'XXYY', datefin: '29/8/2022', discount: .3 }
   ];
   produits : any[] = [];
-  produitss : any[] = [
+  /*produitss : any[] = [
     
     {name:'Allocco ', prix: 20, photo:'../../assets/img/alloco.jpg', description:'Alloco grillé sur feu doux à la sauce de persil et mouscade.', categorie:'Accompagnement', discount:.5},
     {name:'Poulet Braisé', prix: 100, photo:'../../assets/img/Poulet-Braise.jpg', description:'Poulet braisé sur feu doux à la sauce de persil et mouscade.', categorie:'Plat principal', discount:0},
@@ -40,7 +42,7 @@ export class ProduitService {
       
 
 
-  ];
+  ];*/
 
   carousel :Produit[] =[
     {name:'Porc Braisé', prix: 120, photo:'../../assets/img/slider/porc3.jpg', description:'Porc braisé sur feu doux à la sauce de persil et mouscade'},
@@ -75,10 +77,12 @@ export class ProduitService {
    postUpload(formdata : FormData){
     return this.http.post(this.API_imageUpload, formdata);
    }
-
    getProduit(){
-    return this.http.get(this.API_getproduit);
-   
+    return this.http.get(this.API_getproduit);   
+   }
+   getOneProduit(produit: Produit){
+    const id = produit._id;
+    return this.http.get(this.API_getOneproduit+"/"+id)
    }
 
 

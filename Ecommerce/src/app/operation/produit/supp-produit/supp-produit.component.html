@@ -1,0 +1,11 @@
+
+<h5>Supprimer Produit</h5>
+
+<div class="divform" >
+    <mat-form-field class="example-full-width"  appearance="fill" >
+        <mat-label>Choisir Produit</mat-label>
+        <mat-select>
+          <mat-option value="{{produit.name}}" (click)="supprimerProduit(supform.value)" #supform *ngFor="let produit of listProduit" >{{produit.name}}</mat-option>
+       </mat-select>
+      </mat-form-field>
+</div>
