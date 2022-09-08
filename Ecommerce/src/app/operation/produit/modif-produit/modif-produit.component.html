@@ -1,65 +1,75 @@
 
 <h5>Modifier Produit</h5>
 
-<ng-container>
-    <form [formGroup]="modifForm" >
+    <form [formGroup]="selectForm" >
 
         <div class="divform" >
             <mat-form-field class="example-full-width"  appearance="fill" >
                 <mat-label>Choisir Produit</mat-label>
                 <mat-select formControlName="name" >
-                  <mat-option value="{{produit.name}}" (click)="AfficheProduit(produit)" *ngFor="let produit of listProduit" >{{produit.name}}</mat-option>
+                  <mat-option value="{{produit.name}}" (click)="AfficheProduit()" *ngFor="let produit of listProduit" >{{produit.name}}</mat-option>
                </mat-select>
               </mat-form-field>
-             
-        
-        <ng-container *ngIf="state">
-
-
-           
-        <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Favori ?</mat-label>
-                <mat-select formControlName="favori">
-                  <mat-option value="oui">Oui</mat-option>
-                  <mat-option value="non">non</mat-option>
-                </mat-select>
-        </mat-form-field>
-             
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Prix</mat-label>
-        <p>  <input matInput placeholder="Prix" formControlName="prix"></p>
-        </mat-form-field>
-        
-             <mat-form-field class="example-full-width"  appearance="fill" >
-            <mat-label>Catégorie ?</mat-label>
-            <mat-select formControlName="categorie" >
-              <mat-option value="{{categorie}}" *ngFor="let categorie of categories" >{{categorie}}</mat-option>
-           </mat-select>
-          </mat-form-field>
-    
-    
-          <mat-form-field class="example-full-width"  appearance="fill" >
-            <mat-label>Discount ?</mat-label>
-            <mat-select formControlName="discount" >
-              <mat-option value="{{discount}}" *ngFor="let discount of discounts" >{{discount}}%</mat-option>
-           </mat-select>
-          </mat-form-field>
-
-
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Description</mat-label>
-          <textarea matInput placeholder="Description" rows="3" formControlName="description"></textarea>
-        </mat-form-field>
-      
-    <button mat-raised-button color="warn" >Modifier</button>
-
-        </ng-container>
-
-
-
-
-
-
-        </div>
+            </div>      
     </form>
-</ng-container>
+
+
+
+    <div class="divform">
+
+    <form [formGroup]="modifForm" >
+      <ng-container *ngIf="state">
+
+        <div *ngFor="let produit of selectedProduit">
+
+         
+      <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Favori ?</mat-label>
+              <mat-select  [(value)]="produit.favori">
+                <mat-option value="oui">Oui</mat-option>
+                <mat-option value="non">non</mat-option>
+              </mat-select>
+      </mat-form-field>
+           
+      <mat-form-field class="example-full-width"  appearance="fill">
+        <mat-label>Prix</mat-label>
+      <p>  <input matInput placeholder="{{produit.prix}}"   formControlName="prix"></p>
+      </mat-form-field>
+      
+           <mat-form-field class="example-full-width"  appearance="fill" >
+          <mat-label >Catégorie ?</mat-label>
+          <mat-select  [(value)]="produit.categorie"  >            
+          
+            <mat-option value="{{categorie}}" *ngFor="let categorie of categories" >{{categorie}}</mat-option>
+         </mat-select>
+        </mat-form-field>
+  
+  
+        <mat-form-field class="example-full-width"  appearance="fill" >
+          <mat-label>Discount ?</mat-label>
+          <mat-select  [(value)]="produit.discount" >
+            <mat-option value="{{discount}}" *ngFor="let discount of discounts" >{{discount}}%</mat-option>
+         </mat-select>
+        </mat-form-field>
+
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput value="{{produit.description}}" rows="3" formControlName="description"></textarea>
+      </mat-form-field>
+    
+  <button mat-raised-button color="warn" (change)="modifProduit()" >Modifier</button>
+</div>
+      </ng-container>
+
+
+  </form>
+
+
+
+</div>
+
+
+
+
+

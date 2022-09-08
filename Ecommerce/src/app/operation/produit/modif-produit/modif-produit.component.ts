@@ -14,8 +14,12 @@ export class ModifProduitComponent implements OnInit {
   modifForm! : FormGroup;
   message: any;
   state : boolean = false;
+  object! : {};
   discounts : any[] = [];
   categories : any[ ] = [];
+  selectedProduit : Produit[] =[];
+  selectedCategorie : any;
+  selectForm! : FormGroup;
 
   constructor( private produitservice : ProduitService) { }
 
@@ -25,6 +29,8 @@ export class ModifProduitComponent implements OnInit {
 
     this.discounts = this.produitservice.discount;
     this.categories = this.produitservice.categorie;
+    this.AfficheProduit();
+
   }
 
   intiForm(){
@@ -35,7 +41,14 @@ export class ModifProduitComponent implements OnInit {
       favori      :new FormControl(),
       categorie   :new FormControl(),
       discount    :new FormControl()
-    })
+    });
+
+
+    this.selectForm = new FormGroup({
+      name  :new FormControl()
+    });
+
+   
   }
 
   getListProduit(){
@@ -46,17 +59,21 @@ export class ModifProduitComponent implements OnInit {
     )
   }
 
-  AfficheProduit(produit: Produit){
-    if(produit != null){
-      
-    const list = this.modifForm.get('name')?.value;
-    this.message = list;
-    this.state = true;
-   
-
-
-    }
+  AfficheProduit(){
     
+    this.state = true;
+    const name = this.selectForm.get('name')?.value;
+    this.selectedProduit = this.listProduit.filter(i => i.name === name);
+     
+    console.log(this.selectedProduit);
+
+
+    
+    
+  }
+  modifProduit(){
+console.log(this.modifForm.value);
+
   }
 
 

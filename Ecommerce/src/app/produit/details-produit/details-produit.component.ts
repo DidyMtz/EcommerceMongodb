@@ -23,18 +23,9 @@ export class DetailsProduitComponent implements OnInit {
   constructor(private route: Router, private activeRoute: ActivatedRoute, private produitservice: ProduitService) { }
 
   ngOnInit(): void {
-    this.produitSelected = this.produitservice.produits;
-    this.subject = this.activeRoute.paramMap.subscribe( params => {
-     // this.id = params.get('id');
-      this.name = params.get('id1');
-
-
-
-    });
-   /* Filtrer par nom*/
     
-    this.singleProduit = this.produitSelected.filter(i => i.name === this.name);
-    //console.log(this.singleProduit);
+    this.getProduit();
+   
     
     
   }
@@ -66,7 +57,18 @@ Dcounter(){
   if(this.count > 1){this.count --;}  
   
 }
-
+getProduit(){
+  this.produitservice.getProduit().subscribe(
+    (res: any) =>{ this.produitSelected = res; 
+      
+      this.subject = this.activeRoute.paramMap.subscribe( params => {
+        this.id = params.get('id1');
+       });
+      /* Filtrer par nom*/
+        this.singleProduit = this.produitSelected.filter(i => i._id === this.id);      
+    },
+    (err) => console.log(err)    
+  )}
 
 
 }

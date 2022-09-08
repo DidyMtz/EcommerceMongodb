@@ -14,7 +14,7 @@
      <div class="card alert-light text-bg mb-3" *ngFor="let produit of singleProduit; let i =index">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="{{produit.photo}}" class="img-fluid rounded-start" alt="...">
+            <img src="{{produit.photo.substring(6)}}" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
