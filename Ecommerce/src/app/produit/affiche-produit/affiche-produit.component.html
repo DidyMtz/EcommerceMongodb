@@ -8,7 +8,7 @@
   <div class="container">
       <div class="card" *ngFor="let produit of level; let i =index">
        
-          <img src="{{produit.photo}}" class="card-img-top" alt="...">
+          <img src="{{produit.photo.substring(6)}}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{produit.name}}</h5>
             <p class="card-text">{{produit.description}}</p>
