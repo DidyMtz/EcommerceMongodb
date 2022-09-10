@@ -1,10 +1,25 @@
 
 <h5>Modifier Produit</h5>
 
-    <form [formGroup]="selectForm" >
+
+
+
+
+<div class="example-input-wrapper">
+ <!-- <input id="duration" value="2000" type="number" min="0" step="100" #duration>-->
+</div>
+
+<mat-vertical-stepper [linear]="false" #stepper [animationDuration]="duration">
+  <mat-step [stepControl]="firstFormGroup">
+    <!--<form [formGroup]="firstFormGroup">-->
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      
+
+
+      <form [formGroup]="selectForm" >
 
         <div class="divform" >
-            <mat-form-field class="example-full-width"  appearance="fill" >
+            <mat-form-field class="full-width"  appearance="fill" >
                 <mat-label>Choisir Produit</mat-label>
                 <mat-select formControlName="name" >
                   <mat-option value="{{produit.name}}" (click)="AfficheProduit()" *ngFor="let produit of listProduit" >{{produit.name}}</mat-option>
@@ -17,57 +32,97 @@
 
     <div class="divform">
 
-    <form [formGroup]="modifForm" >
+   
       <ng-container *ngIf="state">
 
         <div *ngFor="let produit of selectedProduit">
 
          
       <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Favori ?</mat-label>
-              <mat-select  [(value)]="produit.favori">
-                <mat-option value="oui">Oui</mat-option>
-                <mat-option value="non">non</mat-option>
-              </mat-select>
+        <mat-label>Favori ?</mat-label>
+        <mat-select  [(value)]="produit.favori">
+        <mat-option value="oui">Oui</mat-option>
+        <mat-option value="non">non</mat-option>
+        </mat-select>
       </mat-form-field>
            
       <mat-form-field class="example-full-width"  appearance="fill">
         <mat-label>Prix</mat-label>
-      <p>  <input matInput placeholder="{{produit.prix}}"   formControlName="prix"></p>
+        <p><input matInput  [(ngModel)]="prix" type="number"></p>
       </mat-form-field>
+
+      <mat-form-field class="example-full-width"  appearance="fill" >
+        <mat-label >Catégorie ?</mat-label>
+        <mat-select  [(value)]="produit.categorie"  >            
+        <mat-option value="{{categorie}}" *ngFor="let categorie of categories" >{{categorie}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width"  appearance="fill">
+        <mat-label>Discount</mat-label>
+        <p>  <input matInput [(ngModel)]="discount" name="discount" type="number"></p>
+        </mat-form-field>
       
-           <mat-form-field class="example-full-width"  appearance="fill" >
-          <mat-label >Catégorie ?</mat-label>
-          <mat-select  [(value)]="produit.categorie"  >            
-          
-            <mat-option value="{{categorie}}" *ngFor="let categorie of categories" >{{categorie}}</mat-option>
-         </mat-select>
-        </mat-form-field>
-  
-  
-        <mat-form-field class="example-full-width"  appearance="fill" >
-          <mat-label>Discount ?</mat-label>
-          <mat-select  [(value)]="produit.discount" >
-            <mat-option value="{{discount}}" *ngFor="let discount of discounts" >{{discount}}%</mat-option>
-         </mat-select>
-        </mat-form-field>
-
-
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Description</mat-label>
-        <textarea matInput value="{{produit.description}}" rows="3" formControlName="description"></textarea>
+        <textarea matInput rows="3" [(ngModel)]="description"></textarea>
       </mat-form-field>
-    
-  <button mat-raised-button color="warn" (change)="modifProduit()" >Modifier</button>
+      <button mat-raised-button color="warn" (click)="modifProduit(produit)" >Modifier</button>
+     
+ 
 </div>
       </ng-container>
-
-
-  </form>
-
-
-
 </div>
+
+
+
+
+
+
+
+
+    <div>
+
+        <button mat-button matStepperNext>Next</button>
+      </div>  
+   <!--</form>-->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

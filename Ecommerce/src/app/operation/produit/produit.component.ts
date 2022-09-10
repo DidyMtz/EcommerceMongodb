@@ -1,10 +1,5 @@
-import { ProduitService } from './../../services/produit.service';
-import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import {ThemePalette} from '@angular/material/core';
-import { Produit } from 'src/app/modal/produit';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
+import { Component, Input, OnInit } from '@angular/core';
 
 
 @Component({
@@ -15,9 +10,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 export class ProduitComponent implements OnInit {
 
  
+  @Input() isAdmin : boolean = false ;
 
-  constructor(
-              ) { }
+  constructor() { }
 
   ngOnInit(): void {
   

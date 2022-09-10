@@ -112,11 +112,27 @@ router.delete('/:produitID', async (req, res) => {
 });
 
 //UPDATE PRODUIT
-router.patch('/:produitID', async (req, res) => {
+router.patch('/update', async (req, res) => {
+    console.log(req.body)
+    var myquery = { _id: req.body._id};
+    var newvalues = { $set: {
+        name  : req.body.name,
+        prix  : req.body.prix,
+        photo : req.body.photo,
+        description : req.body.description,
+        allergene : req.body.allergene,
+        favori    : req.body.favori,
+        categorie : req.body.categorie,
+        discount  : req.body.discount } };
     try{
-        const updatedProduit = await Produit.updateOne({_id : req.params.produitID}, { $set : { name : req.body.name}});
-        res.status(200).json(updatedProduit);
+        const updatedProduit = await Produit.updateOne(myquery, newvalues ,function(err, res) {
+            if (err){ throw err;} 
+            else{
+                console.log("1 document updated");}
+                res.status(200).send(" Mise à jour effectuée avec succès");
 
+          });
+       
     }catch(err){
         res.json({message: err});
     }

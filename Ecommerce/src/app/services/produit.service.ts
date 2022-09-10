@@ -16,6 +16,7 @@ export class ProduitService {
   API_imageUpload = environment.API_url+"/posts/upload";
   API_getproduit = environment.API_url+"/posts/";
   API_getOneproduit = environment.API_url+"/posts/:produitID";
+  API_editProduit = environment.API_url+"/posts/update";
 
   
   
@@ -83,6 +84,10 @@ export class ProduitService {
    getOneProduit(produit: Produit){
     const id = produit._id;
     return this.http.get(this.API_getOneproduit+"/"+id)
+   }
+
+   editProduit(produit: Produit){
+    return this.http.patch(this.API_editProduit,produit)
    }
 
 

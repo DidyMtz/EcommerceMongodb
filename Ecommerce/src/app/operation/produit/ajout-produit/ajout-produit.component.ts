@@ -83,7 +83,7 @@ export class AjoutProduitComponent implements OnInit {
       prix : ['',Validators.required],     
       favori : ['',Validators.required],
       categorie : ['',Validators.required],
-      description : ['',[Validators.minLength(75),Validators.maxLength(100), Validators.required]],
+      description : ['',[Validators.minLength(75),Validators.maxLength(80), Validators.required]],
       discount : ['',Validators.required]
     });
 
