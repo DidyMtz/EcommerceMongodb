@@ -3,6 +3,7 @@ const { default: mongoose } = require('mongoose');
 const bodyparser = require('body-parser');
 const cors = require('cors');
 require('dotenv/config');
+const port = process.env.PORT || 8080;
 
 const app = express();
 
@@ -28,4 +29,4 @@ mongoose.connect( process.env.DB_CONNECTION, () => {
 })
 
 //listen
-app.listen(process.env.PORT);
+app.listen(port);

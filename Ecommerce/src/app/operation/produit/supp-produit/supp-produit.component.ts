@@ -10,6 +10,9 @@ import { Produit } from 'src/app/modal/produit';
 export class SuppProduitComponent implements OnInit {
 
   listProduit : any[] = [];
+  state: boolean = false;
+  produit = new Produit;
+  message : string ="";
 
   constructor(private produitservice : ProduitService) { }
 
@@ -28,11 +31,31 @@ export class SuppProduitComponent implements OnInit {
 
 
 
-  supprimerProduit(produit: string){
-
+  supprimerProduit(produit: Produit){
+  this.produit = produit;
+  this.state = true;
     console.warn(produit);
        
  
+  }
+  confirmersuppProduit(){
+    const idproduit = this.produit._id;
+
+    this.produitservice.supprimerProduit(idproduit).subscribe(
+      (res: any) => {
+        this.message = res.message;
+        this.getListProduit();
+        
+        // delete file named 'sample.txt'
+       /* fs.unlink(req.body.photo, function (err) {
+          if (err) throw err;
+         // if no error, file has been deleted successfully
+          console.log({message : 'File deleted!'});
+           });*/
+      },
+      (err: any) => this.message = err
+    )
+    console.warn(idproduit);
   }
 
 

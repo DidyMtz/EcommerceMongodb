@@ -17,6 +17,9 @@ export class ProduitService {
   API_getproduit = environment.API_url+"/posts/";
   API_getOneproduit = environment.API_url+"/posts/:produitID";
   API_editProduit = environment.API_url+"/posts/update";
+  API_editphotoProduit = environment.API_url+"/posts/updatephoto";
+  API_editallergeneProduit = environment.API_url+"/posts/updateallergene";
+  API_deleteProduit = environment.API_url+"/posts/delete";
 
   
   
@@ -89,6 +92,15 @@ export class ProduitService {
    editProduit(produit: Produit){
     return this.http.patch(this.API_editProduit,produit)
    }
+   editPhoto(produit:Produit){
+    return this.http.patch(this.API_editphotoProduit, produit);
+   }
+   editAllergene(produit: Produit){
+    return this.http.patch(this.API_editallergeneProduit, produit);
+   }
+   supprimerProduit(idproduit :any){
+    return this.http.delete(this.API_deleteProduit+"/"+idproduit);
+   }
 
 
 
@@ -100,6 +112,23 @@ export class ProduitService {
   }
 
   
+  onFileSelected(event :any, fileName: any) {
+
+    const file:File = event.target.files[0];
+
+    if (file) {
+
+        fileName = file.name;
+        const formData = new FormData();
+        formData.append("produitImage", file);
+        const upload$ = this.postUpload(formData);
+     return   upload$;
+       
+    }else{ return ;}
+}
+
+
+
 onReceive = (message : string ) => { return this.message.next(message);}
 
 }

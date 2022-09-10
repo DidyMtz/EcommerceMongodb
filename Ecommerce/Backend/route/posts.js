@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Produit = require('../models/Produit');
+const fs = require('fs');
 let cheminProduit = null;
 
 //console.log(cheminProduit);
 
 
 const multer = require('multer');
+const { updateOne } = require('../models/Produit');
 const storage = multer.diskStorage({
     destination : function(req, file, cb){
         cb(null, '../src/assets/img/upload');
@@ -69,7 +71,7 @@ router.post('/upload', upload.single('produitImage') ,async (req,res) => {
     try{
    /* const savedProduit = await produit.save();*/
    console.log("Image upload successfully")
-    res.status(200).send({message: "Image upload successfully"});
+    res.status(200).send({message: "Image upload successfully", filename: req.file.originalname});
     }catch(err){
         res.json({message: err});
     }
@@ -100,11 +102,14 @@ router.post('/', upload.single('produitImage') ,async (req,res) => {
    });
    
 //REMOVE POST
-router.delete('/:produitID', async (req, res) => {
+router.delete('/delete/:produitID', async (req, res) => {
+    
     try{
+        
+        console.log(req.body);
         //const removedProduit = await Produit.remove({_id : req.params.produitID});
-        const removedProduit = await Produit.deleteOne({_id : req.params.produitID});
-        res.status(200).json(removedProduit);
+       const removedProduit = await Produit.deleteOne({_id : req.params.produitID});
+        res.status(200).json({message : "Produit supprimer avec succès !"});
 
     }catch(err){
         res.json({message: err});
@@ -125,19 +130,45 @@ router.patch('/update', async (req, res) => {
         categorie : req.body.categorie,
         discount  : req.body.discount } };
     try{
-        const updatedProduit = await Produit.updateOne(myquery, newvalues ,function(err, res) {
-            if (err){ throw err;} 
-            else{
-                console.log("1 document updated");}
-                res.status(200).send(" Mise à jour effectuée avec succès");
-
-          });
+        const updatedProduit = await Produit.updateOne(myquery, newvalues) 
+      
+            res.send({message : " Mise à jour produit effectuée avec succès! "});
+           
        
     }catch(err){
         res.json({message: err});
     }
 });
 
+router.patch('/updatephoto', upload.single('produitImage') , async (req,res) =>{
+    
+    try{
+    
+    const myquery = { _id : req.body._id};
+    const changes = { $set : { photo : cheminProduit}};
+    console.log(req.body);
+    const updatephoto = await Produit.updateOne(myquery, changes);
+    res.status(200).send({message: "Photo mise à jour avec succès"});
+    }catch(err){
+        res.send({message : err})
+    }
+})
 
+router.patch('/updateallergene', async (req,res) =>{
+    try{
+
+        const myquery = {_id : req.body._id}
+        const changes = { $set:{ allergene : req.body.allergene}}
+    
+       // console.log(req.body);
+        const updateAllergene = await Produit.updateOne(myquery, changes);
+        res.status(200).send({message: "Mise à  jour allergène effectuée avec succès!"});
+
+    }catch(err){
+        res.status(404).send({message: err});
+    }
+   
+
+})
 
 module.exports = router;

@@ -36,7 +36,7 @@ export class AfficheProduitComponent implements OnInit {
           if(this.listProduit != null)
             this.categorie.push(this.listProduit.filter((i) => i.categorie === elt));
          
-        }); console.log(this.categorie);
+        }); //console.log(this.categorie);
       },
       (err) => {console.log(err);}      
     )

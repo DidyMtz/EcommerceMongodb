@@ -66,7 +66,7 @@
 
 <!--checkbox-->
 <div class="example-section" >
-  <h4 class="m-5"> Liste d'allergènes:</h4>
+  <h4 class="m-5"> Liste d'allergènes {{produit.name}}:</h4>
   
   <div class="divform">
   <section class="example-section">
@@ -106,10 +106,10 @@
     
     <ng-template matStepLabel>Ajouter une photo</ng-template>
    
-
+<div class="alert alert-info text-center">{{message}}</div>
 <!--checkbox-->
 <div class="example-section" >
-<h4 class="m-5"> Photo du produit </h4>
+<h4 class="m-5"> Photo du produit {{produit.name}}</h4>
 
 <div class="divform">
 <!--Upload file-->

@@ -136,17 +136,28 @@ export class AjoutProduitComponent implements OnInit {
 
    const postProduit = this.produitservice.postProduit(this.produit);
    postProduit.subscribe(
-    (result: any) => {
-       this.message = result.message;
-       console.log(result)
-    },
-    (err) => console.log(err)
-   )}},
+         (result: any) => {
+          this.message = result.message;
+          
+       //console.log(result)
+         },
+         (err) => console.log(err)
+  )}},
     (err) => { console.log(err);}
   );
     
   }
 
+  
+  onFileSelected(event:any){
+    if(event != null)
+    this.produitservice.onFileSelected(event,this.fileName)?.subscribe(
+      (res:any) => { this.message = res.message; this.fileName = res.filename},
+      (err) => {this.message = err}     
+    )
+
+  }
+  /*
   onFileSelected(event :any) {
 
     const file:File = event.target.files[0];
@@ -159,5 +170,6 @@ export class AjoutProduitComponent implements OnInit {
         const upload$ = this.produitservice.postUpload(formData);
         upload$.subscribe();
     }
-}
+    
+}*/
 }

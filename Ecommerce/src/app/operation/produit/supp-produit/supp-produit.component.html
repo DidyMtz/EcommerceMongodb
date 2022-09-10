@@ -5,7 +5,13 @@
     <mat-form-field class="example-full-width"  appearance="fill" >
         <mat-label>Choisir Produit</mat-label>
         <mat-select>
-          <mat-option value="{{produit.name}}" (click)="supprimerProduit(supform.value)" #supform *ngFor="let produit of listProduit" >{{produit.name}}</mat-option>
+          <mat-option value="{{produit.name}}" (click)="supprimerProduit(produit)" *ngFor="let produit of listProduit" >{{produit.name}}</mat-option>
        </mat-select>
       </mat-form-field>
+         <div [ngClass]="{'alert alert-info': message}">{{message}}</div>
+      <ng-container *ngIf="state">
+        <h5>Merci de confirmer la suppression du produit {{produit.name}}</h5>
+
+        <div class="m-5"><button mat-raised-button color="warn" (click)="confirmersuppProduit()">Supprimer</button></div>
+      </ng-container>
 </div>

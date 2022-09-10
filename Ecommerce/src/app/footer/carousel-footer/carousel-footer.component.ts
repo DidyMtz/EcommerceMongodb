@@ -15,6 +15,7 @@ export class CarouselFooterComponent implements OnInit {
   listProduit : any[] = [];
   routes: string = "";
   hideCarousel : boolean = false;
+  produit = new Produit;
 
 
   constructor(
@@ -43,15 +44,14 @@ export class CarouselFooterComponent implements OnInit {
   getProduit(){
     const list = this.produitservice.getProduit().subscribe(
       (res:any)=>{
-        this.listProduit.push(res);
-        this.carousel = this.listProduit.filter(i =>{
-          //VERIFIER SI RENDU ALEATOIRE FONCTIONNE
-          return i.favori != "oui" && Math.random() * 10
-        } )
-        console.log(this.carousel);
-        console.log(this.listProduit);
+      this.listProduit.push(res);
+      if(this.listProduit != null)
+      this.carousel.push(this.listProduit[0].filter((i:any) => i.favori ==='oui'))  
+      
         
-      }
+      },
+      (err:any) => console.log(err)
+      
     )
   }
   
