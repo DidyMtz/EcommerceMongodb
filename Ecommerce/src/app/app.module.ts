@@ -22,7 +22,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ModalComponent } from './header/modal/modal.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CarouselFooterComponent } from './footer/carousel-footer/carousel-footer.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input'; 
@@ -32,9 +32,15 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { AjoutProduitComponent } from './operation/produit/ajout-produit/ajout-produit.component';import {MatTabsModule} from '@angular/material/tabs';
+import { AjoutProduitComponent } from './operation/produit/ajout-produit/ajout-produit.component';
+import {MatTabsModule} from '@angular/material/tabs';
 import { ModifProduitComponent } from './operation/produit/modif-produit/modif-produit.component';
 import { SuppProduitComponent } from './operation/produit/supp-produit/supp-produit.component';
+import { ImportComponent } from './operation/produit/import/import.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+
 
 @NgModule({
   declarations: [
@@ -53,7 +59,8 @@ import { SuppProduitComponent } from './operation/produit/supp-produit/supp-prod
     CarouselFooterComponent,
     AjoutProduitComponent,
     ModifProduitComponent,
-    SuppProduitComponent
+    SuppProduitComponent,
+    ImportComponent
   ],
   imports: [
     BrowserModule,
@@ -73,10 +80,14 @@ import { SuppProduitComponent } from './operation/produit/supp-produit/supp-prod
     MatIconModule,
     HttpClientModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatToolbarModule
+    
 
   ],
-  providers: [ProduitService, AuthService,Dialog],
+  providers: [ProduitService, AuthService,Dialog, MatDatepicker],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

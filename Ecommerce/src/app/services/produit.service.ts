@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Produit } from '../modal/produit';
+import { Produits } from '../modal/produits';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ProduitService {
   shipping: number = 0;
   message : BehaviorSubject<string> = new BehaviorSubject<string>("");
   API_postproduit = environment.API_url+"/posts/";
+  API_postimportproduit = environment.API_url+"/posts/import";
   API_imageUpload = environment.API_url+"/posts/upload";
   API_getproduit = environment.API_url+"/posts/";
   API_getOneproduit = environment.API_url+"/posts/:produitID";
@@ -20,6 +22,8 @@ export class ProduitService {
   API_editphotoProduit = environment.API_url+"/posts/updatephoto";
   API_editallergeneProduit = environment.API_url+"/posts/updateallergene";
   API_deleteProduit = environment.API_url+"/posts/delete";
+  API_deleteimgProduit = environment.API_url+"/posts/deleteimg";
+  
 
   
   
@@ -101,6 +105,9 @@ export class ProduitService {
    supprimerProduit(idproduit :any){
     return this.http.delete(this.API_deleteProduit+"/"+idproduit);
    }
+   supprimerimgProduit(idproduit :any){
+    return this.http.delete(this.API_deleteimgProduit+"/"+idproduit);
+   }
 
 
 
@@ -122,7 +129,7 @@ export class ProduitService {
         const formData = new FormData();
         formData.append("produitImage", file);
         const upload$ = this.postUpload(formData);
-     return   upload$;
+       return upload$;
        
     }else{ return ;}
 }
@@ -131,4 +138,31 @@ export class ProduitService {
 
 onReceive = (message : string ) => { return this.message.next(message);}
 
+
+
+  
+  UploadExcel(formData: FormData) {  
+    let headers = new HttpHeaders();  
+  
+    headers.append('Content-Type', 'multipart/form-data');  
+    headers.append('Accept', 'application/json');  
+  
+    const httpOptions = { headers: headers };  
+  
+    return this.http.post(this.API_postimportproduit, formData, httpOptions)  
+  }  
+
+
+
+  BindUser(): Observable<Produits[]> {  
+    return this.http.get<Produits[]>(this.API_getproduit);  
+  }  
+
+
+
+
 }
+
+
+
+

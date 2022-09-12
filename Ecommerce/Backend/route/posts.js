@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Produit = require('../models/Produit');
 const fs = require('fs');
+const Excel = require('exceljs');
 let cheminProduit = null;
 
 //console.log(cheminProduit);
@@ -63,10 +64,10 @@ router.get('/:produitID', async (req,res) => {
 })
 
 
-//SUBMIT AN IMAGE
+//ENREGISTRE UNE IMAGE DANS DOSSIER
 router.post('/upload', upload.single('produitImage') ,async (req,res) => {
   cheminProduit = req.file.path;
- console.log(req.file);
+ //console.log(req.file);
 
     try{
    /* const savedProduit = await produit.save();*/
@@ -77,7 +78,7 @@ router.post('/upload', upload.single('produitImage') ,async (req,res) => {
     }
 });
 
-
+//ENREGISTRE UN POST AVEC IMAGE
 router.post('/', upload.single('produitImage') ,async (req,res) => {
   
        const produit = new Produit({
@@ -100,16 +101,71 @@ router.post('/', upload.single('produitImage') ,async (req,res) => {
            res.json({message: err+" Erreur"});
        }
    });
-   
+//Import produits
+
+
+//ENREGISTRE UN POST AVEC IMAGE
+router.post('/import',async (req,res) => {
+  console.log(req.body);
+
+
+var workbook = new Excel.Workbook();
+workbook.xlsx.readFile("C:/1.xlsx")
+    .then(function() {
+        ws = workbook.getWorksheet("Feuille 1")
+        cell = ws.getCell('A1').value
+        console.log(cell)
+    });
+    const produit = new Produit({
+        name  : req.body.name,
+        prix  : req.body.prix,
+        photo : cheminProduit,
+        description : req.body.description,
+        allergene : req.body.allergene,
+        favori    : req.body.favori,
+        categorie : req.body.categorie,
+        discount  : req.body.discount
+    });
+
+    try{
+   // const savedProduit = await produit.save();
+    res.status(200).json({message: " Enregistrement effectué avec succès !"});
+
+    }catch(err){
+        res.json({message: err+" Erreur"});
+    }
+});
+
+
+
+
+
+
+//REMOVE PHOTO
+router.delete('/deleteimg/:produitID', async (req,res) => {
+
+    try{
+        const pathproduit = await Produit.findById(req.params.produitID);
+       
+       //supprimer la photo
+       fs.unlink(pathproduit.photo, (err )=>{
+       if(err) throw err;
+       res.send({message:"La photo a été effacé"})
+});
+    }catch(err){  res.json({message: err});}
+})
+
+
+
+
 //REMOVE POST
 router.delete('/delete/:produitID', async (req, res) => {
     
-    try{
-        
-        console.log(req.body);
+   
+    try{       
         //const removedProduit = await Produit.remove({_id : req.params.produitID});
        const removedProduit = await Produit.deleteOne({_id : req.params.produitID});
-        res.status(200).json({message : "Produit supprimer avec succès !"});
+        res.status(200).json({message : "Produit supprimé avec succès !"});
 
     }catch(err){
         res.json({message: err});

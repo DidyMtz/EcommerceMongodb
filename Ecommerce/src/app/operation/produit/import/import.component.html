@@ -1,0 +1,122 @@
+<h5>Import/Export Produit</h5>
+
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Import Produit
+        </mat-panel-title>
+        <mat-panel-description>
+          Fichier importation Excel
+          <mat-icon>cloud_upload</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+    <div class="divform">
+      
+<input type="file" id="input" (change)="excelToJson($event)" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+       
+</div>
+
+
+
+
+       
+     
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Exporter table Produit
+        </mat-panel-title>
+        <mat-panel-description>
+          Exporter en csv
+          <mat-icon>map</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+     
+
+
+      <div class="divform">
+
+
+        <div class="container">  
+            
+          <button (click)="exportAsXLSX()" mat-raised-button color="primary">Télécharger Excel</button>    
+             
+        </div>
+            <div>  
+                <table class="table  table-bordered table-hover">
+                    <tr class="btn-primary">  
+                        <th>Produit Id</th>  
+                        <th>Nom</th>  
+                        <th>Photo</th>  
+                        <th>Description</th>  
+                        <th>Allergène</th>  
+                        <th>Favori</th>  
+                        <th>Catégorie</th> 
+                        <th>Discount</th>  
+          
+                    </tr>  
+                    <tr *ngFor="let produit of allUsers | async">  
+                        <td style="width: 100px">{{produit._id}}</td>  
+                        <td>{{produit.name }}</td>  
+                        <td>{{produit.photo}}</td>  
+                        <td>{{produit.description}}</td>  
+                        <td *ngFor="let allergene of produit.allergene">
+                            <p>{{allergene}}</p></td>  
+                        <td style="width: 200px">{{produit.favori}}</td>  
+                        <td>{{produit.categorie}}</td> 
+                        <td>{{produit.discount}}</td>  
+          
+                    </tr>  
+          
+                </table>  
+            </div>  
+        </div>  
+
+
+
+
+
+
+
+
+
+  
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Recherche Produit
+        </mat-panel-title>
+        <mat-panel-description>
+          Filtre date
+          <mat-icon>date_range</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>
+      </mat-form-field>
+      <mat-datepicker #picker></mat-datepicker>
+  
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">End</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+  </mat-accordion>
+  

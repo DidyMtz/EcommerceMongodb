@@ -119,7 +119,7 @@ export class ModifProduitComponent implements OnInit {
      this._idProduit = this.selectedProduit.map(i => i._id)   
      this.name = this.selectedProduit.map(i => i.name)
      
-     console.log(this.selectedProduit);
+    // console.log(this.selectedProduit);
      
   }
   AfficheProduit(produit: Produit){

@@ -34,24 +34,25 @@ export class SuppProduitComponent implements OnInit {
   supprimerProduit(produit: Produit){
   this.produit = produit;
   this.state = true;
-    console.warn(produit);
-       
+  this.message = "";       
  
   }
   confirmersuppProduit(){
     const idproduit = this.produit._id;
 
+    //supprime image
+    this.produitservice.supprimerimgProduit(idproduit).subscribe(
+      (res: any) => {
+        this.message = res.message+" ";
+      },
+      (err) => this.message = err
+    )
+  //supprime produit
     this.produitservice.supprimerProduit(idproduit).subscribe(
       (res: any) => {
-        this.message = res.message;
+        this.message += res.message;
         this.getListProduit();
         
-        // delete file named 'sample.txt'
-       /* fs.unlink(req.body.photo, function (err) {
-          if (err) throw err;
-         // if no error, file has been deleted successfully
-          console.log({message : 'File deleted!'});
-           });*/
       },
       (err: any) => this.message = err
     )
