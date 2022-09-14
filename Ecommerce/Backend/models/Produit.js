@@ -15,6 +15,7 @@ const PostSchema = mongoose.Schema({
     discount  : Number
 
 });
+
 /*
 mongoose.Collection("ecommerce", (res, err) => {
     if(err){ res.send({message : 'Probleme collection'})}

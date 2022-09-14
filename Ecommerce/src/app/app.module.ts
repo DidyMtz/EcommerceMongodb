@@ -39,6 +39,7 @@ import { SuppProduitComponent } from './operation/produit/supp-produit/supp-prod
 import { ImportComponent } from './operation/produit/import/import.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { ExportComponent } from './operation/produit/export/export.component';
 
 
 
@@ -60,7 +61,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AjoutProduitComponent,
     ModifProduitComponent,
     SuppProduitComponent,
-    ImportComponent
+    ImportComponent,
+    ExportComponent
   ],
   imports: [
     BrowserModule,

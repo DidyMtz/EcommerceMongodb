@@ -4,6 +4,7 @@ const Produit = require('../models/Produit');
 const fs = require('fs');
 const Excel = require('exceljs');
 let cheminProduit = null;
+let cheminFile = null;
 
 //console.log(cheminProduit);
 
@@ -22,6 +23,15 @@ const storage = multer.diskStorage({
     }
 });
 
+const storageExcel = multer.diskStorage({
+    destination : function(req, file, cb){
+        cb(null, '../src/assets/files');
+    },
+    filename : function(req, file, cb){
+        cb(null, file.originalname);
+    }
+});
+
 const fileFilter = (req, file, cb) => {
     if(file.mimetype != 'image/jpg' && file.mimetype != 'image/jpeg' && file.mimetype != 'image/png'){
         cb(null, false);
@@ -32,7 +42,10 @@ const fileFilter = (req, file, cb) => {
 
 }
 
-//const upload  = multer({dest:'upload/'});
+//const uploadxlsx  = multer({dest:'upload/'});
+const uploadxlsx  = multer({
+    storage : storageExcel
+});
 const upload  = multer({
     storage : storage,
     limits : { fileSize: 1024 * 1024 * 5},
@@ -62,6 +75,22 @@ router.get('/:produitID', async (req,res) => {
         res.status(404).json({message : err});
     }
 })
+
+
+
+//ENREGISTRE fiche excel DANS DOSSIER
+router.post('/uploadexcel', uploadxlsx.single('excelFile') ,async (req,res) => {
+    cheminFile = req.file.path;
+  // console.log(req.file);
+  
+      try{
+     /* const savedProduit = await produit.save();*/
+    // console.log("file upload successfully")
+      res.status(200).send({message: "Fichier upload successfully",path:cheminFile, filename: req.file.originalname});
+      }catch(err){
+          res.json({message: err});
+      }
+  });
 
 
 //ENREGISTRE UNE IMAGE DANS DOSSIER
@@ -104,32 +133,27 @@ router.post('/', upload.single('produitImage') ,async (req,res) => {
 //Import produits
 
 
-//ENREGISTRE UN POST AVEC IMAGE
+//ENREGISTRE UN POST associe a file excel
 router.post('/import',async (req,res) => {
-  console.log(req.body);
-
-
-var workbook = new Excel.Workbook();
-workbook.xlsx.readFile("C:/1.xlsx")
-    .then(function() {
-        ws = workbook.getWorksheet("Feuille 1")
-        cell = ws.getCell('A1').value
-        console.log(cell)
-    });
+    
     const produit = new Produit({
         name  : req.body.name,
         prix  : req.body.prix,
-        photo : cheminProduit,
+        photo : req.body.photo,
         description : req.body.description,
         allergene : req.body.allergene,
         favori    : req.body.favori,
         categorie : req.body.categorie,
         discount  : req.body.discount
     });
+    var Data=req.body;
+   // console.log(Data);
+    try{   const savedProduit = await produit.insertMany(Data,forceServerObjectId=true, function (err, res){
 
-    try{
-   // const savedProduit = await produit.save();
-    res.status(200).json({message: " Enregistrement effectué avec succès !"});
+    (res) => console.log(res),
+    (err) => console.log(err)
+   });
+    res.status(200).json({message: " <br> Enregistrement effectué avec succès !"});
 
     }catch(err){
         res.json({message: err+" Erreur"});

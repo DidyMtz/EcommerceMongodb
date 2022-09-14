@@ -1,9 +1,14 @@
-import { ImportExportService } from './../../../services/import-export.service';
-import { ProduitService } from 'src/app/services/produit.service';
-import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Produit } from './../../../modal/produit';
+
+import { Component, Input, OnInit } from '@angular/core';
+import { ImportExportService } from 'src/app/services/import-export.service';
+import { ProduitService } from 'src/app/services/produit.service';
+
+import * as XLSX from 'xlsx';  
 import { Produits } from 'src/app/modal/produits';
-import { HttpClient } from '@angular/common/http';
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';  
+const EXCEL_EXTENSION = '.xlsx'; 
 
 @Component({
   selector: 'app-import',
@@ -14,55 +19,46 @@ export class ImportComponent implements OnInit {
 
   fileName : string ="";
   message!: string;  
-  json : any;
-  allUsers!: Observable<Produits[]>; 
-  excel: any[] = [];
+  pathExcel : string ="";
+  jsonFile : any;
+  step = 0;
   
   
-  constructor(private produitservice: ProduitService,private excelService:ImportExportService,private http: HttpClient) {
-   
-    
-  }  
-    
-
-   
+  constructor(private excelService:ImportExportService,  private produitservice: ProduitService,) {  }  
+     
 
 
   ngOnInit(): void {
 
-    this.produitservice.BindUser().subscribe(data => {  
-      data.forEach((row:any) => {  
-        this.excel.push(row);  
-      });  
-     });  
-    this.loadAllUser();  
+     
   }
 
   
-  exportAsXLSX():void {  
-    this.excelService.exportAsExcelFile(this.excel, 'sample');  
- }  
+  onFileSelected(event:any){
+    if(event != null)
 
- excelToJson(event:any){
-  const file:File = event.target.files[0];
-console.log(file);
+   this.fileName = event.target.files[0];
+  //console.log(file);
+    this.excelService.onFileSelectedxlsx(event,this.fileName)?.subscribe(
+      (res:any) => { this.message = res.message;this.pathExcel = res.path, this.fileName = res.filename},
+      (err) => {this.message = err}     
+    )
 
-  if (file) {
+  }
 
-  this.fileName = file.name;
-  console.log(this.fileName);
+ excelToJson(){
+  if (this.pathExcel) {
+
+  this.convertExcelTojson();
+ 
   
-  this.excelService.excelToJson(this.fileName).forEach(elt=>{
-
-    console.log(elt);
-    
-  })
+ //this.produitservice.postProduit(jsonFile)
 
   }else { console.log("no file")};
+
+  
  }
 
-
-  step = 0;
 
   setStep(index: number) {
     this.step = index;
@@ -76,10 +72,49 @@ console.log(file);
     this.step--;
   }
 
-  loadAllUser() {  
-    this.allUsers = this.produitservice.BindUser();  
-  }  
+  convertExcelTojson(): any{
+        // read Excel file and convert to json format using fetch
+        
+        const file = this.pathExcel.substring(6);
+        let jsonFile;
 
+        fetch(file)
+        .then(function (res) {
+          /* get the data as a Blob */
+          if (!res.ok) throw new Error("fetch failed");
+          return res.arrayBuffer();
+        })
+        .then(function (ab) {
+          /* parse the data when it is received */
+    
+          var data = new Uint8Array(ab);
+          var workbook = XLSX.read(data, {
+              type: "array"
+          });
+        
+          /* *****************************************************************
+          * DO SOMETHING WITH workbook: Converting Excel value to Json       *
+          ********************************************************************/
+          var first_sheet_name = workbook.SheetNames[0];
+          /* Get worksheet */
+          var worksheet = workbook.Sheets[first_sheet_name];
+        
+        var _JsonData = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+      
+       return _JsonData
+        })
+        .then(
+          (res) =>{
+            this.jsonFile = res;
+            this.produitservice.postImport(this.jsonFile).subscribe(
+              (res:any)=> { this.message += res.message},
+              (error) =>{ this.message = error;}
+            )
+          } ,
+          (err) => console.log(err)
+        )
+        
+  }
 
 
 

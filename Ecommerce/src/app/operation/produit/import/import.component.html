@@ -13,12 +13,13 @@
       </mat-expansion-panel-header>
 
     <div class="divform">
-      
-<input type="file" id="input" (change)="excelToJson($event)" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
-       
+
+<input type="file" (change)="onFileSelected($event)" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+
+<div [ngClass]="{'alert alert-info m-2': message}">{{message}}<p>{{fileName}}</p></div>
+
+<button mat-raised-button color="primary" class="m-5" (click)="excelToJson()">Importer Fichier Excel</button>
 </div>
-
-
 
 
        
@@ -39,52 +40,10 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
   
-     
-
-
-      <div class="divform">
-
-
-        <div class="container">  
-            
-          <button (click)="exportAsXLSX()" mat-raised-button color="primary">Télécharger Excel</button>    
-             
-        </div>
-            <div>  
-                <table class="table  table-bordered table-hover">
-                    <tr class="btn-primary">  
-                        <th>Produit Id</th>  
-                        <th>Nom</th>  
-                        <th>Photo</th>  
-                        <th>Description</th>  
-                        <th>Allergène</th>  
-                        <th>Favori</th>  
-                        <th>Catégorie</th> 
-                        <th>Discount</th>  
-          
-                    </tr>  
-                    <tr *ngFor="let produit of allUsers | async">  
-                        <td style="width: 100px">{{produit._id}}</td>  
-                        <td>{{produit.name }}</td>  
-                        <td>{{produit.photo}}</td>  
-                        <td>{{produit.description}}</td>  
-                        <td *ngFor="let allergene of produit.allergene">
-                            <p>{{allergene}}</p></td>  
-                        <td style="width: 200px">{{produit.favori}}</td>  
-                        <td>{{produit.categorie}}</td> 
-                        <td>{{produit.discount}}</td>  
-          
-                    </tr>  
-          
-                </table>  
-            </div>  
-        </div>  
 
 
 
-
-
-
+<app-export></app-export>
 
 
 

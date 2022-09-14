@@ -57,8 +57,8 @@ export class AjoutProduitComponent implements OnInit {
 
   constructor(
               private builder: FormBuilder, 
-              private produitservice: ProduitService,
-              private http : HttpClient) { }
+              private produitservice: ProduitService
+              ) { }
 
   ngOnInit(): void {
     this.initForm();

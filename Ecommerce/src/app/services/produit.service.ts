@@ -85,6 +85,11 @@ export class ProduitService {
    postUpload(formdata : FormData){
     return this.http.post(this.API_imageUpload, formdata);
    }
+   postImport(file:any){
+    return this.http.post(this.API_postimportproduit,file)
+   }
+
+
    getProduit(){
     return this.http.get(this.API_getproduit);   
    }
@@ -140,7 +145,7 @@ onReceive = (message : string ) => { return this.message.next(message);}
 
 
 
-  
+  /*
   UploadExcel(formData: FormData) {  
     let headers = new HttpHeaders();  
   
@@ -152,7 +157,7 @@ onReceive = (message : string ) => { return this.message.next(message);}
     return this.http.post(this.API_postimportproduit, formData, httpOptions)  
   }  
 
-
+*/
 
   BindUser(): Observable<Produits[]> {  
     return this.http.get<Produits[]>(this.API_getproduit);  
