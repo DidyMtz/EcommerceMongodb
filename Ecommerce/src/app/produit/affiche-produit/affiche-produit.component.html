@@ -8,13 +8,19 @@
   <div class="container">
       <div class="card" *ngFor="let produit of level; let i =index">
        
-          <img src="{{produit.photo.substring(6)}}" class="card-img-top" alt="...">
+          <img src="{{produit?.photo}}" class="card-img-top" alt="photo {{produit.name}}">
+          <div *ngIf="produit.discount != 0" class="promotion">PROMOTION</div>
           <div class="card-body">
-            <h5 class="card-title">{{produit.name}}</h5>
+            <h5 class="card-title">{{produit.name | titlecase}}</h5>
             <p class="card-text ">{{produit.description}}</p>
-            <p class="card-text-prix">{{produit.prix}} DH</p>
+         <div class="row">
+          <div class="col-md-6"><p [ngClass]="{'card-text-prix promo': produit.discount > 0}">{{produit.prix}} DH</p></div>
+          <div class="col-md-6"> <p *ngIf="produit.discount > 0">{{getDiscount(produit)}} DH</p></div>
+         </div>  
+          
+           
             <a class="btn btn-outline-primary btn-lg me-2" (click)="AjouterPanier(produit)">Voir</a>
-    </div>
+          </div>
         
       </div>
     </div>

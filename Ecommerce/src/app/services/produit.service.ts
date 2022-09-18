@@ -16,6 +16,7 @@ export class ProduitService {
   API_postproduit = environment.API_url+"/posts/";
   API_postimportproduit = environment.API_url+"/posts/import";
   API_imageUpload = environment.API_url+"/posts/upload";
+  API_multiImgUpload = environment.API_url+"/posts/uploadmultipleimg";
   API_getproduit = environment.API_url+"/posts/";
   API_getOneproduit = environment.API_url+"/posts/:produitID";
   API_editProduit = environment.API_url+"/posts/update";
@@ -85,8 +86,11 @@ export class ProduitService {
    postUpload(formdata : FormData){
     return this.http.post(this.API_imageUpload, formdata);
    }
-   postImport(file:any){
-    return this.http.post(this.API_postimportproduit,file)
+   postImport(path:string){
+    return this.http.post(this.API_postimportproduit,path)
+   }
+   postUploadmulti(formdata : FormData){
+    return this.http.post(this.API_multiImgUpload,formdata)
    }
 
 
@@ -137,6 +141,22 @@ export class ProduitService {
        return upload$;
        
     }else{ return ;}
+}
+
+onFileSelectedmultiImg(event :any) {
+
+  const files:File[] = event.target.files;
+
+  if (!files) return ;
+
+      const formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
+       formData.append(`multifiles`, files[i])
+    }
+      const upload$ = this.postUploadmulti(formData);
+     return upload$;
+     
+ 
 }
 
 

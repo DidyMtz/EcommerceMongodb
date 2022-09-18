@@ -14,17 +14,19 @@
      <div class="card alert-light text-bg mb-3" *ngFor="let produit of singleProduit; let i =index">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="{{produit.photo.substring(6)}}" class="img-fluid rounded-start" alt="...">
+            <img src="{{produit.photo}}" class="img-fluid rounded-start" alt="...">            
+          <div *ngIf="produit.discount != 0" class="promotion">PROMOTION</div>
           </div>
           <div class="col-md-8">
             <div class="card-body">
              
               <h5 class="card-title">{{produit.name | titlecase}} - {{produit.description}} </h5>
-              <p class="card-text"><small class="text-muted">Allergène :</small></p>
+              <p class="card-text"><small class="text-muted">Allergène :{{getAllergene(produit)}}</small></p>
               
               <p class="card-text mx-2">
                 <button class="btn btn-outline-info me-2" (click)="Dcounter()">-</button>{{count}}<button class="btn btn-outline-info mx-2" (click)="counter()">+</button>
-                <label class="alert alert-light mx-5">Prix : {{produit.prix*count}} Dhs</label></p>
+                <label class="alert alert-light mx-3">Prix : {{produit.prix*count}} Dhs</label><label class="promo" *ngIf="produit.discount != 0">- {{produit.discount}}% (promo)</label>
+              </p>
               
                             
               <button class="btn btn-primary btn-lg float-end mb-2" (click)="AjoutPanier(produit)">Ajouter au panier</button>

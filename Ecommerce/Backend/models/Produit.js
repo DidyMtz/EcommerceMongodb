@@ -16,10 +16,4 @@ const PostSchema = mongoose.Schema({
 
 });
 
-/*
-mongoose.Collection("ecommerce", (res, err) => {
-    if(err){ res.send({message : 'Probleme collection'})}
-    else{ res.send({message : 'collection ok'})}
-})
-*/
 module.exports = mongoose.model('Produits', PostSchema);

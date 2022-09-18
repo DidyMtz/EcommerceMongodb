@@ -43,3 +43,20 @@
     
    
 }
+.promo{
+  text-decoration: line-through;
+  color: red;
+}
+
+.promotion{
+  width:100px;
+  height: 30px;
+  background-color: red;
+  color:#fff;
+ // transform: rotate(-45deg);
+  position:absolute;
+  padding: 4px;
+ // margin: 40px;
+  left: 0px;
+  
+}

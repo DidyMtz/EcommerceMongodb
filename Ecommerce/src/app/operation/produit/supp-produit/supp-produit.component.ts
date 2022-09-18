@@ -40,13 +40,13 @@ export class SuppProduitComponent implements OnInit {
   confirmersuppProduit(){
     const idproduit = this.produit._id;
 
-    //supprime image
+    /*supprime image
     this.produitservice.supprimerimgProduit(idproduit).subscribe(
       (res: any) => {
         this.message = res.message+" ";
       },
       (err) => this.message = err
-    )
+    )*/
   //supprime produit
     this.produitservice.supprimerProduit(idproduit).subscribe(
       (res: any) => {

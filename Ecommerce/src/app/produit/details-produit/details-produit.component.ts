@@ -65,10 +65,24 @@ getProduit(){
         this.id = params.get('id1');
        });
       /* Filtrer par nom*/
-        this.singleProduit = this.produitSelected.filter(i => i._id === this.id);      
+        this.singleProduit = this.produitSelected.filter(i => i._id === this.id); 
+        this.singleProduit.forEach(produit => {
+         
+          if(!produit.photo) return ;
+          
+          if(!produit.photo.includes('assets')){
+            produit.photo = '/assets/img/upload/'+produit.photo;            
+          }else{
+            produit.photo = produit.photo.substring(6);
+          }
+        })     
     },
     (err) => console.log(err)    
   )}
 
 
+  getAllergene(produit:Produit){
+    const allergene = produit.allergene?.map(i => { return i.name;})
+    return allergene
+  }
 }

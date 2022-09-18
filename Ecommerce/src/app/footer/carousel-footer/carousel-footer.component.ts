@@ -46,9 +46,17 @@ export class CarouselFooterComponent implements OnInit {
       (res:any)=>{
       this.listProduit.push(res);
       if(this.listProduit != null)
-      this.carousel.push(this.listProduit[0].filter((i:any) => i.favori ==='oui'))  
+      this.carousel.push(this.listProduit[0].filter((i:any) => i.favori ==='oui')) ;
       
-        
+      this.carousel.flat()
+      .forEach((elt) => {        
+        if(elt.photo.includes('assets')){
+          elt.photo = elt.photo.substring(6)
+        }else{ elt.photo = "/assets/img/upload/"+elt.photo}
+
+      }) ;
+      
+      
       },
       (err:any) => console.log(err)
       

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Produit = require('../models/Produit');
 const fs = require('fs');
-const Excel = require('exceljs');
+const csvtojson = require('csvtojson')
 let cheminProduit = null;
 let cheminFile = null;
 
@@ -10,7 +10,6 @@ let cheminFile = null;
 
 
 const multer = require('multer');
-const { updateOne } = require('../models/Produit');
 const storage = multer.diskStorage({
     destination : function(req, file, cb){
         cb(null, '../src/assets/img/upload');
@@ -22,7 +21,15 @@ const storage = multer.diskStorage({
         cb(null, uniqueSuffix+ '-' +file.originalname);
     }
 });
+const storagemulti = multer.diskStorage({
+    destination : function(req,file,cb){
+        cb(null, '../src/assets/img/upload');
+    },
+    filename : function(req,file,cb){
+        cb(null, file.originalname);
+    }
 
+})
 const storageExcel = multer.diskStorage({
     destination : function(req, file, cb){
         cb(null, '../src/assets/files');
@@ -38,11 +45,12 @@ const fileFilter = (req, file, cb) => {
     }else{
         cb(null, true);
     }
-
-
 }
 
 //const uploadxlsx  = multer({dest:'upload/'});
+const uploadmultiImg = multer({
+    storage : storagemulti
+});
 const uploadxlsx  = multer({
     storage : storageExcel
 });
@@ -94,13 +102,12 @@ router.post('/uploadexcel', uploadxlsx.single('excelFile') ,async (req,res) => {
 
 
 //ENREGISTRE UNE IMAGE DANS DOSSIER
-router.post('/upload', upload.single('produitImage') ,async (req,res) => {
-  cheminProduit = req.file.path;
- //console.log(req.file);
-
+router.post('/upload', upload.single('produitImage') , (req,res) => {
+ 
     try{
-   /* const savedProduit = await produit.save();*/
-   console.log("Image upload successfully")
+    cheminProduit = req.file.path;
+    if(!cheminProduit) return res.status(400).send({message:"Chemin produit inexistant"})
+      
     res.status(200).send({message: "Image upload successfully", filename: req.file.originalname});
     }catch(err){
         res.json({message: err});
@@ -110,6 +117,7 @@ router.post('/upload', upload.single('produitImage') ,async (req,res) => {
 //ENREGISTRE UN POST AVEC IMAGE
 router.post('/', upload.single('produitImage') ,async (req,res) => {
   
+    if(!cheminProduit) return res.status(400).send({message:"Path produit inexistant"})
        const produit = new Produit({
            name  : req.body.name,
            prix  : req.body.prix,
@@ -134,26 +142,35 @@ router.post('/', upload.single('produitImage') ,async (req,res) => {
 
 
 //ENREGISTRE UN POST associe a file excel
-router.post('/import',async (req,res) => {
-    
-    const produit = new Produit({
-        name  : req.body.name,
-        prix  : req.body.prix,
-        photo : req.body.photo,
-        description : req.body.description,
-        allergene : req.body.allergene,
-        favori    : req.body.favori,
-        categorie : req.body.categorie,
-        discount  : req.body.discount
-    });
-    var Data=req.body;
-   // console.log(Data);
-    try{   const savedProduit = await produit.insertMany(Data,forceServerObjectId=true, function (err, res){
+router.post('/import', (req,res) => {
+    try{   
 
-    (res) => console.log(res),
-    (err) => console.log(err)
-   });
-    res.status(200).json({message: " <br> Enregistrement effectué avec succès !"});
+        if(!cheminFile) return res.status(400).send({message: "Chemin file inexistant"})
+        csvtojson()
+        .fromFile(cheminFile)
+        .then(csvData => {
+            //console.log(csvData);
+          /* const doublon = Produit.findOne({name : csvData.name});
+           if(doublon) return res.status(400).send({message:"doublon"})
+           next();
+*/
+            Produit.insertMany(csvData)
+            .then(() => {
+                res.status(200).send({message: " <br>Insertion réussie !"})
+            })
+            .then(() => {
+                
+              //supprimer la photo
+              fs.unlink(cheminFile, (err )=>{
+              if(err) throw err;
+              res.send({message:"<br>Le fichier excel a été effacé"})
+               });
+                
+            })
+            .catch(err => {
+                res.status(400).send({message: err})
+            })
+        })
 
     }catch(err){
         res.json({message: err+" Erreur"});
@@ -161,10 +178,15 @@ router.post('/import',async (req,res) => {
 });
 
 
+router.post('/uploadmultipleimg', uploadmultiImg.array('multifiles'), (req,res) => {
+    //res.redirect('/');
+   // console.log(req.body);
+   // console.log(req.files);
+    res.status(200).send({message : "Upload multiple image reussi !"})
+})
 
 
-
-
+/*
 //REMOVE PHOTO
 router.delete('/deleteimg/:produitID', async (req,res) => {
 
@@ -178,7 +200,7 @@ router.delete('/deleteimg/:produitID', async (req,res) => {
 });
     }catch(err){  res.json({message: err});}
 })
-
+*/
 
 
 
@@ -187,8 +209,20 @@ router.delete('/delete/:produitID', async (req, res) => {
     
    
     try{       
-        //const removedProduit = await Produit.remove({_id : req.params.produitID});
        const removedProduit = await Produit.deleteOne({_id : req.params.produitID});
+
+       removedProduit.then(
+        () => {
+        const pathproduit =  Produit.findById(req.params.produitID);
+       
+       //supprimer la photo
+       fs.unlink(pathproduit.photo, (err )=>{
+       if(err) throw err;
+       res.send({message:"La photo a été effacé"})
+         });
+
+        }
+       )
         res.status(200).json({message : "Produit supprimé avec succès !"});
 
     }catch(err){
@@ -226,7 +260,7 @@ router.patch('/updatephoto', upload.single('produitImage') , async (req,res) =>{
     
     const myquery = { _id : req.body._id};
     const changes = { $set : { photo : cheminProduit}};
-    console.log(req.body);
+   // console.log(req.body);
     const updatephoto = await Produit.updateOne(myquery, changes);
     res.status(200).send({message: "Photo mise à jour avec succès"});
     }catch(err){

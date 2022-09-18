@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Produit } from 'src/app/modal/produit';
 import { ThemePalette } from '@angular/material/core';
 import { timeout } from 'rxjs';
+import { ThisReceiver } from '@angular/compiler';
 
 
 export interface Task {
@@ -172,7 +173,7 @@ export class ModifProduitComponent implements OnInit {
    
    this.produitservice.editProduit(produit).subscribe(
     (res :any) =>{
-      console.log(res)
+      //console.log(res)
       this.message = res.message;
 
     } ,
@@ -205,7 +206,7 @@ export class ModifProduitComponent implements OnInit {
     this.produitservice.editAllergene(this.produit).subscribe(
       (res: any) => {
         console.log(res);      
-        this.messageallergene = res.message; },
+        this.messageallergene = res.message; this.stateAllergene = false;},
       (err) => console.log(err)
     )
   }
@@ -233,6 +234,7 @@ export class ModifProduitComponent implements OnInit {
       (res:any) =>{
         console.log(res);
         this.messagephoto = res.message;
+        this.statephoto = false;
       },
       (err) => {
         console.log(err)

@@ -3,7 +3,7 @@
   
   <div class="div1">
     Menu <hr>
-  
+  <!--
     <nav class="nav flex-column">
       <a class="nav-link active" href="#">Viande Braisé au charbon</a>
       <a class="nav-link" href="#">Accompagnement</a>
@@ -13,7 +13,17 @@
       <a class="nav-link" href="#">Plat marocain</a>
       <a class="nav-link" href="#">Casse croute</a>
     </nav>
+  -->
+
+    <mat-selection-list #shoes [multiple]="false">
+      <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+        {{shoe}}
+      </mat-list-option>
+    </mat-selection-list>
     
+   <!-- <p>
+      Option selected: {{shoes.selectedOptions.selected[0]?.value}}
+    </p>-->
   </div>
 
 
@@ -21,45 +31,39 @@
 
   <div class="carousel" >
 
-    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-       
-    
-       
-        <div class="carousel-item active" data-bs-interval="10000">
-          <img src="../../../assets/img/slider/asian-1238724_1280.jpg" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>First slide label</h5>
-            <p>Some representative placeholder content for the first slide.</p>
+
+
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">               
+        <ul  *ngFor="let produit of carousel; let i= index;first as isFirst">
+          <div [ngClass]="isFirst ? 'carousel-item active' : 'carousel-item' "> 
+            <li><img [src]="produit.photo" class="d-block sliderimg w-100" alt="plat {{produit.photo}}"></li> 
           </div>
+        </ul> 
         </div>
-        <div class="carousel-item" data-bs-interval="2000" *ngFor="let item of carousel">
-          <img src="{{item.photo}}" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>{{item.name}}</h5>
-            <p>{{item.description}}</p>
-          </div>
-        </div>
-
-
-
-
-
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

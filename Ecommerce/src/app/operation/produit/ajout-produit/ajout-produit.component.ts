@@ -157,19 +157,5 @@ export class AjoutProduitComponent implements OnInit {
     )
 
   }
-  /*
-  onFileSelected(event :any) {
 
-    const file:File = event.target.files[0];
-
-    if (file) {
-
-        this.fileName = file.name;
-        const formData = new FormData();
-        formData.append("produitImage", file);
-        const upload$ = this.produitservice.postUpload(formData);
-        upload$.subscribe();
-    }
-    
-}*/
 }

@@ -1,0 +1,5 @@
+name,prix,photo,description,allergene,favori,categorie,discount
+Saucisse braisé,100,grilled-meat-6530766_1280.jpg,Saucisse braisé avec fine herbes pour satisfaire votre curiosité et votre grand appétit,"céleri,sesame",non,Plat principal,0
+Steak vapeur,120,steak1.jpg,"Steak de boeuf, finement assaisonné de persil et ails. Savoureux à souhait. Bon appétit",neant,oui,Plat principal,0
+Coca light,25,cocalight.jpg,"Soda:  coca light, sans sucre, frais. Excellent accompagnement comme votre rafraichissement.",neant,oui,Boisson,0
+Mirinda ,25,mirinda.jpg,"Soda : Mirinda orange, sucré et rafraichissant pour votre gosier.",neant,non,Boisson,0

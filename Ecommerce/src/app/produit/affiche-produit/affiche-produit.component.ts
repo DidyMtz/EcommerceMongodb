@@ -13,6 +13,7 @@ export class AfficheProduitComponent implements OnInit {
   listProduit: any[] = [];
   message : string = '';
   categorie : any[] = [];
+  prixDiscount : number = 0;
 
   constructor(
     private route: Router, 
@@ -29,6 +30,16 @@ export class AfficheProduitComponent implements OnInit {
     this.produitservice.getProduit().subscribe(
       (res: any) => {
         this.listProduit = res;
+        this.listProduit.forEach(produit => {
+         
+          if(!produit.photo) return ;
+          
+          if(!produit.photo.includes('assets')){
+            produit.photo = '/assets/img/upload/'+produit.photo;            
+          }else{
+            produit.photo = produit.photo.substring(6);
+          }
+        })
 
         
       /* filtrer et créer array par categorie */
@@ -50,6 +61,12 @@ export class AfficheProduitComponent implements OnInit {
    
   }
 
+  getDiscount(produit: Produit){
+  if(!produit.discount) return null;
+    return this.prixDiscount = Math.floor(produit.prix - produit.prix * produit.discount/100);
+   
+   }
+   
 
 
 }
