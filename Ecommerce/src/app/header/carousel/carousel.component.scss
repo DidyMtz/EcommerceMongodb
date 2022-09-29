@@ -1,41 +1,18 @@
-@media (min-width:900px){
+@media (min-width:1000px){
 .container_carousel{
   background-color: #fff;
   display:grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  gap:10px;
-  padding: 10px ;
-  max-width: 95%;
-  margin: 20px auto;
+  grid-auto-flow: column;
+  align-items:center;
+  justify-content:space-around;
+  width: 80rem;
+  height: 33rem;
+  margin:20px auto;  
+  padding: 10px;
 
  .carousel{
-  
-  .sliderimg{
-    min-width: 500px;
-    height:380px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    }
+  width: 55rem;
  }
   
-  .div1{
-   padding: 10px;
-   font-size: small;
-   height:400px;
-  }
-  .div2{
-   
-    padding: 10px;
-    font-size: small;
-    height:400px;
-   }
-  
 }
-}
-.carousel-inner{
-
-  ul li{
-    list-style-type: none;
-    left:0px;
-  }
 }

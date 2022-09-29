@@ -46,8 +46,11 @@ export class LoginComponent implements OnInit {
 
   login(){
 
+    
     let client = new Personne();
     client = this.LoginForm.value;
+    
+    if(!client) return ;
     client.etat = true;
     this.auth.isConnected(client);
     sessionStorage.setItem("email", client.email);

@@ -10,12 +10,14 @@ const app = express();
 
 //import routes
 const postRoute = require('./route/posts');
+const userRoute = require('./route/user');
 
 //middleware
-app.use('/upload',express.static('upload'))
+//app.use('/upload',express.static('upload'))
 app.use(cors());
 app.use(bodyparser.json());
 app.use('/posts', postRoute);
+app.use('/user', userRoute);
 
 
 app.get('/',(req, res) => {
@@ -27,6 +29,7 @@ app.get('/',(req, res) => {
 mongoose.connect( process.env.DB_CONNECTION, () => {
     console.log("Connect to db");
 })
+
 
 //listen
 app.listen(port);

@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Produit = require('../models/Produit');
+
 const fs = require('fs');
 const csvtojson = require('csvtojson')
 let cheminProduit = null;
 let cheminFile = null;
 
-//console.log(cheminProduit);
 
 
 const multer = require('multer');
@@ -89,11 +89,8 @@ router.get('/:produitID', async (req,res) => {
 //ENREGISTRE fiche excel DANS DOSSIER
 router.post('/uploadexcel', uploadxlsx.single('excelFile') ,async (req,res) => {
     cheminFile = req.file.path;
-  // console.log(req.file);
-  
+ 
       try{
-     /* const savedProduit = await produit.save();*/
-    // console.log("file upload successfully")
       res.status(200).send({message: "Fichier upload successfully",path:cheminFile, filename: req.file.originalname});
       }catch(err){
           res.json({message: err});
@@ -149,24 +146,12 @@ router.post('/import', (req,res) => {
         csvtojson()
         .fromFile(cheminFile)
         .then(csvData => {
-            //console.log(csvData);
-          /* const doublon = Produit.findOne({name : csvData.name});
-           if(doublon) return res.status(400).send({message:"doublon"})
-           next();
-*/
+          
             Produit.insertMany(csvData)
             .then(() => {
                 res.status(200).send({message: " <br>Insertion réussie !"})
             })
-            .then(() => {
-                
-              //supprimer la photo
-              fs.unlink(cheminFile, (err )=>{
-              if(err) throw err;
-              res.send({message:"<br>Le fichier excel a été effacé"})
-               });
-                
-            })
+           
             .catch(err => {
                 res.status(400).send({message: err})
             })
@@ -179,14 +164,12 @@ router.post('/import', (req,res) => {
 
 
 router.post('/uploadmultipleimg', uploadmultiImg.array('multifiles'), (req,res) => {
-    //res.redirect('/');
-   // console.log(req.body);
-   // console.log(req.files);
+   
     res.status(200).send({message : "Upload multiple image reussi !"})
 })
 
 
-/*
+
 //REMOVE PHOTO
 router.delete('/deleteimg/:produitID', async (req,res) => {
 
@@ -200,7 +183,7 @@ router.delete('/deleteimg/:produitID', async (req,res) => {
 });
     }catch(err){  res.json({message: err});}
 })
-*/
+
 
 
 
@@ -221,8 +204,7 @@ router.delete('/delete/:produitID', async (req, res) => {
        res.send({message:"La photo a été effacé"})
          });
 
-        }
-       )
+        })
         res.status(200).json({message : "Produit supprimé avec succès !"});
 
     }catch(err){
@@ -232,7 +214,7 @@ router.delete('/delete/:produitID', async (req, res) => {
 
 //UPDATE PRODUIT
 router.patch('/update', async (req, res) => {
-    console.log(req.body)
+   
     var myquery = { _id: req.body._id};
     var newvalues = { $set: {
         name  : req.body.name,
@@ -257,12 +239,14 @@ router.patch('/update', async (req, res) => {
 router.patch('/updatephoto', upload.single('produitImage') , async (req,res) =>{
     
     try{
-    
+    if(cheminProduit === null) return res.status(404).send({message: "Désolé, photo non acceptée !"})
     const myquery = { _id : req.body._id};
     const changes = { $set : { photo : cheminProduit}};
    // console.log(req.body);
     const updatephoto = await Produit.updateOne(myquery, changes);
     res.status(200).send({message: "Photo mise à jour avec succès"});
+    cheminProduit = null;
+
     }catch(err){
         res.send({message : err})
     }

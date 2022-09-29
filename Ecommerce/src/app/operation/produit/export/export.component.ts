@@ -4,6 +4,7 @@ import { Produits } from 'src/app/modal/produits';
 import { HttpClient } from '@angular/common/http';
 import { ImportExportService } from './../../../services/import-export.service';
 import { ProduitService } from 'src/app/services/produit.service';
+import { Produit } from 'src/app/modal/produit';
 
 @Component({
   selector: 'app-export',
@@ -26,7 +27,7 @@ export class ExportComponent implements OnInit {
         this.excel.push(row);  
       });  
      });  
-    this.loadAllUser(); 
+    this.loadAllProduit(); 
   }
 
   exportAsXLSX():void {  
@@ -35,12 +36,14 @@ export class ExportComponent implements OnInit {
 
 
 
- loadAllUser() {  
+ loadAllProduit() {  
   this.allProduits = this.produitservice.BindUser();  
 }  
 
 
-
+getAllergene(p :Produit){
+  return p.allergene?.map(i => i.name)
+}
 
 
 

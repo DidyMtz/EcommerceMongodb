@@ -6,7 +6,7 @@ import { Produit } from '../../modal/produit';
 import { ProduitService } from '../../services/produit.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../search/modal.component';
 
 
 
@@ -23,8 +23,10 @@ export class NavComponent implements OnInit {
   currentRoute :string | null = null;
   islogged: boolean = false;
   search : Produit[] = [];
+  produit : any[] = [];
   message : string | null = null;
   client : Personne = new Personne();
+  tel : string = "Commander par Téléphone";
 
   constructor(
     private activatedroute :ActivatedRoute, 
@@ -36,7 +38,9 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
 
-   // Verifie l url en cours et affiche selon condition
+   this.getProduit();
+   
+    // Verifie l url en cours et affiche selon condition
 
     this.route.events.subscribe((event) => {
 
@@ -57,6 +61,28 @@ export class NavComponent implements OnInit {
 
   }
 
+  changeMessage(){
+    this.tel = " Contact : 0661192405";
+   
+    //permet de recueillir stat sur appel par tel
+  }
+  getProduit(){
+    this.produitservice.getProduit().subscribe(
+      (res:any) => {
+        this.produit = res;
+        this.produit.forEach(p => {
+          if(!p.photo.includes('assets')){
+            p.photo = '/assets/img/upload/'+p.photo;
+          }else{
+            p.photo = p.photo.substring(6);
+          }
+         
+        });
+      },
+      (err) => console.log(err)
+      
+    )
+  }
   goTo(destination:string){
         
     this.route.navigate([destination]);
@@ -66,7 +92,7 @@ export class NavComponent implements OnInit {
 
     if(!item || item.length < 5) return
 
-    this.search = this.produitservice.produits.filter(i => (i.name.toLowerCase()).includes(item.toLowerCase()));
+    this.search = this.produit.filter(i => (i.name.toLowerCase()).includes(item.toLowerCase()));
 
     const modalRef = this.dialog.open(ModalComponent, {
       panelClass: 'my-dialog',

@@ -13,6 +13,7 @@ const PostSchema = mongoose.Schema({
     favori : String,
     categorie : String,
     discount  : Number
+    
 
 });
 

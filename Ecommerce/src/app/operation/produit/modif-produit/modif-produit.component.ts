@@ -177,7 +177,7 @@ export class ModifProduitComponent implements OnInit {
       this.message = res.message;
 
     } ,
-    (err) => console.log(err)
+    (err) =>  this.message = err
     )
 
   }
@@ -215,7 +215,7 @@ export class ModifProduitComponent implements OnInit {
     if(event != null)
     this.produitservice.onFileSelected(event,this.fileName)?.subscribe(
       (res:any) => { this.messagephoto = res.message; this.fileName = res.filename},
-      (err) => {this.messagephoto = err}     
+      (err) => {this.messagephoto = err.error.message;}     
     )
 
   }
@@ -232,12 +232,13 @@ export class ModifProduitComponent implements OnInit {
     if(this.produit != null) 
     this.produitservice.editPhoto(this.produit).subscribe(
       (res:any) =>{
-        console.log(res);
+        
         this.messagephoto = res.message;
         this.statephoto = false;
       },
       (err) => {
-        console.log(err)
+        this.messagephoto = err.error.message
+       
       }
     )
     

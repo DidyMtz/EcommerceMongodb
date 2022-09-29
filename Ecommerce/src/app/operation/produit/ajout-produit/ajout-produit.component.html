@@ -106,7 +106,7 @@
     
     <ng-template matStepLabel>Ajouter une photo</ng-template>
    
-<div class="alert alert-info text-center">{{message}}</div>
+<div [ngClass]="{'alert alert-info text-center': message}">{{message}}</div>
 <!--checkbox-->
 <div class="example-section" >
 <h4 class="m-5"> Photo du produit {{produit.name}}</h4>

@@ -24,8 +24,7 @@
                     <td>{{produit.name }}</td>  
                     <td>{{produit.photo}}</td>  
                     <td>{{produit.description}}</td>  
-                    <td *ngFor="let allergene of produit.allergene">
-                        <p>{{allergene}}</p></td>  
+                    <td>{{getAllergene(produit)}}</td>  
                     <td style="width: 200px">{{produit.favori}}</td>  
                     <td>{{produit.categorie}}</td> 
                     <td>{{produit.discount}}</td>  

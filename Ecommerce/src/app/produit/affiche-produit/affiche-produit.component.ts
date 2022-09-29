@@ -35,7 +35,8 @@ export class AfficheProduitComponent implements OnInit {
           if(!produit.photo) return ;
           
           if(!produit.photo.includes('assets')){
-            produit.photo = '/assets/img/upload/'+produit.photo;            
+            produit.photo = '/assets/img/upload/'+produit.photo;   
+                     
           }else{
             produit.photo = produit.photo.substring(6);
           }

@@ -19,7 +19,7 @@ import { CarouselComponent } from './header/carousel/carousel.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './header/nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
-import { ModalComponent } from './header/modal/modal.component';
+import { ModalComponent } from './header/search/modal.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CarouselFooterComponent } from './footer/carousel-footer/carousel-footer.component';
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
@@ -41,7 +41,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ExportComponent } from './operation/produit/export/export.component';
 import {MatListModule} from '@angular/material/list';
-
+import { CategorieProduitComponent } from './produit/categorie-produit/categorie-produit.component';
+import { CarouselsModule } from './carousels/carousels.module';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import {MatListModule} from '@angular/material/list';
     ModifProduitComponent,
     SuppProduitComponent,
     ImportComponent,
-    ExportComponent
+    ExportComponent,
+    CategorieProduitComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +90,8 @@ import {MatListModule} from '@angular/material/list';
     MatDatepickerModule,
     MatNativeDateModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    CarouselsModule
     
 
   ],

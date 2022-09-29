@@ -1,13 +1,13 @@
 
-<ul class="nav navbar-dark justify-content-center bg-dark">
+<ul   class="nav navbar-dark justify-content-center bg-dark">
     
     <li class="nav-item">
       <a class="nav-link" (click)="goTo('/produit')" >Produit</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" (click)="goTo('/contact')">Contact</a>
+      <a class="nav-link" (click)="goTo('/contact')" >Contact</a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="client.role !='client' && islogged" class="nav-item">
       <a class="nav-link" (click)="goTo('/op_produit')">Admin</a>
     </li>
   </ul>
@@ -24,9 +24,11 @@
       
         <input class="form-control me-2" type="search" maxlength="10" minlength="5" required placeholder="Search"  aria-label="Search" #search>
        <!-- <button class="btn btn-outline-success btn-md me-2" (click)="Search(search.value)" type="submit">Search</button>-->
-        <button class="btn btn-primary" (click)="openModal(search.value)">Recherche</button>
+        <button class="btn btn-outline-primary" (click)="openModal(search.value)">Recherche</button>
     </ul>
+
   
+    <button  class="btn btn-outline-secondary me-2 " (click)="changeMessage()">{{tel}}</button>
     <button *ngIf="islogged" class="btn btn-outline-danger me-2 " (click)="logout()" type="submit">Logout</button>
     <button *ngIf="!islogged" class="btn btn-outline-primary me-2 " (click)="openModallogin()" type="submit">LogIn</button>
     
