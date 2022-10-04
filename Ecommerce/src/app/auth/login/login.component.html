@@ -1,34 +1,13 @@
-
-<div class="loginmodal">
-<div class="modal-header right ">
-    <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="dialogRef.close()"
-    ></button>
-  </div>
- 
-  <div class="modal-body ">
-
-  <form [formGroup]="LoginForm" (click)="login()">
-    <div class="form-floating mb-3">
-      <input type="email" class="form-control" formControlName="email" id="floatingIn" placeholder="name@example.com">
-      <label for="floatingIn">Email</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input type="password" class="form-control" formControlName="password" id="floatingpass" placeholder="Password">
-      <label for="floatingpass">Mot de passe</label>
-    </div>
-    <button type="button" class="btn btn-primary" [disabled]="LoginForm.invalid">Login</button>
-  </form>
-
-
-    </div>
-   
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger mx-5" (click)="dialogRef.close()">Annuler</button>
-   
-  </div>
+<form [formGroup]="LoginForm" (ngSubmit)="login()">
+<div class="form-floating mb-3">
+  <input type="email" class="form-control" id="floatingInputlogin" formControlName="email"  placeholder="name@example.com">
+  <label for="floatingInputlogin">Email</label>
 </div>
+<div class="form-floating mb-3">
+  <input type="password" class="form-control" id="floatingpasswordlogin" formControlName="password"  placeholder="password">
+  <label for="floatingpasswordlogin">Password</label>
+</div>
+<button class="btn btn-primary" >Se Connecter</button>
+</form>
+<div [ngClass]="{'alert alert-info text-center m-2':message}">{{message}}</div>
+

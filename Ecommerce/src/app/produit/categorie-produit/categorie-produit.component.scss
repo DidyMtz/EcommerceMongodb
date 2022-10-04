@@ -3,7 +3,14 @@
   .container{
     display: grid;
     grid-template-columns: repeat(2,1fr);
-     gap: 20px;
+    gap: 5px;
+    img{
+      width:auto;
+      height: 200px;
+      }
+      .card-text{
+        height: 130px;
+      }
    
   }
   
@@ -12,6 +19,7 @@
     .container{
       grid-template-columns: repeat(3, 1fr);
     }
+   
   }
   @media (min-width:900px){
     .container{
@@ -19,15 +27,19 @@
     }
   }
 }
-img{
-    width:auto;
-    height: 200px;
-    }
+
  .promo{
    text-decoration: line-through;
    color: red;
  }
- 
+ .card-text{
+  height: 90px;
+}
+.price{
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
  .promotion{
    width:100px;
    height: 30px;

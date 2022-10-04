@@ -94,5 +94,9 @@ RecupPromoCode(event: any){
 RecupAllergene(event: any){
  this.produitservice.allergene.push(event.target.value);
 }  
+commander(){
+  
+  
+}
 
 }

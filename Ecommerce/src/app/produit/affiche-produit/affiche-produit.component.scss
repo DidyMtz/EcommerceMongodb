@@ -14,6 +14,7 @@
         height:200px;
         width:auto;
     }
+   
   }
 }
 @media (min-width:750px){
@@ -36,7 +37,14 @@
 }
 
 }
-
+.card-text{
+  height: 90px;
+}
+.price{
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
 .produit_annexe{
     background-color: #fff;   
     height: 10rem;

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Produit = require('../models/Produit');
+const verify = require('../verifyToken');
 
 const fs = require('fs');
 const csvtojson = require('csvtojson')
@@ -60,7 +61,7 @@ const upload  = multer({
     fileFilter:fileFilter
 });
 
-//Routes get/delete/post/patch
+/* Routes get/delete/post/patch */
 
 //get all the produits
 router.get('/', async (req, res) => {
@@ -85,9 +86,8 @@ router.get('/:produitID', async (req,res) => {
 })
 
 
-
 //ENREGISTRE fiche excel DANS DOSSIER
-router.post('/uploadexcel', uploadxlsx.single('excelFile') ,async (req,res) => {
+router.post('/uploadexcel',verify, uploadxlsx.single('excelFile') ,async (req,res) => {
     cheminFile = req.file.path;
  
       try{
@@ -99,7 +99,7 @@ router.post('/uploadexcel', uploadxlsx.single('excelFile') ,async (req,res) => {
 
 
 //ENREGISTRE UNE IMAGE DANS DOSSIER
-router.post('/upload', upload.single('produitImage') , (req,res) => {
+router.post('/upload',verify, upload.single('produitImage') , (req,res) => {
  
     try{
     cheminProduit = req.file.path;
@@ -112,7 +112,7 @@ router.post('/upload', upload.single('produitImage') , (req,res) => {
 });
 
 //ENREGISTRE UN POST AVEC IMAGE
-router.post('/', upload.single('produitImage') ,async (req,res) => {
+router.post('/',verify, upload.single('produitImage') ,async (req,res) => {
   
     if(!cheminProduit) return res.status(400).send({message:"Path produit inexistant"})
        const produit = new Produit({
@@ -135,11 +135,8 @@ router.post('/', upload.single('produitImage') ,async (req,res) => {
            res.json({message: err+" Erreur"});
        }
    });
-//Import produits
-
-
-//ENREGISTRE UN POST associe a file excel
-router.post('/import', (req,res) => {
+ //Import produits /ENREGISTRE UN POST associe a file excel
+router.post('/import',verify, (req,res) => {
     try{   
 
         if(!cheminFile) return res.status(400).send({message: "Chemin file inexistant"})
@@ -162,16 +159,14 @@ router.post('/import', (req,res) => {
     }
 });
 
-
-router.post('/uploadmultipleimg', uploadmultiImg.array('multifiles'), (req,res) => {
+//upload multiples images
+router.post('/uploadmultipleimg',verify, uploadmultiImg.array('multifiles'), (req,res) => {
    
     res.status(200).send({message : "Upload multiple image reussi !"})
 })
 
-
-
 //REMOVE PHOTO
-router.delete('/deleteimg/:produitID', async (req,res) => {
+router.delete('/deleteimg/:produitID',verify, async (req,res) => {
 
     try{
         const pathproduit = await Produit.findById(req.params.produitID);
@@ -185,10 +180,8 @@ router.delete('/deleteimg/:produitID', async (req,res) => {
 })
 
 
-
-
 //REMOVE POST
-router.delete('/delete/:produitID', async (req, res) => {
+router.delete('/delete/:produitID',verify, async (req, res) => {
     
    
     try{       
@@ -213,7 +206,7 @@ router.delete('/delete/:produitID', async (req, res) => {
 });
 
 //UPDATE PRODUIT
-router.patch('/update', async (req, res) => {
+router.patch('/update',verify, async (req, res) => {
    
     var myquery = { _id: req.body._id};
     var newvalues = { $set: {
@@ -236,7 +229,8 @@ router.patch('/update', async (req, res) => {
     }
 });
 
-router.patch('/updatephoto', upload.single('produitImage') , async (req,res) =>{
+//update photo
+router.patch('/updatephoto',verify, upload.single('produitImage') , async (req,res) =>{
     
     try{
     if(cheminProduit === null) return res.status(404).send({message: "Désolé, photo non acceptée !"})
@@ -252,7 +246,8 @@ router.patch('/updatephoto', upload.single('produitImage') , async (req,res) =>{
     }
 })
 
-router.patch('/updateallergene', async (req,res) =>{
+//update allergene
+router.patch('/updateallergene',verify, async (req,res) =>{
     try{
 
         const myquery = {_id : req.body._id}

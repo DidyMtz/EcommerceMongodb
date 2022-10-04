@@ -1,7 +1,6 @@
-import { DialogRef } from '@angular/cdk/dialog';
 import { Personne } from '../../modal/personne';
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -16,11 +15,13 @@ export class LoginComponent implements OnInit {
 
   title : string | null = null ;
   LoginForm! : FormGroup;
-  
+  message : string = "";
+  @Output() role: string = "";
+  @Output() isAdmin : boolean = false;
+  @Output() isLogged : boolean = false;
 
   constructor(
-      private auth : AuthService, 
-      public dialogRef: DialogRef, 
+      private authservice : AuthService, 
       private formbuid : FormBuilder,
       private route : Router
       ) { }
@@ -45,22 +46,34 @@ export class LoginComponent implements OnInit {
  }
 
   login(){
-
     
-    let client = new Personne();
-    client = this.LoginForm.value;
+   const client = this.LoginForm.value;
+    console.warn(client);
     
     if(!client) return ;
-    client.etat = true;
-    this.auth.isConnected(client);
-    sessionStorage.setItem("email", client.email);
+    
+    this.authservice.loginUser(client).subscribe(
+      (res:any) => {
+        this.role = res.role;
+        this.message = res.message;
 
+        //verifier le role
+        if(this.role === "admin"){
+          this.isAdmin = true;
+        }else{ this.isAdmin = false;}
+
+        /*
    this.route.navigate(['/produit'])
    .then(()=>{
       window.location.reload();
-    });
+    });*/
+
+      },
+     (err) => this.message = err
+    )
+    sessionStorage.setItem("email", client.email);
+
   
-    this.dialogRef.close();
 
   }
 

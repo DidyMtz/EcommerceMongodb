@@ -7,6 +7,7 @@ import { ProduitService } from '../../services/produit.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ModalComponent } from '../search/modal.component';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 
@@ -22,25 +23,32 @@ export class NavComponent implements OnInit {
   classe : boolean = false;
   currentRoute :string | null = null;
   islogged: boolean = false;
+  isAdmin : boolean = false;
+  role : string = "";
   search : Produit[] = [];
   produit : any[] = [];
   message : string | null = null;
   client : Personne = new Personne();
   tel : string = "Commander par Téléphone";
-
+  
+  LoginForm! : FormGroup;
+  
   constructor(
     private activatedroute :ActivatedRoute, 
-    private auth: AuthService,
+    private authservice: AuthService,
     public dialog : Dialog,
-    private route:Router, private produitservice: ProduitService) {
+    private route:Router,private formBuild:FormBuilder, 
+    private produitservice: ProduitService) {
     
    }
 
   ngOnInit(): void {
 
-   this.getProduit();
-   
-    // Verifie l url en cours et affiche selon condition
+
+  this.initForm();
+  this.login();
+  this.getProduit();
+    /* Verifie l url en cours et affiche selon condition
 
     this.route.events.subscribe((event) => {
 
@@ -57,9 +65,11 @@ export class NavComponent implements OnInit {
      if(sessionStorage.getItem("email") != null) {
       this.islogged = true;
      }
-
+*/
 
   }
+
+  
 
   changeMessage(){
     this.tel = " Contact : 0661192405";
@@ -101,6 +111,49 @@ export class NavComponent implements OnInit {
     
   }
 
+  initForm(){
+
+    this.LoginForm = new FormGroup(
+      { email : new FormControl(),
+        password : new FormControl()
+      }
+    );
+  
+   this.LoginForm = this.formBuild.group(
+      { email : ['',[Validators.email, Validators.required]],
+       password : ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
+      }
+    );
+   }
+  
+    login(){
+      
+     const client = this.LoginForm.value;
+          
+      if(!client.email || !client.password) return ;
+      
+      this.authservice.loginUser(client).subscribe(
+        (res:any) => {
+          this.role = res.role;
+          this.message = res.message;
+          this.islogged = true;
+  
+          //verifier le role
+          if(this.role === "admin"){
+            this.isAdmin = true;
+          }else{ this.isAdmin = false;}
+  
+          sessionStorage.setItem("email", client.email);
+  
+        },
+       (err) => this.message = err
+      )
+  
+    
+  
+    }
+  
+/*
   openModallogin(){
 
       const modalRef = this.dialog.open(LoginComponent, {
@@ -110,7 +163,7 @@ export class NavComponent implements OnInit {
       })
       
   }
-
+*/
   logout(){
     sessionStorage.removeItem("email");
     sessionStorage.clear();

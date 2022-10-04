@@ -8,6 +8,11 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 
+// connect db test
+mongoose.connect( process.env.DB_CONNECTION, () => {
+    console.log("Connect to db");
+});
+
 //import routes
 const postRoute = require('./route/posts');
 const userRoute = require('./route/user');
@@ -25,10 +30,6 @@ app.get('/',(req, res) => {
 });
 
 
-//test connect db
-mongoose.connect( process.env.DB_CONNECTION, () => {
-    console.log("Connect to db");
-})
 
 
 //listen
