@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import {ThemePalette} from '@angular/material/core';
-import { Produit } from 'src/app/modal/produit';
+import { Produit } from 'src/app/model/produit';
 import { HttpClient } from '@angular/common/http';
 import { ProduitService } from 'src/app/services/produit.service';
 

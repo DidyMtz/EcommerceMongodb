@@ -1,7 +1,7 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProduitService } from './../../../services/produit.service';
 import { Component, OnInit } from '@angular/core';
-import { Produit } from 'src/app/modal/produit';
+import { Produit } from 'src/app/model/produit';
 import { ThemePalette } from '@angular/material/core';
 import { timeout } from 'rxjs';
 import { ThisReceiver } from '@angular/compiler';

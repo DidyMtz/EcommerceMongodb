@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Produits } from 'src/app/modal/produits';
+import { Produits } from 'src/app/model/produits';
 import { HttpClient } from '@angular/common/http';
 import { ImportExportService } from './../../../services/import-export.service';
 import { ProduitService } from 'src/app/services/produit.service';
-import { Produit } from 'src/app/modal/produit';
+import { Produit } from 'src/app/model/produit';
 
 @Component({
   selector: 'app-export',

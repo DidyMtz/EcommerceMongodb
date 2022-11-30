@@ -11,7 +11,7 @@
           <div *ngIf="produit.discount != 0" class="promotion">PROMOTION</div>
           <div class="card-body">
             <h5 class="card-title">{{produit.name | titlecase}}</h5>
-            <p class="card-text">{{produit.description}}</p>
+            <p class="card-text description">{{produit.description}}</p>
          <div class="price">
           <div><p [ngClass]="{'card-text-prix promo': produit.discount != 0}">{{produit.prix}} DH</p></div>
           <div><p *ngIf="produit.discount != 0">{{getDiscount(produit)}} DH</p></div>

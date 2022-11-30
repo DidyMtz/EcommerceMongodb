@@ -1,7 +1,7 @@
 import { ProduitService } from '../../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Produit } from '../../modal/produit';
+import { Produit } from '../../model/produit';
 
 @Component({
   selector: 'app-affiche-produit',

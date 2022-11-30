@@ -2,12 +2,14 @@
 :host {
   display:block;
   background: #fff;
-  position: fixed;
-  top:0;
+  position: absolute;
+  top:10px;
   border-radius: 8px;
-  padding: 1px;
+  padding: 2rem;
   animation: custom-dialog-enter 1s ease;
   font-size: small;
+  height: 38rem;
+  overflow: scroll;
   }
   
   @keyframes custom-dialog-enter {
@@ -21,6 +23,11 @@
   }
 
 img{
-  width:150px;
+  width: 150px;
   height: 150px;
+}
+.box{
+  border: 1px solid rgba(128, 128, 128, 0.171);
+  padding: 10px;
+  //box-shadow: 5px 10px #888888b9;
 }

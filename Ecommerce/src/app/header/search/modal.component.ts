@@ -1,6 +1,6 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { Produit } from '../../modal/produit';
+import { Produit } from '../../model/produit';
 import { Router } from '@angular/router';
 
 @Component({

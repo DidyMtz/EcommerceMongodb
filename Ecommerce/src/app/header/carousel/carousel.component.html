@@ -5,9 +5,9 @@
     <h6>MENU</h6> 
     <hr>
 
-    <mat-selection-list #shoes  [multiple]="false">
-      <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe" (click)="getlink(shoes._value)">
-        {{shoe}}
+    <mat-selection-list #categorie_list  [multiple]="false">
+      <mat-list-option *ngFor="let categorie of Categories" [value]="categorie" (click)="getlink(categorie_list._value)">
+        {{categorie}}
       </mat-list-option>
     </mat-selection-list>
     

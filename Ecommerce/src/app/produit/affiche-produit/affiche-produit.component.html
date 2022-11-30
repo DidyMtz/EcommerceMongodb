@@ -3,7 +3,8 @@
 <div class="produit_container mb-5">
   <div *ngFor="let level of categorie; let i = index">
     
-    <h3 class="m-3 text-muted text-center">{{level[0]?.categorie}}</h3>
+    <fieldset>
+      <legend>{{level[0]?.categorie}}</legend>
   
   <div class="container">
       <div class="card" *ngFor="let produit of level; let i =index">
@@ -12,18 +13,19 @@
           <div *ngIf="produit.discount != 0" class="promotion">PROMOTION</div>
           <div class="card-body">
             <h5 class="card-title">{{produit.name | titlecase}}</h5>
-            <p class="card-text ">{{produit.description}}</p>
+            <p class="card-text description">{{produit.description}}</p>
          <div class="price">
           <div><p [ngClass]="{'card-text-prix promo': produit.discount > 0}">{{produit.prix}} DH</p></div>
           <div><p *ngIf="produit.discount > 0">{{getDiscount(produit)}} DH</p></div>
          </div>  
           
            
-            <a class="btn btn-outline-primary btn-lg me-2" (click)="AjouterPanier(produit)">Voir</a>
+            <a class="btn btn-outline-secondary btnvoir btn-md w-100" (click)="AjouterPanier(produit)">Voir</a>
           </div>
         
       </div>
     </div>
+  </fieldset>
   </div>
   
   

@@ -1,7 +1,7 @@
 import { ProduitService } from 'src/app/services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { RouterLinkActive, ActivatedRoute, Router } from '@angular/router';
-import { Produit } from 'src/app/modal/produit';
+import { Produit } from 'src/app/model/produit';
 
 @Component({
   selector: 'app-categorie-produit',

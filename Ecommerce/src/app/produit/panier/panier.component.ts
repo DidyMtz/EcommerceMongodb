@@ -2,7 +2,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ProduitService } from '../../services/produit.service';
 import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { Personne } from '../../modal/personne';
+import { Personne } from '../../model/personne';
 
 @Component({
   selector: 'app-panier',

@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/auth.guard';
 import { ContactComponent } from './contact/contact.component';
 import { CategorieProduitComponent } from './produit/categorie-produit/categorie-produit.component';
 import { UserComponent } from './operation/user/user.component';
@@ -15,8 +16,8 @@ const routes: Routes = [
 { path:'details-produit/:id1', component:DetailsProduitComponent},
 { path:'panier', component:PanierComponent},
 { path:'categorie/:link', component: CategorieProduitComponent},
-{ path:'op_produit', component:ProduitComponent},
-{ path:'op_user', component:UserComponent},
+{ path:'op_produit', component:ProduitComponent,canActivate:[AuthGuard]},
+{ path:'op_user', component:UserComponent, canActivate:[AuthGuard]},
 { path:'contact', component:ContactComponent},
 { path: '', redirectTo: 'produit', pathMatch: 'full' },
 { path: '**', component: ErrorComponent }

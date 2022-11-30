@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Produit } from 'src/app/modal/produit';
+import { Produit } from 'src/app/model/produit';
 import { ProduitService } from '../../services/produit.service';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -11,7 +11,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CarouselComponent implements OnInit {
 
   carousel : Produit[] = [];
-  typesOfShoes: string[] = ['Plat Principal', 'Accompagnement', 'Boisson', 'Viande', 'Poisson', 'Promotion'];
+  Categories: string[] = ['Plat Principal', 'Accompagnement', 'Boisson', 'Viande', 'Poisson', 'Promotion'];
   @Input() link: string ="";
 
   

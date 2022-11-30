@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Personne } from '../modal/personne';
+import { Personne } from '../model/personne';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -9,8 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  p : Personne = new Personne();
-  client : BehaviorSubject<Personne> = new BehaviorSubject(this.p) ;
   API_registerUser :  string = environment.API_url+"/user/register";
   API_loginUser  :  string = environment.API_url+"/user/login";
   API_deleteUser :  string = environment.API_url+"/user/delete";
@@ -21,9 +19,19 @@ export class AuthService {
   constructor(private http : HttpClient) { }
 
 
-  isConnected = (personne: Personne) => { return this.client.next(personne); }
-  isAdmin = (personne: Personne) => { return this.client.next(personne)}
-
+  isConnected = () => { 
+  return sessionStorage.getItem('token') != null;
+  
+  }
+  getToken(){
+    return sessionStorage.getItem('token') || '';
+  }
+  haveAccess(){
+    const logginToken = sessionStorage.getItem('token');
+    const _extractToken = logginToken?.split('.')[1];
+   /* const _atobdata = atob(_extractToken);
+    const finaldata = JSON.parse(_atobdata)*/
+  }
   registerUser(user: Personne){
     return this.http.post(this.API_registerUser,user)
   }

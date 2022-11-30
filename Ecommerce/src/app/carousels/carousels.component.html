@@ -9,6 +9,7 @@
      <div *ngIf="selectedIndex === i" class="message">
         <h5>{{image.name}}</h5>
         <p>{{image.description}}</p>
+        <button class="btn btn-outline-warning btn-md float-end btnCarousel" (click)="voirproduit(image)">Commander</button>
     </div>
  </div>
     

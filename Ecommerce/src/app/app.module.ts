@@ -1,3 +1,5 @@
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { ImportExportService } from './services/import-export.service';
 import { Dialog,DialogModule } from '@angular/cdk/dialog';
 import { AuthService } from './services/auth.service';
 import { ProduitService } from './services/produit.service';
@@ -5,7 +7,7 @@ import { ProduitService } from './services/produit.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +22,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './header/nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { ModalComponent } from './header/search/modal.component';
-import { LoginComponent } from './auth/login/login.component';
 import { CarouselFooterComponent } from './footer/carousel-footer/carousel-footer.component';
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -44,6 +45,7 @@ import {MatListModule} from '@angular/material/list';
 import { CategorieProduitComponent } from './produit/categorie-produit/categorie-produit.component';
 import { CarouselsModule } from './carousels/carousels.module';
 import { ContactComponent } from './contact/contact.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,6 @@ import { ContactComponent } from './contact/contact.component';
     NavComponent,
     FooterComponent,
     ModalComponent,
-    LoginComponent,
     CarouselFooterComponent,
     AjoutProduitComponent,
     ModifProduitComponent,
@@ -66,7 +67,8 @@ import { ContactComponent } from './contact/contact.component';
     ImportComponent,
     ExportComponent,
     CategorieProduitComponent,
-    ContactComponent
+    ContactComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +97,7 @@ import { ContactComponent } from './contact/contact.component';
     
 
   ],
-  providers: [ProduitService, AuthService,Dialog, MatDatepicker],
+  providers: [ProduitService, AuthService, ImportExportService, Dialog, MatDatepicker,{provide:HTTP_INTERCEPTORS, useClass:TokenInterceptorService,multi:true} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

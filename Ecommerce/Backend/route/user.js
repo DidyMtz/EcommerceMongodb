@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
 
     //validation avant login
     const {error} = loginValidation(req.body);
-    if(error) return res.status(404).send({message: error.details[0].message})
+    if(error) return res.status(400).send({message: error.details[0].message})
 
     //validation email exist dans bdd
     const users = await User.findOne({email : req.body.email});
@@ -63,7 +63,7 @@ router.post('/login', async (req, res) => {
     //créer et assigner token
     const token = jwt.sign({_id: users._id}, process.env.SECRET_TOKEN)
     try{  
-    res.header('auth-token',token).status(200).send({message:`Bienvenu ${users.name}`, role: users.role });
+    res.header('auth-token',token).status(200).send({token: token, message:`Bienvenu ${users.name}`, role: users.role });
 
     }catch(err){
         res.send(err)

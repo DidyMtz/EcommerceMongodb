@@ -19,19 +19,19 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse me-3 mx-3" id="collapsibleNavbar">
+  <div class="collapse navbar-collapse me-3 mx-3 w-100" id="collapsibleNavbar">
     <ul class="navbar-nav m-auto mb-2 mb-lg-0">
       
-        <input class="form-control me-2" type="search" maxlength="10" minlength="5" required placeholder="Search"  aria-label="Search" #search>
+        <input class="form-control me-2 " type="search" maxlength="10" minlength="5" required placeholder="Search"  aria-label="Search" #search>
        <!-- <button class="btn btn-outline-success btn-md me-2" (click)="Search(search.value)" type="submit">Search</button>-->
-        <button class="btn btn-outline-primary" (click)="openModal(search.value)">Recherche</button>
+        <button class="btn btn-outline-primary btn-sm " (click)="openModal(search.value)">Recherche</button>
     </ul>
 
   
-    <button  class="btn btn-outline-secondary me-2 " (click)="changeMessage()">{{tel}}</button>
-    <button *ngIf="islogged" class="btn btn-outline-danger me-2 " (click)="logout()" type="submit">Logout</button>
+    <button  class="btn btn-outline-secondary me-2 btn-sm" (click)="changeMessage()">{{tel}}</button>
+    <button *ngIf="islogged" class="btn btn-outline-danger me-2 btn-sm" (click)="logout()" type="submit">Logout</button>
   <!--  <button *ngIf="!islogged" class="btn btn-outline-primary me-2 " (click)="openModallogin()" type="submit">LogIn</button>-->
-    <button type="button" *ngIf="!islogged" class="btn btn-outline-primary me-2" data-toggle="modal" data-target="#myModal">
+    <button type="button" *ngIf="!islogged" class="btn btn-outline-secondary btn-sm me-2" data-toggle="modal" data-target="#myModal">
       Login
     </button>
     <button class="btn btn-warning " routerLink="panier" type="submit"><span><i class="fas fa-shopping-cart"></i></span>Panier</button>

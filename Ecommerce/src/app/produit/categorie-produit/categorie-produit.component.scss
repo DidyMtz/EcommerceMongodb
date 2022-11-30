@@ -4,13 +4,12 @@
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap: 5px;
+    
     img{
       width:auto;
       height: 200px;
       }
-      .card-text{
-        height: 130px;
-      }
+     
    
   }
   
@@ -32,9 +31,7 @@
    text-decoration: line-through;
    color: red;
  }
- .card-text{
-  height: 90px;
-}
+
 .price{
   display: flex;
   flex-direction: row;
@@ -51,4 +48,7 @@
    left: 0px;
    
  }
- 
+.description{
+  overflow:auto;  
+  height: 90px;
+}

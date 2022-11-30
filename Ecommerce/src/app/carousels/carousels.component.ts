@@ -1,4 +1,5 @@
-import { Produit } from 'src/app/modal/produit';
+import { Router } from '@angular/router';
+import { Produit } from 'src/app/model/produit';
 import { ProduitService } from './../services/produit.service';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -10,50 +11,53 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CarouselsComponent implements OnInit {
 
-  @Input() images : Produit[] = [];
+  @Input() images: Produit[] = [];
   @Input() indicators = true;
   @Input() controls = true;
   @Input() autoSlide = false;
   @Input() slideInterval = 3000;//default interval slide
-  
-  message : string = "";
+
+  message: string = "";
   selectedIndex = 0;
 
-  constructor( ) { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
-    if(this.autoSlide){
+    if (this.autoSlide) {
       this.autoSlideImages();
     }
 
   }
-//autoslide dans carousel
-  autoSlideImages(): void{
-   setInterval(()=>{
-   this.onNextClick();
-}, this.slideInterval)
+  //autoslide dans carousel
+  autoSlideImages(): void {
+    setInterval(() => {
+      this.onNextClick();
+    }, this.slideInterval)
   }
   //defini l'index de l'image
-  selectImage(index : number): void{
+  selectImage(index: number): void {
     this.selectedIndex = index;
   }
 
-  onPrevClick(): void{
-    if(this.selectedIndex === 0){
+  onPrevClick(): void {
+    if (this.selectedIndex === 0) {
       this.selectedIndex = this.images.length - 1;
-    }else{
+    } else {
       this.selectedIndex--;
     }
   }
-  onNextClick(): void{
-    if(this.selectedIndex === this.images.length -1){
+  onNextClick(): void {
+    if (this.selectedIndex === this.images.length - 1) {
       this.selectedIndex = 0;
-    }else{
+    } else {
       this.selectedIndex++;
     }
   }
 
-
+  voirproduit(p: Produit) {
+    const id = p._id;
+    this.route.navigate(["details-produit", id]);
+  }
   /*getProduits(){
     this.produitservice.getProduit().subscribe(
       (res: any) => {

@@ -23,11 +23,13 @@
               <h5 class="card-title">{{produit.name | titlecase}} - {{produit.description}} </h5>
               <p class="card-text"><small class="text-muted">Allergène :{{getAllergene(produit)}}</small></p>
               
-              <p class="card-text mx-2">
+              <p class="card-text mx-2" *ngIf="produit.discount != 0">
                 <button class="btn btn-outline-info me-2" (click)="Dcounter()">-</button>{{count}}<button class="btn btn-outline-info mx-2" (click)="counter()">+</button>
-                <label class="alert alert-light mx-3">Prix : {{produit.prix*count}} Dhs</label><label class="promo" *ngIf="produit.discount != 0">- {{produit.discount}}% (promo)</label>
+                <label class="alert alert-light mx-3">Prix :<label style="text-decoration: line-through;color:brown">{{produit.prix*count}}</label> {{produit.prix*count-produit.prix*count*discount/100}} Dhs</label><label class="promo"> {{produit.discount}}% (promo)</label>
               </p>
-              
+              <p class="card-text mx-2" *ngIf="!produit.discount">
+                <button class="btn btn-outline-info me-2" (click)="Dcounter()">-</button>{{count}}<button class="btn btn-outline-info mx-2" (click)="counter()">+</button>
+                <label class="alert alert-light mx-3">Prix : {{produit.prix*count}} Dhs</label></p>
                             
               <button class="btn btn-primary btn-lg float-end mb-2" (click)="AjoutPanier(produit)">Ajouter au panier</button>
            

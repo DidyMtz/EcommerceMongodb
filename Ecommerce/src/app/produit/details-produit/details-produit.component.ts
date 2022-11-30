@@ -2,7 +2,7 @@ import { ProduitService } from '../../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs';
-import { Produit } from '../../modal/produit';
+import { Produit } from '../../model/produit';
 
 @Component({
   selector: 'app-details-produit',
@@ -19,6 +19,7 @@ export class DetailsProduitComponent implements OnInit {
   produitSelected: Produit[] = [];
   count : number = 1;
   prix : number = 0;
+  discount:any = 1;
 
   constructor(private route: Router, private activeRoute: ActivatedRoute, private produitservice: ProduitService) { }
 
@@ -66,8 +67,11 @@ getProduit(){
        });
       /* Filtrer par nom*/
         this.singleProduit = this.produitSelected.filter(i => i._id === this.id); 
+        
         this.singleProduit.forEach(produit => {
          
+          this.discount = produit.discount;
+
           if(!produit.photo) return ;
           
           if(!produit.photo.includes('assets')){

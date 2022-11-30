@@ -1,7 +1,7 @@
 
 import { ProduitService } from '../../services/produit.service';
 import { Component, OnInit } from '@angular/core';
-import { Produit } from '../../modal/produit';
+import { Produit } from '../../model/produit';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({

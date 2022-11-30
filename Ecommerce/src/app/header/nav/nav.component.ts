@@ -1,13 +1,13 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { AuthService } from '../../services/auth.service';
-import { Personne } from '../../modal/personne';
-import { LoginComponent } from '../../auth/login/login.component';
-import { Produit } from '../../modal/produit';
+import { Personne } from '../../model/personne';
+import { Produit } from '../../model/produit';
 import { ProduitService } from '../../services/produit.service';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ModalComponent } from '../search/modal.component';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 
 
@@ -72,10 +72,13 @@ export class NavComponent implements OnInit {
   
 
   changeMessage(){
+    
+    //permet de recueillir stat sur appel par tel
     this.tel = " Contact : 0661192405";
    
-    //permet de recueillir stat sur appel par tel
   }
+
+  //recuperer la liste des produits
   getProduit(){
     this.produitservice.getProduit().subscribe(
       (res:any) => {
@@ -98,9 +101,10 @@ export class NavComponent implements OnInit {
     this.route.navigate([destination]);
   }  
 
+  //recherche affiche un modal
   openModal(item: string) {
 
-    if(!item || item.length < 5) return
+    if(!item || item.length < 5) return ;
 
     this.search = this.produit.filter(i => (i.name.toLowerCase()).includes(item.toLowerCase()));
 
@@ -111,6 +115,7 @@ export class NavComponent implements OnInit {
     
   }
 
+  //initiliser le reactive formulaire
   initForm(){
 
     this.LoginForm = new FormGroup(
@@ -126,55 +131,50 @@ export class NavComponent implements OnInit {
     );
    }
   
+   //se logguer
     login(){
       
      const client = this.LoginForm.value;
           
-      if(!client.email || !client.password) return ;
-      
+      //if(!client.email || !client.password) return ;
+      if(!this.LoginForm.valid) return ;
       this.authservice.loginUser(client).subscribe(
         (res:any) => {
           this.role = res.role;
           this.message = res.message;
           this.islogged = true;
-  
           //verifier le role
           if(this.role === "admin"){
             this.isAdmin = true;
           }else{ this.isAdmin = false;}
-  
-          sessionStorage.setItem("email", client.email);
-  
+      
+      sessionStorage.setItem("token", res.token);
+     
         },
-       (err) => this.message = err
+       (err) => {
+        
+        if(err instanceof HttpErrorResponse){
+
+          if(err.status === 400){
+            this.message="Désolé problème email ou mot de passe"
+          }else  this.message = err.message;
+        }
+        }
       )
   
     
   
     }
   
-/*
-  openModallogin(){
-
-      const modalRef = this.dialog.open(LoginComponent, {
-       
-        panelClass : 'my-dialog',
-        data : { title : "Authentification"}
-      })
-      
-  }
-*/
+    //se delogguer
   logout(){
     sessionStorage.removeItem("email");
     sessionStorage.clear();
-   this.route.navigateByUrl("/")
-    .then(() => {
-      window.location.reload();
-    });
+    this.islogged = false;
   }
 
   
-
+//forcer le refresh de la page /fonction non utilisée
 reloadPage(){
   
   this.route.routeReuseStrategy.shouldReuseRoute = () => false;
