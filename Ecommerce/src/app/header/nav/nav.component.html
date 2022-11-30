@@ -1,20 +1,22 @@
-
-<ul   class="nav navbar-dark justify-content-center bg-dark">
-    
-    <li class="nav-item">
+<div class="nav navbar-dark justify-content-center bg-dark fixed-top">
+<ul class=" nav navbar-dark justify-content-center bg-dark mx-auto">
+      
+     <li class="nav-item ">
       <a class="nav-link" (click)="goTo('/produit')" >Produit</a>
     </li>
-    <li class="nav-item">
+   <li class="nav-item ">
       <a class="nav-link" (click)="goTo('/contact')" >Contact</a>
     </li>
-    <li *ngIf="isAdmin && islogged" class="nav-item">
+    <li *ngIf="isAdmin && islogged" class="nav-item ">
       <a class="nav-link" (click)="goTo('/op_produit')">Admin</a>
     </li>
-  </ul>
-
-
+ 
+   </ul>
+   <button  class="btn btn-outline-light me-2 mt-1 mb-2 btn-sm" (click)="changeMessage()">{{tel}}</button>
+ 
+  </div>
   
-<nav class="navbar navbar-expand-sm bg-light justify-content-center ">
+<nav class="navbar navbar-expand-sm bg-light justify-content-center mt-5">
   <a class="navbar-brand mx-3" routerLink="/produit">Ecommerce</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
@@ -24,11 +26,10 @@
       
         <input class="form-control me-2 " type="search" maxlength="10" minlength="5" required placeholder="Search"  aria-label="Search" #search>
        <!-- <button class="btn btn-outline-success btn-md me-2" (click)="Search(search.value)" type="submit">Search</button>-->
-        <button class="btn btn-outline-primary btn-sm " (click)="openModal(search.value)">Recherche</button>
+        <button class="btn btn-outline-dark btn-sm " (click)="openModal(search.value)">Recherche</button>
     </ul>
 
   
-    <button  class="btn btn-outline-secondary me-2 btn-sm" (click)="changeMessage()">{{tel}}</button>
     <button *ngIf="islogged" class="btn btn-outline-danger me-2 btn-sm" (click)="logout()" type="submit">Logout</button>
   <!--  <button *ngIf="!islogged" class="btn btn-outline-primary me-2 " (click)="openModallogin()" type="submit">LogIn</button>-->
     <button type="button" *ngIf="!islogged" class="btn btn-outline-secondary btn-sm me-2" data-toggle="modal" data-target="#myModal">
