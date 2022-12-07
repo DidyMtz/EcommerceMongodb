@@ -2,6 +2,7 @@ import { ProduitService } from '../../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Produit } from '../../model/produit';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-affiche-produit',
@@ -13,6 +14,7 @@ export class AfficheProduitComponent implements OnInit {
   listProduit: any[] = [];
   message : string = '';
   categorie : any[] = [];
+  listCategories : any[] = [];
   prixDiscount : number = 0;
 
   constructor(
@@ -47,7 +49,7 @@ export class AfficheProduitComponent implements OnInit {
         this.produitservice.categorie.forEach(elt =>{
           if(this.listProduit != null)
             this.categorie.push(this.listProduit.filter((i) => i.categorie === elt));
-         
+      
         }); //console.log(this.categorie);
       },
       (err) => {console.log(err);}      
@@ -67,7 +69,55 @@ export class AfficheProduitComponent implements OnInit {
     return this.prixDiscount = Math.floor(produit.prix - produit.prix * produit.discount/100);
    
    }
-   
+
+   customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: false
+  };
+  produitOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['précedent', 'suivant'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 5
+      }
+    },
+    nav: true
+  }
 
 
 }

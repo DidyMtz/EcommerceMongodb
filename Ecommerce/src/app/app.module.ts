@@ -46,6 +46,14 @@ import { CategorieProduitComponent } from './produit/categorie-produit/categorie
 import { CarouselsModule } from './carousels/carousels.module';
 import { ContactComponent } from './contact/contact.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { AdministrationComponent } from './operation/administration/administration.component';
+import { TableDataComponent } from './operation/table-data/table-data.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort'; 
+import {MatGridListModule} from '@angular/material/grid-list';
+import { ModalmodifproduitComponent } from './operation/administration/modalmodifproduit/modalmodifproduit.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +76,10 @@ import { RegisterComponent } from './auth/register/register.component';
     ExportComponent,
     CategorieProduitComponent,
     ContactComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdministrationComponent,
+    TableDataComponent,
+    ModalmodifproduitComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +104,12 @@ import { RegisterComponent } from './auth/register/register.component';
     MatNativeDateModule,
     MatToolbarModule,
     MatListModule,
-    CarouselsModule
+    CarouselsModule,
+    CarouselModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatGridListModule
     
 
   ],

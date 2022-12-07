@@ -1,7 +1,7 @@
 .produit_container {
   width: 100%;
   // margin: 20px auto 20px auto;
-
+/*
   @media (min-width: 400px) {
     .container {
       display: grid;
@@ -23,12 +23,17 @@
     .container {
       grid-template-columns: repeat(5, 1fr);
     }
-  }
-  .description {
-    height: 90px;
-    overflow: auto;
-  }
+  }*/
+ 
 }
+.containers{
+  padding: 5px;
+}
+.description {
+  height: 90px;
+  overflow: auto;
+}
+
 .price {
   display: flex;
   flex-direction: row;
@@ -41,14 +46,19 @@
 }
 
 .promotion {
-  width: 100px;
-  height: 30px;
+  width: 45px;
+  height: 60px;
   background-color: red;
   color: #fff;
   // transform: rotate(-45deg);
   position: absolute;
-  padding: 4px;
-  left: 0px;
+  border-radius: 0 25% 25% 0;
+ 
+  left: 10px;
+  top:-5px;
+  padding:20px 5px 0px 5px;
+  font-size: 20px;
+  border-radius: 8%;
 }
 img {
   height: 200px;
@@ -73,4 +83,9 @@ legend{
   width: 100%;
   text-align: center;
 
+}
+.carouselimg{
+
+  padding:5px;
+  border-radius: 5%;
 }

@@ -1,3 +1,4 @@
+import { AdministrationComponent } from './operation/administration/administration.component';
 import { AuthGuard } from './services/auth.guard';
 import { ContactComponent } from './contact/contact.component';
 import { CategorieProduitComponent } from './produit/categorie-produit/categorie-produit.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
 { path:'details-produit/:id1', component:DetailsProduitComponent},
 { path:'panier', component:PanierComponent},
 { path:'categorie/:link', component: CategorieProduitComponent},
+{ path:'admin', component:AdministrationComponent },
 { path:'op_produit', component:ProduitComponent,canActivate:[AuthGuard]},
 { path:'op_user', component:UserComponent, canActivate:[AuthGuard]},
 { path:'contact', component:ContactComponent},

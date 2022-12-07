@@ -51,7 +51,7 @@ export class ProduitService {
       
 
 
-  ];*/
+  ];
 
   carousel :Produit[] =[
     {name:'Porc Braisé', prix: 120, photo:'../../assets/img/slider/porc3.jpg', description:'Porc braisé sur feu doux à la sauce de persil et mouscade'},
@@ -64,14 +64,16 @@ export class ProduitService {
     {name:'Saucisse Braisé', prix: 80, photo:'../../assets/img/slider/grilled-meat-6530766_1280.jpg', description:'Saucisse braisé sur feu doux à la sauce de persil et mouscade.', categorie:'Plat principal'},
     {name:'Frites', prix: 20, photo:'../../assets/img/slider/bowl-1842294_1280.jpg', description:'Frites croustillantes, dorées à feu doux. Excellent accompagnement.'},
     
-  ]
+  ]*/
   panier : Produit[] = [{name:'Viande Braisée', prix: 90, photo:'../../assets/img/slider/bbq-4373644_1280.jpg', description:'Viande braisée au charbon avec la sauce de persil et mouscade.', categorie:'Plat principal'},
   {name:'Saucisse Braisé', prix: 80, photo:'../../assets/img/slider/grilled-meat-6530766_1280.jpg', description:'Saucisse braisé sur feu doux à la sauce de persil et mouscade.', categorie:'Plat principal'},
   {name:'Frites', prix: 20, photo:'../../assets/img/slider/bowl-1842294_1280.jpg', description:'Frites croustillantes, dorées à feu doux. Excellent accompagnement.'},
  ];
 
   categorie : any[] = ['Plat principal', 'Accompagnement','Boisson'];
-  allergene : any[] = ['céreale', 'crustacé', 'oeuf', 'arachide', 'poisson','soja'];
+  allergene : any[] = ['céreale', 'crustacé', 'oeuf', 'arachide', 'poisson','soja','Céleri','Sésame','Noix','Lait', 'lupin','Anhydride','Mollusque'];
+  
+
   discount  : any[] = [0,5,10,15,20,25,30,35,40,45,50];
 
 

@@ -1,0 +1,21 @@
+.full-width-table {
+  width: 100%;
+  padding:5px;
+}
+img{
+  width: 100px;
+  height: 100px;
+  padding:5px;
+  box-shadow: 1px 1px rgba(128, 128, 128, 0.411);
+  border-radius:5%;
+}
+th, td {
+  padding:5px;
+}
+td{
+  text-align: center;
+}
+.operation{
+  display:flex;
+  gap:3px;
+}

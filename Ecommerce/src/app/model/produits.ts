@@ -1,11 +1,13 @@
 export class Produits{
-    _id!: number;
-    name:string = "";
-    prix:number = 0;
-    photo:string ="";
-    description!:string;
-    allergene!:any[];
-    favori!:string;
-    categorie!:string;
-    discount:number = 0;
+  constructor( 
+    public _id: number,
+    public name:string ,
+    public  prix:number,
+    public photo:string,
+    public description:string,
+    public allergene:any[],
+    public favori:string,
+    public categorie:string,
+    public  discount:number
+  ){}
 }
