@@ -44,6 +44,11 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
 
+    console.log(sessionStorage.getItem("token"));
+    
+    if(this.islogged === false){
+      sessionStorage.removeItem("token");
+    }
 
   this.initForm();
   this.login();

@@ -5,6 +5,8 @@
             <div class="row mb-3">
                 <label for="formFile" class="form-label">Photo <em>(Laisser vide pour ne pas changer l'image.)</em></label>
                 <input class="form-control" type="file" id="formFile"  (change)="onFileChange($event)" name="photo">
+                <span *ngIf="newphoto"><img src="{{newphoto}}" alt="new photo" class="modifphoto"></span>
+                
             </div>
 
             <div class="row mb-3">
@@ -60,10 +62,10 @@
                 <span align="end">{{message.value.length}} / 80</span>
 
             </div>
-            <span ngClass="{alert alert-succes:message}">{{message}}</span>
+           
             <button class="btn btn-warning btnsubmit float-end">
                 Modification
             </button>
+            <p>{{message}}</p>
         </form>
-
     </div>

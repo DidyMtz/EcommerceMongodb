@@ -18,8 +18,10 @@ const storage = multer.diskStorage({
     filename : function(req, file, cb){
 
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-   /* cb(null, file.fieldname + '-' + uniqueSuffix)*/
-        cb(null, uniqueSuffix+ '-' +file.originalname);
+   /* cb(null, file.fieldname + '-' + uniqueSuffix)
+        cb(null, uniqueSuffix+ '-' +file.originalname)
+        */
+        cb(null, file.originalname);
     }
 });
 const storagemulti = multer.diskStorage({
@@ -98,14 +100,16 @@ router.post('/uploadexcel',verify, uploadxlsx.single('excelFile') ,async (req,re
   });
 
 
-//ENREGISTRE UNE IMAGE DANS DOSSIER
-router.post('/upload',verify, upload.single('produitImage') , (req,res) => {
+//ENREGISTRE UNE IMAGE DANS DOSSIER change ici
+router.post('/upload', upload.single('produitImage') , (req,res) => {
  
     try{
     cheminProduit = req.file.path;
-    if(!cheminProduit) return res.status(400).send({message:"Chemin produit inexistant"})
+    console.log(cheminProduit);
+    if(!cheminProduit) return res.status(400).send({message:"Chemin produit inexistant"});
       
     res.status(200).send({message: "Image upload successfully", filename: req.file.originalname});
+    console.log("Image upload successfully"+req.file.filename);
     }catch(err){
         res.json({message: err});
     }
@@ -205,8 +209,8 @@ router.delete('/delete/:produitID',verify, async (req, res) => {
     }
 });
 
-//UPDATE PRODUIT
-router.patch('/update',verify, async (req, res) => {
+//UPDATE PRODUIT change ici
+router.patch('/update', async (req, res) => {
    
     var myquery = { _id: req.body._id};
     var newvalues = { $set: {
@@ -218,6 +222,7 @@ router.patch('/update',verify, async (req, res) => {
         favori    : req.body.favori,
         categorie : req.body.categorie,
         discount  : req.body.discount } };
+        console.log(newvalues);
     try{
         const updatedProduit = await Produit.updateOne(myquery, newvalues) 
       

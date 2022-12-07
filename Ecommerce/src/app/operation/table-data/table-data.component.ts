@@ -34,7 +34,7 @@ export class TableDataComponent implements AfterViewInit, OnInit {
 
   }
 ngOnInit(): void {
-
+  
 }
 
   ngAfterViewInit(): void {
@@ -49,8 +49,8 @@ test update data in table
 */
   onChange(event:any, p:Produits){
 
-    console.log(event.target.value);
-    console.log(event.target.name);
+   // console.log(event.target.value);
+    //console.log(event.target.name);
     const nom = event.target.name;
     if(nom==="prix"){
       p.prix = event.target.value;

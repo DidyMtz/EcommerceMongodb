@@ -2,9 +2,9 @@
   display:block;
   background: #fff;
   position: absolute;
-  width: 40%;
+  width: 80%;
   top:50px;
-  right: 50px;
+  left: 50px;
   height: 38rem;
   border-radius: 8px;
   overflow: scroll;
@@ -33,4 +33,10 @@
     background-color: rgba(226, 222, 222, 0.158);
     padding:10px;
     
+  }
+  .modifphoto{
+    width: 200px;
+    height: 200px;
+    padding: 1rem;
+    margin: 0 auto;
   }

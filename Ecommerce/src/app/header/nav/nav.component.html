@@ -10,6 +10,9 @@
     <li *ngIf="isAdmin && islogged" class="nav-item ">
       <a class="nav-link" (click)="goTo('/op_produit')">Admin</a>
     </li>
+    <li *ngIf="isAdmin && islogged" class="nav-item ">
+      <a class="nav-link" (click)="goTo('/admin')">Admin2</a>
+    </li>
  
    </ul>
    <button  class="btn btn-outline-light me-2 mt-1 mb-2 btn-sm" (click)="changeMessage()">{{tel}}</button>

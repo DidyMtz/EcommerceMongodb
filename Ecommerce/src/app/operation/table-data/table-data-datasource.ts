@@ -54,12 +54,12 @@ export class TableDataDataSource extends DataSource<Produits> {
     this.produitservice.getProduit().subscribe(
       (data:any) =>{
         this.data = data;
-        this.data.forEach(produit => {         
+       /* this.data.forEach(produit => {         
           if(!produit.photo) return ;          
-          if(!produit.photo.includes('assets')){
+          if(!produit.photo.includes('upload')){
             produit.photo = '/assets/img/upload/'+produit.photo;   
           }else{produit.photo = produit.photo.substring(6);}
-        })        
+        })    */    
       }
      ) 
   }
