@@ -1,9 +1,83 @@
-<h3>Operation Produit</h3>
+
+<div class="container">
+  
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!-- Photo Column -->
+  <ng-container matColumnDef="photo">
+    <th mat-header-cell *matHeaderCellDef >Photo</th>
+    <td mat-cell *matCellDef="let row"><img src='assets/img/upload/{{row.photo}}' alt="{{row.name}}"></td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+    <td mat-cell *matCellDef="let row"><input matInput value="{{row.name}}"></td>
+  </ng-container>
+
+   <!-- Prix Column -->
+   <ng-container matColumnDef="prix">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Prix</th>
+    <td mat-cell *matCellDef="let row">
+      <input matInput name="prix" (change)="onChange($event,row)" value="{{row.prix}}">
+  
+    </td>
+  </ng-container>
+
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef >Description</th>
+    <td mat-cell *matCellDef="let row"><textarea cols="35" rows="5" matInput>{{row.description}}</textarea></td>
+  </ng-container>
+
+  <!-- allergene Column -->
+  <ng-container matColumnDef="allergene">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Allergene</th>
+    <td mat-cell *matCellDef="let row"><input matInput name="allergene"  value="{{row.allergene}}"></td>
+  </ng-container>
+
+  <!-- favori Column -->
+  <ng-container matColumnDef="favori">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Favori</th>
+    <td mat-cell *matCellDef="let row"><input matInput value="{{row.favori}}"></td>
+  </ng-container>
+
+  <!-- categorie Column -->
+  <ng-container matColumnDef="categorie">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Categorie</th>
+    <td mat-cell *matCellDef="let row"><input matInput value="{{row.categorie}}"></td>
+  </ng-container>
+
+   <!-- discount Column -->
+   <ng-container matColumnDef="discount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Discount</th>
+    <td mat-cell *matCellDef="let row"><input matInput value="{{row.discount}}"></td>
+  </ng-container>
+
+   <!-- operation Column -->
+   <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+    <td mat-cell *matCellDef="let row">
+     <div class="operation">
+      <button mat-mini-fab color="primary" (click)="update(row)">
+      <mat-icon>update</mat-icon>
+    </button>
+    <button mat-mini-fab color="warn" (click)="delete(row)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div> 
+    </td>
+  </ng-container>
 
 
-<mat-tab-group mat-align-tabs="end">
-  <mat-tab label="Ajouter"><app-ajout-produit></app-ajout-produit></mat-tab>
-  <mat-tab label="Modifier"><app-modif-produit></app-modif-produit></mat-tab>
-  <mat-tab label="Supprimer"><app-supp-produit></app-supp-produit></mat-tab>
-  <mat-tab label="Import/Export"><app-import></app-import></mat-tab>
-</mat-tab-group>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+</div>

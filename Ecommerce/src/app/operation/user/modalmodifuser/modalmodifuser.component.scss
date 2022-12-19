@@ -1,0 +1,35 @@
+:host {
+    display:block;
+    background: #fff;
+    position: absolute;
+    width: 60%;
+    top:50px;
+    left: 50px;
+    height: 35rem;
+    border-radius: 8px;
+    overflow: scroll;
+    padding: 10px;
+    animation: custom-dialog-enter 1s ease;
+    }
+    
+    @keyframes custom-dialog-enter {
+      from {
+        transform: scale(0) rotate(180deg);
+      }
+    
+      to {
+        transform: none;
+      }
+    }
+
+.containers{
+    width:100%;
+    margin: 0 auto 10px;
+    background-color: #fff;
+    padding:1rem;
+    
+  }
+  mat-form-field{
+    width:100%;
+    padding-left:5px;
+  }

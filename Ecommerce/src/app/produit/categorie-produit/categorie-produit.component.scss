@@ -37,17 +37,20 @@
   flex-direction: row;
   gap: 4px;
 }
- .promotion{
-   width:100px;
-   height: 30px;
-   background-color: red;
-   color:#fff;
+.promotion {
+  width: 45px;
+  height: 60px;
+  background-color: red;
+  color: #fff;
   // transform: rotate(-45deg);
-   position:absolute;
-   padding: 4px;
-   left: 0px;
-   
- }
+  position: absolute;
+  border-radius: 0 0 25% 25%; 
+  left: 10px;
+  top:-5px;  
+  text-align: center;
+  font-size: 18px;
+  padding-top: 15px;
+}
 .description{
   overflow:auto;  
   height: 90px;

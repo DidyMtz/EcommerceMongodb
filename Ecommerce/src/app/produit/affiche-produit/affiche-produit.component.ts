@@ -1,3 +1,4 @@
+import { CategorieService } from './../../services/categorie.service';
 import { ProduitService } from '../../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -14,16 +15,18 @@ export class AfficheProduitComponent implements OnInit {
   listProduit: any[] = [];
   message : string = '';
   categorie : any[] = [];
-  listCategories : any[] = [];
+  listcategorie : any[] = [];
+  promotion: any[] = [];
   prixDiscount : number = 0;
 
   constructor(
     private route: Router, 
-    private produitservice: ProduitService
+    private produitservice: ProduitService,
+    private categorieservice: CategorieService
     ) { }
 
   ngOnInit(): void {
-
+    
    this.getProduits();
     
   }
@@ -32,6 +35,8 @@ export class AfficheProduitComponent implements OnInit {
     this.produitservice.getProduit().subscribe(
       (res: any) => {
         this.listProduit = res;
+        this.promotion = this.listProduit.filter((i) => i.discount != 0);
+        
         this.listProduit.forEach(produit => {
          
           if(!produit.photo) return ;
@@ -46,11 +51,19 @@ export class AfficheProduitComponent implements OnInit {
 
         
       /* filtrer et créer array par categorie */
-        this.produitservice.categorie.forEach(elt =>{
-          if(this.listProduit != null)
-            this.categorie.push(this.listProduit.filter((i) => i.categorie === elt));
-      
-        }); //console.log(this.categorie);
+        this.categorieservice.getCategorie().subscribe(
+          (data:any) =>{
+            this.listcategorie = data;
+
+            this.listcategorie.forEach(elt =>{
+              if(this.listProduit != null)
+                this.categorie.push(this.listProduit.filter((i) => i.categorie === elt.name));
+          
+            }); 
+          },
+          (err) => console.log(err)
+        )
+       
       },
       (err) => {console.log(err);}      
     )
@@ -74,10 +87,38 @@ export class AfficheProduitComponent implements OnInit {
     loop: true,
     mouseDrag: true,
     touchDrag: false,
-    pullDrag: true,
+    pullDrag: true,    
+    autoplay:true,
+    autoplayHoverPause:true,
     dots: false,
     navSpeed: 700,
     navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 5
+      }
+    },
+    nav: false
+  };
+  produitOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    autoplay:true,
+    autoplayHoverPause:true,
+    navSpeed: 700,
+    navText: ['<span class="indicator">précedent</span>', '<span class="indicator">suivant</span>'],
     responsive: {
       0: {
         items: 1
@@ -93,30 +134,6 @@ export class AfficheProduitComponent implements OnInit {
       }
     },
     nav: false
-  };
-  produitOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['précedent', 'suivant'],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 5
-      }
-    },
-    nav: true
   }
 
 

@@ -2,16 +2,16 @@
 <ul class=" nav navbar-dark justify-content-center bg-dark mx-auto">
       
      <li class="nav-item ">
-      <a class="nav-link" (click)="goTo('/produit')" >Produit</a>
+      <a class="nav-link" (click)="goTo('/categorie/produits')" >Produits</a>
     </li>
    <li class="nav-item ">
       <a class="nav-link" (click)="goTo('/contact')" >Contact</a>
     </li>
+   <!-- <li *ngIf="isAdmin && islogged" class="nav-item ">
+      <a class="nav-link" (click)="goTo('/op_produit')">Opération</a>
+    </li>-->
     <li *ngIf="isAdmin && islogged" class="nav-item ">
-      <a class="nav-link" (click)="goTo('/op_produit')">Admin</a>
-    </li>
-    <li *ngIf="isAdmin && islogged" class="nav-item ">
-      <a class="nav-link" (click)="goTo('/admin')">Admin2</a>
+      <a class="nav-link" (click)="goTo('/admin')">Administration</a>
     </li>
  
    </ul>
@@ -28,8 +28,9 @@
     <ul class="navbar-nav m-auto mb-2 mb-lg-0">
       
         <input class="form-control me-2 " type="search" maxlength="10" minlength="5" required placeholder="Search"  aria-label="Search" #search>
-       <!-- <button class="btn btn-outline-success btn-md me-2" (click)="Search(search.value)" type="submit">Search</button>-->
-        <button class="btn btn-outline-dark btn-sm " (click)="openModal(search.value)">Recherche</button>
+       <!-- <button class="btn btn-outline-success btn-md me-2" (click)="Search(search.value)" type="submit">Search</button>
+        <button class="btn btn-outline-dark btn-sm " (click)="openModal(search.value)">Recherche</button>-->
+        <button mat-mini-fab (click)="openModal(search.value)"><mat-icon>search</mat-icon></button>
     </ul>
 
   
@@ -38,7 +39,7 @@
     <button type="button" *ngIf="!islogged" class="btn btn-outline-secondary btn-sm me-2" data-toggle="modal" data-target="#myModal">
       Login
     </button>
-    <button class="btn btn-warning " routerLink="panier" type="submit"><mat-icon>shopping_cart</mat-icon></button>
+    <button mat-mini-fab color="accent" routerLink="panier" type="submit"><mat-icon>shopping_cart</mat-icon></button>
   
   </div>  
 </nav>

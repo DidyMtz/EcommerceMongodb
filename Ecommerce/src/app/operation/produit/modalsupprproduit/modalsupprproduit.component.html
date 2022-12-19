@@ -1,0 +1,17 @@
+<div class="container">
+    <h4>Voulez-vous supprimer le produit </h4>
+   
+            <img src="assets/img/upload/{{data.produit.photo}}" alt="photo produit">
+       
+            <div class="info">
+                <div class="header">
+                    <span>{{data.produit.name}} - {{data.produit.prix}} DH</span>
+                </div>
+                <div class="description">
+                    {{data.produit.description}}
+                </div>
+                
+    <button mat-raised-button color="warn" (click)="supprimer()">Supprimer</button>
+            </div>
+       
+</div>

@@ -1,34 +1,48 @@
 <app-carousel></app-carousel>
 
 <div class="produit_container mb-5">
+
+
+
+  <div class="containers">
+    <h4>Promotion</h4>
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let produit of promotion; let i =index">
+        <ng-template carouselSlide [id]="produit._id">
+          
+          <div class="card" >
+            <img src="{{produit?.photo}}" class="card-img-top" alt="photo {{produit.name}}">
+            <div *ngIf="produit.discount != 0" class="promotion">-{{produit.discount}}%</div>
+            <div class="card-body">
+              <h5 class="card-title">{{produit.name | titlecase}}</h5>
+              <p class="card-text description">{{produit.description}}</p>
+              <div class="price">
+                <div>
+                  <p [ngClass]="{'card-text-prix promo': produit.discount > 0}">{{produit.prix}} DH</p>
+                </div>
+                <div>
+                  <p *ngIf="produit.discount > 0">{{getDiscount(produit)}} DH</p>
+                </div>
+              </div>
+              <a class="btn btn-outline-secondary btnvoir btn-md w-100" (click)="AjouterPanier(produit)">Voir</a>
+            </div>    
+          </div>
+        </ng-template>
+      </ng-container>
+  
+    </owl-carousel-o>
+  </div>
+
+
+
   <div *ngFor="let produitpercategorie of categorie; let i = index">
 
     <fieldset>
       <legend>{{produitpercategorie[0]?.categorie}}</legend>
 
       <div class="containers">
-     <!--   <div class="card" *ngFor="let produit of produitpercategorie; let i =index">
-
-          <img src="{{produit?.photo}}" class="card-img-top" alt="photo {{produit.name}}">
-          <div *ngIf="produit.discount != 0" class="promotion">PROMOTION</div>
-          <div class="card-body">
-            <h5 class="card-title">{{produit.name | titlecase}}</h5>
-            <p class="card-text description">{{produit.description}}</p>
-            <div class="price">
-              <div>
-                <p [ngClass]="{'card-text-prix promo': produit.discount > 0}">{{produit.prix}} DH</p>
-              </div>
-              <div>
-                <p *ngIf="produit.discount > 0">{{getDiscount(produit)}} DH</p>
-              </div>
-            </div>
-            <a class="btn btn-outline-secondary btnvoir btn-md w-100" (click)="AjouterPanier(produit)">Voir</a>
-          </div>
-
-       
-      </div>-->
+    
       <owl-carousel-o [options]="produitOptions">
-
         <ng-container *ngFor="let produit of produitpercategorie; let i =index">
           <ng-template carouselSlide [id]="produit._id">
             
@@ -57,8 +71,8 @@
     </fieldset>
 
   </div>
-  <br>
-
+  <div>
+   <h4>Tous les Produits</h4>
   <owl-carousel-o [options]="customOptions">
 
     <ng-container *ngFor="let slide of listProduit">
@@ -68,5 +82,5 @@
     </ng-container>
 
   </owl-carousel-o>
-
+</div>
 </div>

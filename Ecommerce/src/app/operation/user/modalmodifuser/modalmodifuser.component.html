@@ -1,0 +1,91 @@
+<div class="containers">
+
+
+    <form  (ngSubmit)="submit()">
+        <h4>Modifier Utilisateur</h4>
+
+        <mat-grid-list cols="2" rowHeight="85px">
+
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nom</mat-label>
+                    <input matInput type="text" name="name" [(ngModel)]="data.user.name" >
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" name="email" [(ngModel)]="data.user.email" >
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" name="password" [(ngModel)]="data.user.password" >
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Tél</mat-label>
+                    <input matInput type="tel" name="tel" [(ngModel)]="data.user.tel" >
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="2">
+                <mat-form-field appearance="fill">
+                    <mat-label>Role</mat-label>
+                    <mat-select  name="role" [(value)]="data.user.role">
+                        <mat-option *ngFor="let role of listRole; let i=index" [value]="role">
+                            {{role}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <ng-container *ngIf="isUtilisateur">
+            <mat-grid-tile colspan="2">
+                <mat-form-field appearance="fill">
+                    <mat-label>Adresse</mat-label>
+                    <textarea matInput #messages maxlength="80" [(ngModel)]="data.user.adresse" placeholder="Ex. casablanca rue..."
+                        name="adresse"></textarea>
+                    <mat-hint align="end">{{messages.value.length}} / 80</mat-hint>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Ville</mat-label>
+                    <input matInput type="text" name="ville" [(ngModel)]="data.user.ville" >
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Code Postal</mat-label>
+                    <input matInput type="text" name="codepostal" [(ngModel)]="data.user.codepostal" >
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Réference</mat-label>
+                    <input matInput type="text" name="reference" [(ngModel)]="data.user.reference" >
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Etat</mat-label>
+                    <mat-select  name="etat" [(value)]="data.user.etat">
+                        <mat-option *ngFor="let etat of listEtat; let i=index" [value]="etat">
+                            {{etat}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </ng-container>
+        </mat-grid-list>
+        <button mat-raised-button color="warn" class="btnsubmit" >
+            Modifier utilisateur
+        </button>
+    </form>
+    <p [ngClass]="{'alert alert-info m-3 text-center':message}">{{message}}</p>
+</div>

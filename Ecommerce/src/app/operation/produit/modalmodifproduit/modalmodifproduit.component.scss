@@ -1,0 +1,42 @@
+:host {
+  display:block;
+  background: #fff;
+  position: absolute;
+  width: 60%;
+  top:50px;
+  left: 50px;
+  height: 38rem;
+  border-radius: 8px;
+  overflow: scroll;
+  padding: 10px;
+  animation: custom-dialog-enter 1s ease;
+  }
+  
+  @keyframes custom-dialog-enter {
+    from {
+      transform: scale(0) rotate(180deg);
+    }
+  
+    to {
+      transform: none;
+    }
+  }
+
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+ 
+  .containers{
+    width:100%;
+    margin: 0 auto;
+    background-color: rgba(226, 222, 222, 0.158);
+    padding:10px;
+    
+  }
+  .modifphoto{
+    width: 250px;
+    height: 200px;
+    padding: 1rem;
+    margin: 0 auto;
+  }

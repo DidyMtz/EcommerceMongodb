@@ -33,10 +33,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { AjoutProduitComponent } from './operation/produit/ajout-produit/ajout-produit.component';
+import { AjoutProduitComponent } from './operation/table-data/ajout-produit/ajout-produit.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { ModifProduitComponent } from './operation/produit/modif-produit/modif-produit.component';
-import { SuppProduitComponent } from './operation/produit/supp-produit/supp-produit.component';
+import { ModifProduitComponent } from './operation/table-data/modif-produit/modif-produit.component';
+import { SuppProduitComponent } from './operation/table-data/supp-produit/supp-produit.component';
 import { ImportComponent } from './operation/produit/import/import.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -53,7 +53,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort'; 
 import {MatGridListModule} from '@angular/material/grid-list';
-import { ModalmodifproduitComponent } from './operation/administration/modalmodifproduit/modalmodifproduit.component';
+import { ModalmodifproduitComponent } from './operation/produit/modalmodifproduit/modalmodifproduit.component';
+import { ModalsupprproduitComponent } from './operation/produit/modalsupprproduit/modalsupprproduit.component';
+import { ModalsuppruserComponent } from './operation/user/modalsuppruser/modalsuppruser.component';
+import { ModalmodifuserComponent } from './operation/user/modalmodifuser/modalmodifuser.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,10 @@ import { ModalmodifproduitComponent } from './operation/administration/modalmodi
     RegisterComponent,
     AdministrationComponent,
     TableDataComponent,
-    ModalmodifproduitComponent
+    ModalmodifproduitComponent,
+    ModalsupprproduitComponent,
+    ModalsuppruserComponent,
+    ModalmodifuserComponent
   ],
   imports: [
     BrowserModule,

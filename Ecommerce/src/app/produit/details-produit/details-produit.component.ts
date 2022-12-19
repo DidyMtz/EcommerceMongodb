@@ -1,7 +1,7 @@
 import { ProduitService } from '../../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription, BehaviorSubject } from 'rxjs';
+import { Subscription, BehaviorSubject, timeInterval, timeout } from 'rxjs';
 import { Produit } from '../../model/produit';
 
 @Component({
@@ -31,6 +31,9 @@ export class DetailsProduitComponent implements OnInit {
     
   }
 
+  /*
+  ajouter au panier
+  */
   AjoutPanier(produit:Produit){
    
     let id = this.singleProduit.indexOf(produit);
@@ -38,9 +41,12 @@ export class DetailsProduitComponent implements OnInit {
     this.produitservice.AjoutPanier(produit);
     this.produitservice.onReceive(produit.name+"("+produit.nbr+") ajouté au panier");
    
+   setTimeout(() => {
     this.onBack();
+  
+   },2000);
+    
   }
-
   ngOnDestroy() {
     this.subject.unsubscribe();
   }
@@ -65,6 +71,7 @@ getProduit(){
       this.subject = this.activeRoute.paramMap.subscribe( params => {
         this.id = params.get('id1');
        });
+       
       /* Filtrer par nom*/
         this.singleProduit = this.produitSelected.filter(i => i._id === this.id); 
         
@@ -77,16 +84,11 @@ getProduit(){
           if(!produit.photo.includes('assets')){
             produit.photo = '/assets/img/upload/'+produit.photo;            
           }else{
-            produit.photo = produit.photo.substring(6);
+            //produit.photo = produit.photo.substring(6);
           }
         })     
     },
     (err) => console.log(err)    
   )}
 
-
-  getAllergene(produit:Produit){
-    const allergene = produit.allergene?.map(i => { return i.name;})
-    return allergene
-  }
 }

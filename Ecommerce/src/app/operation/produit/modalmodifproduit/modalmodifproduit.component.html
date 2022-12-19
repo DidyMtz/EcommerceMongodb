@@ -1,0 +1,85 @@
+<div class="containers">
+    <div [ngClass]="{'alert alert-info text-center':message}">{{message}}</div>
+
+    <div class="container">
+        <form (ngSubmit)="submit()">
+            <h4>Modifier Produit : {{data.produit.name}}</h4>
+            <div class="row mb-3">
+                <label for="formFile" class="form-label">Photo <em>(Laisser vide pour ne pas changer
+                        l'image.)</em></label>
+                <input class="form-control" type="file" id="formFile" (change)="onFileChange($event)" name="photo">
+                <div class="col md-6 mt-2">
+                    <span *ngIf="oldphoto">
+                        <label for="old_photo">Ancien</label>
+                        <img src="assets/img/upload/{{oldphoto}}" alt="old photo" id="old_photo"
+                            class="modifphoto"></span>
+                </div>
+                <div class="col md-6 mt-2">
+                    <span *ngIf="newphoto">
+                        <label for="new_photo">Nouveau</label>
+                        <img src="{{newphoto}}" alt="new photo" id="new_photo" class="modifphoto"></span>
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+                <div class="col md-6">
+                    <label>Nom</label>
+                    <input type="text" class="form-control" [(ngModel)]="data.produit.name" name="name">
+
+                </div>
+                <div class="col md-6">
+                    <label>Prix</label>
+                    <input class="form-control" type="number" [(ngModel)]="data.produit.prix" name="prix">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Allergène</label>
+                    <select multiple [(ngModel)]="data.produit.allergene" class="form-select" name="allergene">
+                        <option *ngFor="let element of allergeneList" [value]="element">{{element}}</option>
+                    </select>
+                    <p>Ancien allergène : {{data.produit.allergene}}</p>
+                </div>
+                <div class="col-md-6">
+                    <label>Favori</label>
+                    <select name="favori" [(ngModel)]="data.produit.favori" class="form-select" name="favori">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Catégorie</label>
+                    <select [(ngModel)]="data.produit.categorie" class="form-select" name="categorie">
+                        <option *ngFor="let categorie of listCategorie; let i=index" [value]="categorie.name">
+                            {{categorie.name}}
+                        </option>
+                    </select>
+
+                </div>
+                <div class="col-md-6">
+                    <label>Discount</label>
+                    <input type="number" class="form-control" [(ngModel)]="data.produit.discount" name="discount">
+
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label>Description</label>
+                <textarea #messageS maxlength="80" class="form-control" [(ngModel)]="data.produit.description"
+                    placeholder="Ex. Savoureux..." name="description"></textarea>
+                <span align="end">{{messageS.value.length}} / 80</span>
+
+            </div>
+            <button class="btn btn-danger float-start" (click)="annuler()">
+                Annuler
+            </button>
+            <button class="btn btn-warning btnsubmit float-end">
+                Modification
+            </button>
+        </form>
+    </div>

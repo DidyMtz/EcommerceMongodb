@@ -8,7 +8,7 @@
       <div class="card" *ngFor="let produit of listProduit; let i = index"  >
        
           <img src="{{produit?.photo}}" class="card-img-top" alt="photo {{produit.name}}">
-          <div *ngIf="produit.discount != 0" class="promotion">PROMOTION</div>
+          <div *ngIf="produit.discount != 0" class="promotion">-{{produit.discount}}%</div>
           <div class="card-body">
             <h5 class="card-title">{{produit.name | titlecase}}</h5>
             <p class="card-text description">{{produit.description}}</p>
@@ -18,7 +18,7 @@
          </div>  
           
            
-            <a class="btn btn-outline-primary btn-lg me-2" (click)="AjouterPanier(produit)">Voir</a>
+            <a class="btn btn-outline-secondary w-100 btn-md" (click)="AjouterPanier(produit)">Voir</a>
           </div>
         
       

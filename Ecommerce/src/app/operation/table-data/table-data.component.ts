@@ -1,4 +1,4 @@
-import { ModalmodifproduitComponent } from './../administration/modalmodifproduit/modalmodifproduit.component';
+import { ModalmodifproduitComponent } from '../produit/modalmodifproduit/modalmodifproduit.component';
 import { AfterViewInit, Component, ViewChild,OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -18,11 +18,13 @@ export class TableDataComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<Produits>;
+  @ViewChild(MatTable) table!: MatTable<Produits>; 
+  
   dataSource: TableDataDataSource;
   prix! :any;
   listProduit: any[] = [];
-  produit = {}
+  produit = {};
+  message:string ="";
 
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -71,7 +73,13 @@ test update data in table
    
   }
   delete(p: Produits) {
-    console.log(p);
+   
+    const id = p._id;
+    this.produitservice.supprimerProduit(id).subscribe(
+      (res:any) => this.message = res.message,
+      (err) => console.log(err)
+      
+    )
   }
 
 

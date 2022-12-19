@@ -11,82 +11,82 @@ import { Produit } from 'src/app/model/produit';
 export class CategorieProduitComponent implements OnInit {
 
   link: any;
-  listProduit : Produit[] = [];
-  listProduits : Produit[] = []
-  message: string ="";
-  prixDiscount : number = 0;
+  listProduit: Produit[] = [];
+  listProduits: Produit[] = []
+  message: string = "";
+  prixDiscount: number = 0;
 
-  constructor(private route : Router,private activatedroute : ActivatedRoute, private produitservice : ProduitService) { }
+  constructor(private route: Router, private activatedroute: ActivatedRoute, private produitservice: ProduitService) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
     this.getLink();
   }
 
 
-//recuperer le lien categorie
-  getLink(){
+  //recuperer le lien categorie
+  getLink() {
     this.activatedroute.paramMap.subscribe((path => {
-       this.link = path.get('link');
-      
-       
-       this.getProduit();
-       
+      this.link = path.get('link');
+
+      this.getProduit();
+
     })
 
     )
   }
   //recuperer liste des produits
-  getProduit(){
+  getProduit() {
     this.produitservice.getProduit().subscribe(
-      (res:any) => {
+      (res: any) => {
 
-         this.listProduits = res;
+        this.listProduits = res;
 
-        if(!this.listProduit) return ;
+        if (!this.listProduit) return;
 
         //fixer lien images
         this.listProduits.forEach(produit => {
-          if(!produit.photo.includes('assets')){
-            produit.photo = '/assets/img/upload/'+produit.photo;
+          if (!produit.photo.includes('assets')) {
+            produit.photo = '/assets/img/upload/' + produit.photo;
 
-          }else{ produit.photo = produit.photo.substring(6); }
+          } else { produit.photo = produit.photo.substring(6); }
         });
 
+       
         //filtrer produit selon promotion
-        if(this.link === 'Promotion') {
-          this.listProduit = this.listProduits.filter(i => i.discount != 0);         
-        }else{
+        if (this.link === 'Promotion') {
+          this.listProduit = this.listProduits.filter(i => i.discount != 0);
+        }else {
 
-              //filtrer produit selon categorie principale
+          //filtrer produit selon categorie principale
           this.listProduit = this.listProduits.filter(i => (i.categorie)?.toLowerCase() === (this.link).toLowerCase())
-             
-              //filtrer produit selon categorie viande et poisson
-           if(this.listProduit.length === 0) {
-             this.listProduit = this.listProduits.filter(i => (i.description?.toLowerCase().includes(this.link.toLowerCase())));
-          
-           }
+
+          //filtrer produit selon categorie viande et poisson
+        if (this.listProduit.length === 0 && !this.link.includes('produits')) {           
+            this.listProduit = this.listProduits.filter(i => (i.categorie?.toLowerCase() == "viande" || i.categorie?.toLowerCase() == "poisson"));
+
+          }
         }
-       
-       
-
-
+        //tous les produits
+        if (this.link.includes('produits')) {
+          this.listProduit = this.listProduits;
+        }
       },
       (err) => this.message = err
     )
   }
 
-  AjouterPanier(produit:Produit){
-    
+  AjouterPanier(produit: Produit) {
+
     this.produitservice.AjoutPanier(produit);
-    this.message = produit.name+" ajouté au panier";
-    this.route.navigate(['details-produit/'+produit._id]);
-    
-   }
- 
-   getDiscount(produit: Produit){
-   if(!produit.discount) return null;
-     return this.prixDiscount = Math.floor(produit.prix - produit.prix * produit.discount/100);
-    
-    }
+    this.message = produit.name + " ajouté au panier";
+    this.route.navigate(['details-produit/' + produit._id]);
+
+  }
+
+  getDiscount(produit: Produit) {
+    if (!produit.discount) return null;
+    return this.prixDiscount = Math.floor(produit.prix - produit.prix * produit.discount / 100);
+
+  }
 
 }

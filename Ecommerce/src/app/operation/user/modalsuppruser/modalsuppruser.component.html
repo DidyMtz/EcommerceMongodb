@@ -1,0 +1,18 @@
+<div class="container">
+    <h4>Voulez-vous supprimer l'utilisateur </h4>
+   
+          <!--  <img src="assets/img/upload/{{data.produit.photo}}" alt="photo produit">-->
+       
+            <div class="info">
+                <div class="header">
+                    <span>{{data.user.email}} </span>
+                </div>
+                <div class="description">
+                    {{data.user.role}} - {{data.user.name}}
+                </div>
+                
+    <button mat-raised-button color="warn" (click)="supprimer()">Supprimer</button>
+            </div>
+            <div [ngClass]="{'alert alert-info mt-3 text-center':message}">{{message}}</div>
+       
+</div>

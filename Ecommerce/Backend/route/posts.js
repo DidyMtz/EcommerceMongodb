@@ -77,7 +77,7 @@ router.get('/', async (req, res) => {
 });
 
 //get a specifique post
-router.get('/:produitID', async (req,res) => {
+router.get('/:produitID', verify, async (req,res) => {
 
     try{
         const produit = await Produit.findById(req.params.produitID);
@@ -101,7 +101,7 @@ router.post('/uploadexcel',verify, uploadxlsx.single('excelFile') ,async (req,re
 
 
 //ENREGISTRE UNE IMAGE DANS DOSSIER change ici
-router.post('/upload', upload.single('produitImage') , (req,res) => {
+router.post('/upload' ,verify, upload.single('produitImage') , (req,res) => {
  
     try{
     cheminProduit = req.file.path;
@@ -116,13 +116,12 @@ router.post('/upload', upload.single('produitImage') , (req,res) => {
 });
 
 //ENREGISTRE UN POST AVEC IMAGE
-router.post('/',verify, upload.single('produitImage') ,async (req,res) => {
+router.post('/', upload.single('produitImage') ,async (req,res) => {
   
-    if(!cheminProduit) return res.status(400).send({message:"Path produit inexistant"})
        const produit = new Produit({
            name  : req.body.name,
            prix  : req.body.prix,
-           photo : cheminProduit,
+           photo : req.body.photo,
            description : req.body.description,
            allergene : req.body.allergene,
            favori    : req.body.favori,
@@ -134,6 +133,7 @@ router.post('/',verify, upload.single('produitImage') ,async (req,res) => {
        const savedProduit = await produit.save();
       // res.status(200).json(savedProduit);
        res.status(200).json({message: " Enregistrement effectué avec succès !"});
+       console.log(" Enregistrement effectué avec succès !"+produit);
 
        }catch(err){
            res.json({message: err+" Erreur"});
@@ -210,7 +210,7 @@ router.delete('/delete/:produitID',verify, async (req, res) => {
 });
 
 //UPDATE PRODUIT change ici
-router.patch('/update', async (req, res) => {
+router.patch('/update',verify, async (req, res) => {
    
     var myquery = { _id: req.body._id};
     var newvalues = { $set: {

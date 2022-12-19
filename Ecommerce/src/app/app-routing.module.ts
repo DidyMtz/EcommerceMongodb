@@ -17,9 +17,8 @@ const routes: Routes = [
 { path:'details-produit/:id1', component:DetailsProduitComponent},
 { path:'panier', component:PanierComponent},
 { path:'categorie/:link', component: CategorieProduitComponent},
-{ path:'admin', component:AdministrationComponent },
+{ path:'admin', canActivate:[AuthGuard], component:AdministrationComponent },
 { path:'op_produit', component:ProduitComponent,canActivate:[AuthGuard]},
-{ path:'op_user', component:UserComponent, canActivate:[AuthGuard]},
 { path:'contact', component:ContactComponent},
 { path: '', redirectTo: 'produit', pathMatch: 'full' },
 { path: '**', component: ErrorComponent }
