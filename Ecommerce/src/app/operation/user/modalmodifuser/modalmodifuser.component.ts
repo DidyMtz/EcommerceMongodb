@@ -27,7 +27,7 @@ export class ModalmodifuserComponent implements OnInit {
     }
   }
   submit(){
-    console.log(this.data.user);
+    //console.log(this.data.user);
     this.authservice.updateUser(this.data.user).subscribe(
       (res:any) => this.message = res.message,
       (err) => console.log(err)      

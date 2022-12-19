@@ -23,7 +23,8 @@ const Userschema = new mongoose.Schema({
         type: String,
         required : true,
         min: 6,
-        max: 200
+        max: 200,
+        default: "1234567"
       },
       etat: {
         type: String,
@@ -34,24 +35,28 @@ const Userschema = new mongoose.Schema({
         type: String,
         required : true,
         min: 6,
-        max: 200
+        max: 200,
+        default: "casablanca"
       },
       ville: {
         type: String,
         required : true,
         min: 6,
-        max: 200
+        max: 200,
+        default: "casablanca"
       },
       codepostal: {
         type: String,
         required : true,
         min: 3,
-        max: 10
+        max: 10,
+        default: "1234"
       },
       reference: {
         type: String,
         min: 2,
-        max: 200
+        max: 200,
+        default: "xxxxx"
       },
     role: {
         type: String,

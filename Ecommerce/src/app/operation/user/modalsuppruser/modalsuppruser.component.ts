@@ -24,9 +24,11 @@ export class ModalsuppruserComponent implements OnInit {
     this.authservice.deleteUser(id).subscribe(
       (res: any) => {
         this.message = res.message;
+        this.authservice.reloadPage("admin");
       },
       (err) => console.log(err)
     )
   }
+ 
 
 }

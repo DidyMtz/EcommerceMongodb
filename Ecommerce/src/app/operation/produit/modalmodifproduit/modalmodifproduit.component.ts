@@ -55,7 +55,7 @@ export class ModalmodifproduitComponent implements OnInit {
     
     this.produitservice.editProduit(this.data.produit).subscribe(
       (res: any) => {
-        console.log(res);
+        
         this.message = res.message; //alert(this.message);
       },
       (err) => console.log(err)

@@ -112,11 +112,11 @@
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- Position Column 
+        <!-- Position Column -->
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Id </th>
-          <td mat-cell *matCellDef="let element"> {{element._id}} </td>
-        </ng-container>-->
+          <th mat-header-cell *matHeaderCellDef> N° </th>
+          <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+        </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
@@ -142,6 +142,17 @@
             <td mat-cell *matCellDef="let element"> {{element.role}} </td>
         </ng-container>
 
+         <!-- Symbol Column -->
+         <ng-container matColumnDef="tel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tél </th>
+            <td mat-cell *matCellDef="let element"> {{element.tel}} </td>
+        </ng-container>
+         <!-- Symbol Column -->
+         <ng-container matColumnDef="adresse">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </th>
+            <td mat-cell *matCellDef="let element"> {{element.adresse}} {{element.ville}} {{element.codepostal}} </td>
+        </ng-container>
+
         <!-- Symbol Column -->
         <ng-container matColumnDef="datecreation">
             <th mat-header-cell *matHeaderCellDef> Date création </th>
@@ -165,7 +176,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons>
+    <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons>
 
     </mat-paginator>
 

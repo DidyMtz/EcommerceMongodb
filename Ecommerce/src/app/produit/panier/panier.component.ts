@@ -1,7 +1,7 @@
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ProduitService } from '../../services/produit.service';
-import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Personne } from '../../model/personne';
 
 @Component({
@@ -26,13 +26,14 @@ export class PanierComponent implements OnInit{
   discountPromo : number = 0;
   discountGeneral: number = 0;
   sommeGeneral : number = 0;
+  isConnected: boolean = false;
 
   constructor( private produitservice: ProduitService, private auth:AuthService, private route:Router) { }
 
 
   ngOnInit(): void {
 
-  
+  this.isConnected = this.auth.isConnected();
     /* remplir panier*/
     this.panier = this.produitservice.panier;
 
@@ -51,10 +52,6 @@ export class PanierComponent implements OnInit{
     this.nbr_article = this.panier.length;
     if(this.nbr_article === 0) { this.message = "vide";}
 
-    /*  this.auth.client.subscribe((personne : Personne) => {
-      this.client = personne;
-    });   
-    */
     
   }
 
@@ -95,8 +92,12 @@ RecupAllergene(event: any){
  this.produitservice.allergene.push(event.target.value);
 }  
 commander(){
+  if(!this.auth.isConnected) return;
+  const email = localStorage.getItem("email");
+  console.log(email);
   
-  
+  if(email){}
+
 }
 
 }

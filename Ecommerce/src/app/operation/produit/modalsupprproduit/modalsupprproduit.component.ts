@@ -23,7 +23,6 @@ export class ModalsupprproduitComponent implements OnInit {
   supprimer(){
     
    const id = this.data.produit._id;
-   console.log(id);
    
    this.produitservice.supprimerProduit(id).subscribe(
      (res:any) => this.message = res.message,

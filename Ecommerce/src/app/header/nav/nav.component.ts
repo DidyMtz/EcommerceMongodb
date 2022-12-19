@@ -114,7 +114,7 @@ export class NavComponent implements OnInit {
   //se logguer
   login() {
     this.message = "";
-   
+
     const client = this.LoginForm.value;
 
     if (!this.LoginForm.valid) return;
@@ -124,6 +124,8 @@ export class NavComponent implements OnInit {
         this.message = res.message;
         this.islogged = true;
         sessionStorage.setItem("token", res.token);
+        localStorage.setItem("email", client.email);
+
         //verifier le role
         if (this.role === "admin") {
           this.isAdmin = true;

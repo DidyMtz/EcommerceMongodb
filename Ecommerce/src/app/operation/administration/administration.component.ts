@@ -76,6 +76,7 @@ export class AdministrationComponent implements OnInit {
       (res: any) => {
         this.message = res.message;
         this.addform.reset();
+        
 
       },
       (err: any) => { console.log(err); }

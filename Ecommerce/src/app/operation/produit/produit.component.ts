@@ -60,7 +60,6 @@ onChange(event:any, p:Produits){
    if(nom==="allergene"){
      p.allergene = event.target.value;
    }
-   console.log(p);
    
    
  }

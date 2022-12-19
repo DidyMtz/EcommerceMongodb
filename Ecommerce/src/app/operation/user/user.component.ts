@@ -53,7 +53,7 @@ export class UserComponent implements OnInit {
   listRole: any[] = ['administrateur', 'utilisateur'];
   listEtat: any[] = ['on', 'off'];
   message: string = "";
-  displayedColumns: string[] = ['name', 'email', 'role', 'datecreation', 'action'];
+  displayedColumns: string[] = ['id','name', 'email', 'role','tel','adresse', 'datecreation', 'action'];
   dataSource: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -92,7 +92,9 @@ export class UserComponent implements OnInit {
     console.log(this.addform.value);
     if (this.addform.valid)
       this.authservice.registerUser(this.addform.value).subscribe(
-        (res: any) => this.message = res.message,
+        (res: any) => {this.message = res.message;
+          this.getAllUser();  this.addform.reset();
+        },
         (err) => console.log(err)
       )
       
