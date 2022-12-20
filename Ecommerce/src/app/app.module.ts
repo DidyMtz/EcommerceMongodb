@@ -48,7 +48,7 @@ import { AdministrationComponent } from './operation/administration/administrati
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort'; 
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ModalmodifproduitComponent } from './operation/produit/modalmodifproduit/modalmodifproduit.component';
 import { ModalsupprproduitComponent } from './operation/produit/modalsupprproduit/modalsupprproduit.component';
@@ -108,7 +108,8 @@ import { ModalmodifuserComponent } from './operation/user/modalmodifuser/modalmo
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSnackBarModule
     
 
   ],

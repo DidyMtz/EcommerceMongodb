@@ -2,10 +2,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ProduitService } from 'src/app/services/produit.service';
 
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Produits } from 'src/app/model/produits';
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { CategorieService } from './../../services/categorie.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { Produits } from 'src/app/model/produits';
 import { ModalmodifproduitComponent } from './modalmodifproduit/modalmodifproduit.component';
 import { ModalsupprproduitComponent } from './modalsupprproduit/modalsupprproduit.component';
 
@@ -26,11 +28,23 @@ export class ProduitComponent implements OnInit {
   listProduit: any[] = [];
   produit = {};
   message:string ="";
+  messages:string ="";
+  isDisabled: boolean = false;
+  listCategorie: any[] = [];
+  addform!: FormGroup;
+  display: boolean = false; allergeneList: string[] = [];
+  selected: any;
+  newphoto: string | null = null;
+  photoName: string = "";
 
-  constructor(private produitservice: ProduitService, public dialog : Dialog) { }
+  constructor(private produitservice: ProduitService, public dialog : Dialog,private categorie: CategorieService) { }
 
   ngOnInit(): void {
     this.getProduit();
+    this.getCategorie();
+    this.formInit();
+    this.allergeneList = this.produitservice.allergene;
+
   }
 
   applyFilter(event: Event) {
@@ -48,7 +62,86 @@ export class ProduitComponent implements OnInit {
       })
   }
 
+  displayAddForm() {
+    this.display = true;
+  }
+  hideAddForm() {
+    this.display = false;
+  }
+  /*
+  intialise form 
+   */
+  formInit() {
+    this.addform = new FormGroup({
+      name: new FormControl("", Validators.required),
+      description: new FormControl("", Validators.required),
+      photo: new FormControl("", Validators.required),
+      allergene: new FormControl(""),
+      favori: new FormControl("", Validators.required),
+      prix: new FormControl("", Validators.required),
+      discount: new FormControl("", Validators.required),
+      categorie: new FormControl("", Validators.required)
+    });
+  }
+  /*
+  get list categorie from database mongoose
+  */
+  getCategorie() {
+    this.categorie.getCategorie().subscribe(
+      (data: any) => { this.listCategorie = data; },
+      (err) => { console.log(err); }
+    )
+  }
 
+
+  /*
+    submit form
+    */
+  submit() {
+    if (this.addform.invalid) return;
+
+    const produit = this.addform.value;
+    produit.photo = this.photoName;
+
+    this.produitservice.postProduit(produit).subscribe(
+      (res: any) => {
+        this.message = res.message;
+        this.addform.reset();
+        this.getProduit();      
+
+      },
+      (err: any) => { console.log(err); }
+    )
+
+  }
+
+  onFileUpload(event: any) {
+
+    this.photoName = event.target.files[0].name;
+    const type = event.target.files[0].type;
+    const size = event.target.files[0].size;
+
+    if (size > 270000) {
+      this.messages = "la taille du fichier est trop grande";
+      this.addform.get('name')?.disable();
+      
+    }
+    if (type !== "image/jpeg" && type !== "image/jpg" && type !== "image/png") {
+      alert("Désolé ce type d'image est interdit");
+      this.addform.get('name')?.disable();
+
+    } else {
+      this.addform.get('name')?.enable();
+      this.messages ="";
+      if (event != null)
+        this.produitservice.onFileSelected(event, this.photoName)?.subscribe(
+          (res: any) => { this.message = res.message; this.newphoto = "assets/img/upload/" + res.filename; },
+          (err) => { this.message = err.message }
+        )
+    }
+
+
+  }
 /*
 test update data in table
 */

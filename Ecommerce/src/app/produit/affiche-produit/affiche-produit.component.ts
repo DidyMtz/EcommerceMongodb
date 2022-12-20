@@ -13,83 +13,82 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class AfficheProduitComponent implements OnInit {
 
   listProduit: any[] = [];
-  message : string = '';
-  categorie : any[] = [];
-  listcategorie : any[] = [];
+  message: string = '';
+  categorie: any[] = [];
+  listcategorie: any[] = [];
   promotion: any[] = [];
-  prixDiscount : number = 0;
+  prixDiscount: number = 0;
 
   constructor(
-    private route: Router, 
+    private route: Router,
     private produitservice: ProduitService,
     private categorieservice: CategorieService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-    
-   this.getProduits();
-    
+
+    this.getProduits();
+
   }
 
-  getProduits(){
+  getProduits() {
     this.produitservice.getProduit().subscribe(
       (res: any) => {
         this.listProduit = res;
         this.promotion = this.listProduit.filter((i) => i.discount != 0);
-        
+
         this.listProduit.forEach(produit => {
-         
-          if(!produit.photo) return ;
-          
-          if(!produit.photo.includes('assets')){
-            produit.photo = '/assets/img/upload/'+produit.photo;   
-                     
-          }else{
-            produit.photo = produit.photo.substring(6);
+
+          if (!produit.photo) return;
+
+          if (!produit.photo.includes('assets')) {
+            produit.photo = '/assets/img/upload/' + produit.photo;
+          } else {
+            //produit.photo = produit.photo.substring(6);
           }
         })
 
-        
-      /* filtrer et créer array par categorie */
+
+        /* filtrer et créer array par categorie */
         this.categorieservice.getCategorie().subscribe(
-          (data:any) =>{
+          (data: any) => {
             this.listcategorie = data;
 
-            this.listcategorie.forEach(elt =>{
-              if(this.listProduit != null)
+            this.listcategorie.forEach(elt => {
+              if (this.listProduit != null)
                 this.categorie.push(this.listProduit.filter((i) => i.categorie === elt.name));
-          
-            }); 
+
+            });
           },
           (err) => console.log(err)
         )
-       
+
       },
-      (err) => {console.log(err);}      
+      (err) => { console.log(err); }
     )
   }
 
-  AjouterPanier(produit:Produit){
-    
-   this.produitservice.AjoutPanier(produit);
-   this.message = produit.name+" ajouté au panier";
-   this.route.navigate(['details-produit/'+produit._id]);
-   
+  AjouterPanier(produit: Produit) {
+
+    this.produitservice.AjoutPanier(produit);
+    this.message = produit.name + " ajouté au panier";
+    this.route.navigate(['details-produit/' + produit._id]);
+
   }
 
-  getDiscount(produit: Produit){
-  if(!produit.discount) return null;
-    return this.prixDiscount = Math.floor(produit.prix - produit.prix * produit.discount/100);
-   
-   }
+  getDiscount(produit: Produit) {
+    if (!produit.discount) return null;
+    return this.prixDiscount = Math.floor(produit.prix - produit.prix * produit.discount / 100);
 
-   customOptions: OwlOptions = {
+  }
+
+  customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: false,
-    pullDrag: true,    
-    autoplay:true,
-    autoplayHoverPause:true,
+    pullDrag: true,
+    autoplay: true,
+    autoplayHoverPause: true,
     dots: false,
     navSpeed: 700,
     navText: ['', ''],
@@ -115,8 +114,8 @@ export class AfficheProduitComponent implements OnInit {
     touchDrag: false,
     pullDrag: false,
     dots: false,
-    autoplay:true,
-    autoplayHoverPause:true,
+    autoplay: true,
+    autoplayHoverPause: true,
     navSpeed: 700,
     navText: ['<span class="indicator">précedent</span>', '<span class="indicator">suivant</span>'],
     responsive: {

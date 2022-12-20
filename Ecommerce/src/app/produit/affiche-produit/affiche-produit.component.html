@@ -36,7 +36,7 @@
 
   <div *ngFor="let produitpercategorie of categorie; let i = index">
 
-    <fieldset>
+    <fieldset *ngIf="produitpercategorie.length > 2">
       <legend *ngIf="produitpercategorie[0]?.categorie">{{produitpercategorie[0]?.categorie}}</legend>
 
       <div>
