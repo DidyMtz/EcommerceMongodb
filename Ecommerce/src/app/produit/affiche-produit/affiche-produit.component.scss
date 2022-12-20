@@ -1,5 +1,10 @@
 .produit_container {
-  width: 100%;
+  max-width: 80rem;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 0.5rem;
+  //display: contents;
+  
   // margin: 20px auto 20px auto;
 /*
   @media (min-width: 400px) {
@@ -27,7 +32,11 @@
  
 }
 .containers{
-  padding: 5px;
+  width: auto;
+  height: fit-content;
+  margin : 0 auto;
+ 
+  //background-color: #fff;
 }
 .description {
   height: 65px;
@@ -72,10 +81,10 @@ img:hover {
   z-index: 9;
 }
 fieldset{
-  background-color: rgba(255, 255, 255, 0.637);
-  width: 95%;
+  //background-color: rgba(255, 255, 255, 0.637);
+  width: auto;
   margin:0 auto; 
-  padding-bottom: 25px;
+  padding-block: 15px;
 }
 legend, h4{
   color:rgb(91, 91, 92);

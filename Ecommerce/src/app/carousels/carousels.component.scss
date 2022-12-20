@@ -11,7 +11,8 @@
 }
 .message{
     position: absolute;
-    width:450px;
+    min-width:45%;
+    max-width: 55%;
     height: auto;
     background-color: rgba(15, 15, 15, 0.425);
     bottom: 25px;
