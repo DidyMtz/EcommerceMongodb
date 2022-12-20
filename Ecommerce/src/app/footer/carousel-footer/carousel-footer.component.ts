@@ -3,6 +3,7 @@ import { ProduitService } from '../../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { Produit } from '../../model/produit';
 import { Router, NavigationEnd } from '@angular/router';
+import { Produits } from 'src/app/model/produits';
 
 @Component({
   selector: 'app-carousel-footer',
@@ -15,7 +16,8 @@ export class CarouselFooterComponent implements OnInit {
   listProduit : any[] = [];
   routes: string = "";
   hideCarousel : boolean = false;
-  produit = new Produit;
+  menu : string[] = []; 
+
 
 
   constructor(
@@ -32,7 +34,7 @@ export class CarouselFooterComponent implements OnInit {
 
   }
 
-  AjouterPanier(produit:Produit){
+  AjouterPanier(produit:Produits){
 
     this.produitservice.AjoutPanier(produit);
     this.route.navigate(['details-produit/'+produit._id])

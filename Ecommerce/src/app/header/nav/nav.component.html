@@ -7,6 +7,9 @@
    <li class="nav-item ">
       <a class="nav-link" (click)="goTo('/contact')" >Contact</a>
     </li>
+    <li class="nav-item ">
+      <a class="nav-link" (click)="goTo('/categorie/Promotion')" >Promo</a>
+    </li>
    <!-- <li *ngIf="isAdmin && islogged" class="nav-item ">
       <a class="nav-link" (click)="goTo('/op_produit')">Opération</a>
     </li>-->
@@ -20,18 +23,20 @@
   </div>
   
 <nav class="navbar navbar-expand-sm bg-light justify-content-center mt-5">
-  <a class="navbar-brand mx-3" routerLink="/produit">Ecommerce</a>
+  <a class="navbar-brand mx-3 " routerLink="/produit"><img class="logo" src="./../../../assets/img/LogoMakr-5umAFL.png" alt="logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse me-3 mx-3 w-100" id="collapsibleNavbar">
-    <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-      
+  <div class="collapse navbar-collapse me-3 " id="collapsibleNavbar">
+    <ul class="navbar-nav m-auto mb-2 mb-md-0 w-50">
+      <div class="input-group ">
         <input class="form-control me-2 " type="search" maxlength="10" minlength="5" required placeholder="Search"  aria-label="Search" #search>
-       <!-- <button class="btn btn-outline-success btn-md me-2" (click)="Search(search.value)" type="submit">Search</button>
-        <button class="btn btn-outline-dark btn-sm " (click)="openModal(search.value)">Recherche</button>-->
         <button mat-mini-fab (click)="openModal(search.value)"><mat-icon>search</mat-icon></button>
-    </ul>
+     
+      </div>
+        <!-- <button class="btn btn-outline-success btn-md me-2" (click)="Search(search.value)" type="submit">Search</button>
+        <button class="btn btn-outline-dark btn-sm " (click)="openModal(search.value)">Recherche</button>-->
+       </ul>
 
   
     <button *ngIf="islogged" class="btn btn-outline-danger me-2 btn-sm" (click)="logout()" type="submit">Logout</button>

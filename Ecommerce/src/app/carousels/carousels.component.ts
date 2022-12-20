@@ -21,6 +21,7 @@ export class CarouselsComponent implements OnInit {
   selectedIndex = 0;
 
   constructor(private route: Router) { }
+  
 
   ngOnInit(): void {
     if (this.autoSlide) {

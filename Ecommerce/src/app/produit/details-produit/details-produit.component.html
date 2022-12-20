@@ -4,18 +4,18 @@
 
 
 <!--<div [ngClass]="{'alert alert-success text-center sticky-bottom': message}">{{message}}</div>-->
-<div class="container_details mb-5">
+<div class="container_details ">
 
   <div class="row">
   
    <div class="col-md-8">
     <h3 class="alert alert-primary">Détails Produit </h3>
  
-     <div class="card alert-light text-bg mb-3" *ngFor="let produit of singleProduit; let i =index">
+     <div class="card alert-light text-bg p-2" *ngFor="let produit of singleProduit; let i =index">
         <div class="row g-0">
           <div class="col-md-4">
             <img src="{{produit.photo}}" class="img-fluid rounded-start" alt="...">            
-          <div *ngIf="produit.discount != 0" class="promotion">PROMOTION</div>
+            <div *ngIf="produit.discount != 0" class="promotion">-{{produit.discount}}%</div>
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -25,13 +25,13 @@
               
               <p class="card-text mx-2" *ngIf="produit.discount != 0">
                 <button class="btn btn-outline-info me-2" (click)="Dcounter()">-</button>{{count}}<button class="btn btn-outline-info mx-2" (click)="counter()">+</button>
-                <label class="alert alert-light mx-3">Prix :<label style="text-decoration: line-through;color:brown">{{produit.prix*count}}</label> {{produit.prix*count-produit.prix*count*discount/100}} Dhs</label><label class="promo"> {{produit.discount}}% (promo)</label>
+                <label class="alert alert-light mx-3">Prix :<label style="text-decoration: line-through;color:brown">{{produit.prix*count}}</label> {{produit.prix*count-produit.prix*count*discount/100}} Dhs</label>
               </p>
               <p class="card-text mx-2" *ngIf="!produit.discount">
                 <button class="btn btn-outline-info me-2" (click)="Dcounter()">-</button>{{count}}<button class="btn btn-outline-info mx-2" (click)="counter()">+</button>
                 <label class="alert alert-light mx-3">Prix : {{produit.prix*count}} Dhs</label></p>
                             
-              <button class="btn btn-primary btn-lg float-end mb-2" (click)="AjoutPanier(produit)">Ajouter au panier</button>
+              <button class="btn btn-primary btn-lg w-100" (click)="AjoutPanier(produit)">Ajouter au panier</button>
            
               
                </div>

@@ -1,7 +1,7 @@
 
 <!--<app-carousel-footer></app-carousel-footer>-->
 
-<div *ngIf="affichemessage" [ngClass]="{'alert alert-success text-center sticky-bottom': messages}">
+<div *ngIf="affichemessage" [ngClass]="{'alert alert-warning text-center sticky-bottom': messages}">
   {{messages}} <a (click)="AfficherPanier()" [hidden]="messages == ''" class="btn btn-warning m-1">Voir Panier</a></div>
 
 
@@ -20,22 +20,22 @@
       <!-- Right -->
       <div>
         <a href="" class="me-4 text-reset">
-          <i class="fab fa-facebook-f"></i>
+          <mat-icon>facebook</mat-icon>
         </a>
         <a href="" class="me-4 text-reset">
-          <i class="fab fa-twitter"></i>
+          <mat-icon>twitter</mat-icon>
         </a>
         <a href="" class="me-4 text-reset">
-          <i class="fab fa-google"></i>
+          <mat-icon>google</mat-icon>
         </a>
         <a href="" class="me-4 text-reset">
-          <i class="fab fa-instagram"></i>
+          <mat-icon>instagram</mat-icon>
         </a>
         <a href="" class="me-4 text-reset">
-          <i class="fab fa-linkedin"></i>
+          <mat-icon>linkedin</mat-icon>
         </a>
         <a href="" class="me-4 text-reset">
-          <i class="fab fa-github"></i>
+          <mat-icon>github</mat-icon>
         </a>
       </div>
       <!-- Right -->
@@ -51,7 +51,7 @@
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             <!-- Content -->
             <h6 class="text-uppercase fw-bold mb-4">
-              <i class="fas fa-gem me-3"></i>Company name
+              <img src="./../../assets/img/LogoMakr-5umAFL.png" class="fas fa-gem me-3 logo"><p>StreetFood King 243</p>
             </h6>
             <p>
               Here you can use rows and columns to organize your footer content. Lorem ipsum
@@ -64,20 +64,14 @@
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
-              Products
+              MENU
             </h6>
-            <p>
-              <a href="#!" class="text-reset">Angular</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">React</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Vue</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Laravel</a>
-            </p>
+            <div *ngFor="let list of menu">
+              <p>
+                <a href="categorie/{{list}}" class="text-reset">{{list}}</a>
+              </p>
+            </div>
+            
           </div>
           <!-- Grid column -->
   
@@ -85,19 +79,13 @@
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
-              Useful links
+             LIENS UTILES
             </h6>
             <p>
-              <a href="#!" class="text-reset">Pricing</a>
+              <a routerLink="categorie/produits" class="text-reset">Produits</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">Settings</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Orders</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Help</a>
+              <a routerLink="contact" class="text-reset">Contact</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -111,7 +99,7 @@
             <p><i class="fas fa-home me-3"></i> Casablanca, NY 10012, Maroc</p>
             <p>
               <i class="fas fa-envelope me-3"></i>
-              info@example.com
+              streetfood243@gmail.com
             </p>
             <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
             <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>

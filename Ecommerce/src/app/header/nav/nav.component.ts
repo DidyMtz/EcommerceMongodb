@@ -127,7 +127,7 @@ export class NavComponent implements OnInit {
         localStorage.setItem("email", client.email);
 
         //verifier le role
-        if (this.role === "admin") {
+        if (this.role === "administrateur" && res.token) {
           this.isAdmin = true;
         } else { this.isAdmin = false; }
       },

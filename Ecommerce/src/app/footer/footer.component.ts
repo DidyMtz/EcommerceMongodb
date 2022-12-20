@@ -15,11 +15,13 @@ export class FooterComponent implements OnInit {
   affichemessage: boolean = true;
   subject!: Subscription;
   routes: any;
+  menu : string[] = [];
 
   constructor(private produitservice: ProduitService, private route: Router) { }
 
   ngOnInit(): void {
 
+    this.menu = this.produitservice.menus;
     /*
       affiche le message panier partout sauf sur la page panier
     */

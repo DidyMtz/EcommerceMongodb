@@ -11,7 +11,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CarouselComponent implements OnInit {
 
   carousel : Produit[] = [];
-  Categories: string[] = ['Plat Principal', 'Accompagnement', 'Boisson', 'Viande', 'Poisson', 'Promotion'];
+  Categories: string[] = [];
   @Input() link: string ="";
 
   
@@ -20,6 +20,8 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {
    this.getProduit();
+   
+   this.Categories = this.produitservice.menus;
     
   }
 
