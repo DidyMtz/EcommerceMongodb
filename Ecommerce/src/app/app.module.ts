@@ -33,10 +33,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { AjoutProduitComponent } from './operation/table-data/ajout-produit/ajout-produit.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { ModifProduitComponent } from './operation/table-data/modif-produit/modif-produit.component';
-import { SuppProduitComponent } from './operation/table-data/supp-produit/supp-produit.component';
 import { ImportComponent } from './operation/produit/import/import.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -48,10 +45,10 @@ import { ContactComponent } from './contact/contact.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AdministrationComponent } from './operation/administration/administration.component';
-import { TableDataComponent } from './operation/table-data/table-data.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort'; 
+
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ModalmodifproduitComponent } from './operation/produit/modalmodifproduit/modalmodifproduit.component';
 import { ModalsupprproduitComponent } from './operation/produit/modalsupprproduit/modalsupprproduit.component';
@@ -72,16 +69,12 @@ import { ModalmodifuserComponent } from './operation/user/modalmodifuser/modalmo
     FooterComponent,
     ModalComponent,
     CarouselFooterComponent,
-    AjoutProduitComponent,
-    ModifProduitComponent,
-    SuppProduitComponent,
     ImportComponent,
     ExportComponent,
     CategorieProduitComponent,
     ContactComponent,
     RegisterComponent,
     AdministrationComponent,
-    TableDataComponent,
     ModalmodifproduitComponent,
     ModalsupprproduitComponent,
     ModalsuppruserComponent,
