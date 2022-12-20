@@ -77,6 +77,7 @@
     <ng-container *ngFor="let slide of listProduit">
       <ng-template carouselSlide [id]="slide._id">
         <img class="carouselimg" [src]="slide.photo" [alt]="slide.name" [title]="slide.name" (click)="AjouterPanier(slide)">
+        <div *ngIf="slide.discount != 0" class="promotion">-{{slide.discount}}%</div>
       </ng-template>
     </ng-container>
 
