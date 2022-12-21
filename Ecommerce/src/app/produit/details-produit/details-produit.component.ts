@@ -1,3 +1,4 @@
+import { PanierComponent } from './../panier/panier.component';
 import { ProduitService } from '../../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,12 +24,12 @@ export class DetailsProduitComponent implements OnInit {
   name: any = "";
   subject!: Subscription;
   produitSelected: Produit[] = [];
-  count: number = 1;
+  count: number = 1 || null;
   prix: number = 0;
   discount: any = 1;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-
+item : string[] = [];
   constructor(
     private _snackBar: MatSnackBar,
     private route: Router,
@@ -50,18 +51,23 @@ export class DetailsProduitComponent implements OnInit {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });
+    // Load the given component into the snackbar.
+    //let snackBarRef = snackBar.openFromComponent(PanierComponent);
   }
   /*
   ajouter au panier
   */
   AjoutPanier(produit: Produit) {
 
-    let id = this.singleProduit.indexOf(produit);
-    this.singleProduit[id].nbr = this.count;
+    //let id = this.singleProduit.indexOf(produit);
+    //this.singleProduit[id].nbr = this.count;
+    if(!this.count) return ;
+    produit.nbr =  this.count;
     this.produitservice.AjoutPanier(produit);
-    
-    // this.produitservice.onReceive(produit.name + "(" + produit.nbr + ") ajouté au panier");
+        
+    //this.produitservice.onReceive(produit.name + "(" + produit.nbr + ") ajouté au panier");
     this.openSnackBar(produit);
+    
   }
   ngOnDestroy() {
     this.subject.unsubscribe();

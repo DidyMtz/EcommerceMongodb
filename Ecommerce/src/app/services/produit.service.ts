@@ -1,9 +1,9 @@
+import { Produits } from './../model/produits';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Produit } from '../model/produit';
-import { Produits } from '../model/produits';
 
 @Injectable({
   providedIn: 'root'
@@ -117,9 +117,9 @@ edit produit
 
   AjoutPanier(produit: Produit) {
     //sessionStorage.setItem('produit', produit.name);
-    if (this.panier.indexOf(produit) != -1) return
+    if (this.panier.indexOf(produit) != -1) return;
     else this.panier.push(produit);
-    return this.panier;
+    return [... new Set(this.panier)];
   }
 
 

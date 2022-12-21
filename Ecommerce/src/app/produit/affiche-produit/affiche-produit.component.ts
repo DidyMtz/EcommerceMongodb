@@ -68,10 +68,10 @@ export class AfficheProduitComponent implements OnInit {
     )
   }
 
-  AjouterPanier(produit: Produit) {
+  AfficherDetailsProduit(produit: Produit) {
 
-    this.produitservice.AjoutPanier(produit);
-    this.message = produit.name + " ajouté au panier";
+    //this.produitservice.AjoutPanier(produit);
+    //this.message = produit.name + " ajouté au panier";
     this.route.navigate(['details-produit/' + produit._id]);
 
   }

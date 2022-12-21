@@ -24,7 +24,7 @@
                   <p *ngIf="produit.discount > 0">{{getDiscount(produit)}} DH</p>
                 </div>
               </div>
-              <a class="btn btn-outline-secondary btnvoir btn-md w-100" (click)="AjouterPanier(produit)">Voir</a>
+              <a class="btn btn-outline-secondary btnvoir btn-md w-100" (click)="AfficherDetailsProduit(produit)">Voir</a>
             </div>    
           </div>
         </ng-template>
@@ -59,7 +59,7 @@
                     <p *ngIf="produit.discount > 0">{{getDiscount(produit)}} DH</p>
                   </div>
                 </div>
-                <a class="btn btn-outline-secondary btnvoir btn-md w-100" (click)="AjouterPanier(produit)">Voir</a>
+                <a class="btn btn-outline-secondary btnvoir btn-md w-100" (click)="AfficherDetailsProduit(produit)">Voir</a>
               </div>    
             </div>
           </ng-template>
@@ -76,7 +76,7 @@
 
     <ng-container *ngFor="let slide of listProduit">
       <ng-template carouselSlide [id]="slide._id">
-        <img class="carouselimg" [src]="slide.photo" [alt]="slide.name" [title]="slide.name" (click)="AjouterPanier(slide)">
+        <img class="carouselimg" [src]="slide.photo" [alt]="slide.name" [title]="slide.name" (click)="AfficherDetailsProduit(slide)">
         <div *ngIf="slide.discount != 0" class="promotion">-{{slide.discount}}%</div>
       </ng-template>
     </ng-container>

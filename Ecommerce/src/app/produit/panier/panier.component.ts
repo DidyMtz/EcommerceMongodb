@@ -11,31 +11,32 @@ import { Personne } from '../../model/personne';
 })
 export class PanierComponent implements OnInit{
 
-  panier: any[] = [];
-  somme: number = 0;
-  count : number = 0;
+  panier   : any[]   = [];
+  somme    : number  = 0;
+  count    : number  = 0;
   nbr_article: number = 0;
-  client : Personne = new Personne();
-  message : string | null = null;
+  client   : Personne = new Personne();
+  message  : string | null = null;
   shipping : number = 0;
-  promo : any[] = [];
-  messagePromo: string = "";
-  codePromo : string = "";
-  allergene: any[] = [];
-  validPromo : boolean = false;
-  discountPromo : number = 0;
-  discountGeneral: number = 0;
-  sommeGeneral : number = 0;
-  isConnected: boolean = false;
+  promo    : any[]  = [];
+  messagePromo   : string = "";
+  codePromo      : string = "";
+  allergene      : any[]  = [];
+  validPromo     : boolean = false;
+  discountPromo  : number  = 0;
+  discountGeneral: number  = 0;
+  sommeGeneral   : number  = 0;
+  isConnected    : boolean = false;
 
   constructor( private produitservice: ProduitService, private auth:AuthService, private route:Router) { }
 
 
   ngOnInit(): void {
 
-  this.isConnected = this.auth.isConnected();
+    this.isConnected = this.auth.isConnected();
     /* remplir panier*/
     this.panier = this.produitservice.panier;
+     console.log(this.panier);
 
     /* remplir promo */
     this.promo = this.produitservice.promo;
@@ -44,7 +45,7 @@ export class PanierComponent implements OnInit{
     this.shipping = this.produitservice.shipping;
    
     /* calcul somme des achats*/
-    this.somme = this.panier.reduce((s,p)=> { return s + p.prix * p.nbr - p.prix * p.nbr * p.discount;},0);
+    this.somme = this.panier.reduce((s,p)=> { return s = s + p.prix * p.nbr - p.prix * p.nbr * (p.discount/100)},0);
         
     /*somme generale avec discount du code Promo */
     this.sommeGeneral = this.somme - this.somme * this.discountPromo;
@@ -57,11 +58,12 @@ export class PanierComponent implements OnInit{
 
     /* supprimer élément du panier*/
   supprimer(id: number){
-    this.panier = this.panier.filter((i)=> this.panier.indexOf(i) !== id);
-    
+    this.panier = this.produitservice.panier.filter((i) => this.panier.indexOf(i) !== id);
+    //console.log(this.panier);
     /* mise à jour de la somme des achats*/
-    this.somme = this.shipping + this.panier.reduce((s,p)=> { return s + p.prix + p.prix * p.discount;},0);
+    this.somme = this.shipping + this.panier.reduce((s,p)=> { return s = s + p.prix * p.nbr - p.prix * p.nbr * (p.discount/100)},0);
     this.nbr_article = this.panier.length;
+    
   }
 
   
@@ -91,6 +93,7 @@ RecupPromoCode(event: any){
 RecupAllergene(event: any){
  this.produitservice.allergene.push(event.target.value);
 }  
+
 commander(){
   if(!this.auth.isConnected) return;
   const email = localStorage.getItem("email");
