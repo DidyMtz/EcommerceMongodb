@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ProduitService } from '../../services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { Personne } from '../../model/personne';
+import { Produit } from 'src/app/model/produit';
 
 @Component({
   selector: 'app-panier',
@@ -27,6 +28,7 @@ export class PanierComponent implements OnInit{
   discountGeneral: number  = 0;
   sommeGeneral   : number  = 0;
   isConnected    : boolean = false;
+  listproduit    : string  = "";
 
   constructor( private produitservice: ProduitService, private auth:AuthService, private route:Router) { }
 
@@ -34,38 +36,44 @@ export class PanierComponent implements OnInit{
   ngOnInit(): void {
 
     this.isConnected = this.auth.isConnected();
-    /* remplir panier*/
-    this.panier = this.produitservice.panier;
-     console.log(this.panier);
-
+    
     /* remplir promo */
     this.promo = this.produitservice.promo;
 
     /* recup valeur frais shipping */
     this.shipping = this.produitservice.shipping;
+    /* remplir panier*/
+    this.panier = this.produitservice.panier;
+    
+    this.getSomme();
+  }
+
+    /* supprimer élément du panier*/
+  supprimer(produit: Produit){
+
+   this.panier = this.produitservice.ViderPanier(produit);
+    
+    this.getSomme();
+  }
+
+  getSomme(){
    
     /* calcul somme des achats*/
-    this.somme = this.panier.reduce((s,p)=> { return s = s + p.prix * p.nbr - p.prix * p.nbr * (p.discount/100)},0);
+    this.somme = this.produitservice.panier.reduce((s,p)=> { 
+      if(p.nbr !== undefined && p.discount !== undefined){
+        s = s + p.prix * p?.nbr - p.prix * p?.nbr * (p?.discount/100)
+      }
+      return s;
+    },0);
         
     /*somme generale avec discount du code Promo */
     this.sommeGeneral = this.somme - this.somme * this.discountPromo;
 
-    this.nbr_article = this.panier.length;
+    this.nbr_article = this.produitservice.panier.length;
     if(this.nbr_article === 0) { this.message = "vide";}
 
     
   }
-
-    /* supprimer élément du panier*/
-  supprimer(id: number){
-    this.panier = this.produitservice.panier.filter((i) => this.panier.indexOf(i) !== id);
-    //console.log(this.panier);
-    /* mise à jour de la somme des achats*/
-    this.somme = this.shipping + this.panier.reduce((s,p)=> { return s = s + p.prix * p.nbr - p.prix * p.nbr * (p.discount/100)},0);
-    this.nbr_article = this.panier.length;
-    
-  }
-
   
  onBack(){
   this.route.navigate(['/produit']);

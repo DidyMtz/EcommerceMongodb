@@ -6,7 +6,9 @@ export class Produit{
     description?:string;
     allergene?:any[];
     favori?:string;
-    nbr?: number;
+    nbr?: number = 1;
     categorie?:string;
-    discount?:number = 0;
+    discount? :number = 0;
+
+
 }

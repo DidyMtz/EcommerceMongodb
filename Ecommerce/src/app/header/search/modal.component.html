@@ -11,19 +11,42 @@
 
     </div>
     <div class="row m-1 box" *ngIf="p.name">
-      <div class="col-sm-4"><img src="{{p.photo}}" alt="..."></div>
+      <div class="col-sm-4"><img src="{{p.photo}}" alt="...">
+        <div *ngIf="p.discount != 0" class="promotion">-{{p.discount}}%</div>
+      </div>
       <div class="col-sm-8">
         <h5>{{p.name}} - {{p.prix}} Dhs</h5>
         <p>{{p.description}}</p>
-        <p *ngIf="getAllergene(p)">Allergène: {{getAllergene(p)}}</p>
-        <p><a (click)="search(p)">
-            <button class="btn btn-warning btn-sm">Voir Produit</button>
-          </a>
+        <p>Allergène: {{p.allergene}}</p>
+        <p class="card-text mx-2" *ngIf="p.discount != 0">
+          <button class="btn btn-outline-info me-2" (click)="Dcounter(p)">-</button>
+          <span *ngIf="p.nbr">{{p?.nbr}}</span> <span *ngIf="!p.nbr">1</span>
+          <button class="btn btn-outline-info mx-2" (click)="counter(p)">+</button>
+          <!--if p.nbr non defini-->
+          <label class="alert alert-light mx-3" *ngIf="p.nbr">Prix :<label
+              style="text-decoration: line-through;color:brown">
+              {{p.prix*p.nbr}} </label> {{p.prix*p.nbr-p.prix*p.nbr*p.discount/100}} Dhs</label>
+          <!--if p.nbr non defini-->
+          <label class="alert alert-light mx-3" *ngIf="!p.nbr">Prix :<label
+              style="text-decoration: line-through;color:brown">
+              {{p.prix}} </label> {{p.prix-p.prix*p.discount/100}} Dhs</label>
+
+        </p>
+        <p class="card-text mx-2" *ngIf="!p.discount">
+          <button class="btn btn-outline-info me-2" (click)="Dcounter(p)">-</button>
+          <span *ngIf="p.nbr">{{p?.nbr}}</span> <span *ngIf="!p.nbr">1</span>
+          <button class="btn btn-outline-info mx-2" (click)="counter(p)">+</button>
+          <label class="alert alert-light mx-3">Prix : {{p.prix*p.nbr}} Dhs</label>
+        </p>
+
+        <p>
+          <button class="btn btn-warning btn-lg w-100" (click)="search(p)">Ajouter Panier</button>
+
         </p>
       </div>
 
     </div>
-    
+
   </ng-container>
 
 

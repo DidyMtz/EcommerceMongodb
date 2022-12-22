@@ -1,34 +1,33 @@
-.containers{
-    max-width: 95%;
-    margin:0 auto;
-    background-color: #fff;
-    padding: 5px;
+.containers {
+  max-width: 95%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 5px;
 
-    img{
-        height:100px;
-        width: 120px;
+  img {
+    height: 170px;
+    width: 230px;
+  }
+
+  .row {
+    margin: 5px;
+
+    .card-text {
+      font-size: medium;
     }
-
-    .row{
-        margin: 5px;
-
-        .card-text{
-
-            font-size:medium;
-        }
-        .panier{
-            display: flex;
-          // background-color: rgb(171, 192, 248);
-           flex-direction: column;
-           flex-wrap: nowrap;
-           padding: 10px;
-        }
-        .messagePromo{
-            text-align: center;
-            color: gray;
-        }
+    .panier {
+      display: flex;
+      background-color: rgba(208, 232, 248, 0.226);
+      flex-direction: column;
+      flex-wrap: nowrap;
+      padding: 10px;
     }
+    .messagePromo {
+      text-align: center;
+      color: gray;
+    }
+  }
 }
-.row{
-    border-radius: 5%;
+.row {
+  border-radius: 5%;
 }
