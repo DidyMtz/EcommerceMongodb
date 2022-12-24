@@ -1,3 +1,5 @@
+import { RegisterComponent } from './../../auth/register/register.component';
+import { Dialog } from '@angular/cdk/dialog';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ProduitService } from '../../services/produit.service';
@@ -29,8 +31,11 @@ export class PanierComponent implements OnInit{
   sommeGeneral   : number  = 0;
   isConnected    : boolean = false;
   listproduit    : string  = "";
+  mymodal        : string  = 'form register';
 
-  constructor( private produitservice: ProduitService, private auth:AuthService, private route:Router) { }
+  constructor( 
+    private dialog : Dialog,
+    private produitservice: ProduitService, private auth:AuthService, private route:Router) { }
 
 
   ngOnInit(): void {
@@ -103,11 +108,15 @@ RecupAllergene(event: any){
 }  
 
 commander(){
-  if(!this.auth.isConnected) return;
-  const email = localStorage.getItem("email");
-  console.log(email);
-  
-  if(email){}
+  /*
+  this.allergene = ""
+  codepromo%=""
+  montantpaiement
+*/
+const modalref = this.dialog.open(RegisterComponent, {
+panelClass:"my-dialog",
+data : { allergene : "", promo:"", montant:""}
+})
 
 }
 

@@ -19,11 +19,12 @@ export class ModalComponent implements OnInit {
   constructor(
     @Inject(DIALOG_DATA) public data: { produit: any[] },
     public dialogRef: DialogRef<string>,
-    private route: Router,
     private produitservice: ProduitService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.produitservice.panier.length;
+  }
 
 
   //Affiche

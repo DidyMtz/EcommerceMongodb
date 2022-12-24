@@ -1,8 +1,8 @@
 import { ModalmodifuserComponent } from './modalmodifuser/modalmodifuser.component';
 import { ModalsuppruserComponent } from './modalsuppruser/modalsuppruser.component';
-import { Dialog, DialogRef } from '@angular/cdk/dialog';
+import { Dialog } from '@angular/cdk/dialog';
 import { Personne } from './../../model/personne';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { AuthService } from './../../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -10,7 +10,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 
 
-
+/*
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -31,7 +31,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
 ];
 
-
+*/
 
 @Component({
   selector: 'app-user',

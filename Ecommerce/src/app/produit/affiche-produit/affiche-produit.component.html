@@ -5,12 +5,12 @@
 
 
   <div class="containers" >
-    <h4>Promotion</h4>
+    <h4 *ngIf="promotion.length > 2">Promotion</h4>
     <owl-carousel-o [options]="customOptions">
       <ng-container *ngFor="let produit of promotion; let i =index">
         <ng-template carouselSlide [id]="produit._id">
           
-          <div class="card" >
+          <div class="card me-2" *ngIf="promotion.length > 2">
             <img src="{{produit?.photo}}" class="card-img-top" alt="photo {{produit.name}}">
             <div *ngIf="produit.discount != 0" class="promotion">-{{produit.discount}}%</div>
             <div class="card-body">
@@ -45,7 +45,7 @@
         <ng-container *ngFor="let produit of produitpercategorie; let i =index">
           <ng-template carouselSlide [id]="produit._id">
             
-            <div class="card" >
+            <div class="card me-2" >
               <img src="{{produit?.photo}}" class="card-img-top" alt="photo {{produit.name}}">
               <div *ngIf="produit.discount != 0" class="promotion">-{{produit.discount}}%</div>
               <div class="card-body">

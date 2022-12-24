@@ -1,1 +1,128 @@
 
+
+        <!-- 
+        <div class="modal-header">
+            <h4 class="modal-title">S'enregistrer</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+  
+      
+          <div class="modal-body">
+            <ng-container *ngIf="isConnected">
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" value="{{client.email}}"
+                  placeholder="name@example.com">
+                <label for="floatingInput">Email</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="tel" class="form-control" id="floatingtel" value="{{client.tel}}" placeholder="Téléphone">
+                <label for="floatingtel">Téléphone</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingAdresse" value="{{client.adresse}}"
+                  placeholder="Adresse">
+                <label for="floatingAdresse">Adresse</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingville" value="{{client.ville}}"
+                  placeholder="ville">
+                <label for="floatingville">Ville</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingcodepostal" value="{{client.codepostal}}"
+                  placeholder="code postal">
+                <label for="floatingcodepostal">Code Postal</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingrefAdresse" value="{{client.reference}}"
+                  placeholder="Réference Adresse">
+                <label for="floatingrefAdresse">Réference Adresse</label>
+              </div>
+            </ng-container>
+  
+  
+          </div>
+  
+        
+          <div class="modal-footer">
+            <button type="button" class="btn btn-succes me-5" data-dismiss="modal">Enregistrer</button><button
+              type="button" class="btn btn-danger" (click)="close()" data-dismiss="modal">Close</button>
+          </div>
+        -->
+      
+<div>
+          <form [formGroup]="addform" (ngSubmit)="submit()">
+            <h4>Ajouter Utilisateur</h4>
+
+            <mat-grid-list cols="2" rowHeight="85px">
+                <mat-grid-tile>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nom</mat-label>
+                        <input matInput type="text" name="name" formControlName="name">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" name="email" formControlName="email">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" name="password" formControlName="password">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Tél</mat-label>
+                        <input matInput type="tel" name="tel" formControlName="tel">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile colspan="2">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Adresse</mat-label>
+                        <textarea matInput #messages maxlength="80" placeholder="Ex. casablanca rue..."
+                            formControlName="adresse" name="adresse"></textarea>
+                        <mat-hint align="end">{{messages.value.length}} / 80</mat-hint>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ville</mat-label>
+                        <input matInput type="text" name="ville" formControlName="ville" >
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Code Postal</mat-label>
+                        <input matInput type="text" name="codepostal" formControlName="codepostal" >
+                    </mat-form-field>
+                </mat-grid-tile>
+    
+
+                <mat-grid-tile>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Réference</mat-label>
+                        <input matInput type="reference" name="reference" formControlName="reference">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="2">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Role</mat-label>
+                        <mat-select formControlName="role" name="role">
+                            <mat-option  value="utilisateur">
+                                Utilisateur
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <button mat-raised-button color="warn" class="btnsubmit" [disabled]="addform.invalid">
+                Ajouter un utilisateur
+            </button>
+        </form>
+        <p [ngClass]="{'alert alert-info m-3 text-center':message}">{{message}}</p>
+    </div>

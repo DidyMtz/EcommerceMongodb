@@ -30,6 +30,7 @@ export class NavComponent implements OnInit {
   message: string | null = null;
   client: Personne = new Personne();
   tel: string = "Commander par Téléphone";
+  logo : string = "./../../../assets/img/LogoMakr-5umAFL.png";
 
   LoginForm!: FormGroup;
 

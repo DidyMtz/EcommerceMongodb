@@ -14,14 +14,13 @@ import { MatButton } from '@angular/material/button';
 @Component({
   selector: 'app-details-produit',
   templateUrl: './details-produit.component.html',
-  styleUrls: ['./details-produit.component.scss']
+  styleUrls: ['./details-produit.component.scss'],
 })
 export class DetailsProduitComponent implements OnInit {
-
   id!: any;
   singleProduit: Produit[] = [];
-  message: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  name: any = "";
+  message: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  name: any = '';
   subject!: Subscription;
   produitSelected: Produit[] = [];
   count: number = 1 || null;
@@ -29,28 +28,31 @@ export class DetailsProduitComponent implements OnInit {
   discount: any = 1;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-item : string[] = [];
+  durationInSeconds = 10;
+  
   constructor(
     private _snackBar: MatSnackBar,
     private route: Router,
     private activeRoute: ActivatedRoute,
-    private produitservice: ProduitService) { }
+    private produitservice: ProduitService
+  ) {}
 
   ngOnInit(): void {
-
     this.getProduit();
-
-
-
   }
   /*
   affiche snckbar
   */
   openSnackBar(p: Produit) {
-    this._snackBar.open(p.name + " (" + p.nbr + ") ajouté au panier", 'Fermer', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
+    this._snackBar.open(
+      p.name + ' (' + p.nbr + ') ajouté au panier',
+      'Fermer',
+      {
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+        duration: this.durationInSeconds * 1000,
+      }
+    );
     // Load the given component into the snackbar.
     //let snackBarRef = snackBar.openFromComponent(PanierComponent);
   }
@@ -58,16 +60,14 @@ item : string[] = [];
   ajouter au panier
   */
   AjoutPanier(produit: Produit) {
-
     //let id = this.singleProduit.indexOf(produit);
     //this.singleProduit[id].nbr = this.count;
-    if(!this.count) return ;
-    produit.nbr =  this.count;
+    if (!this.count) return;
+    produit.nbr = this.count;
     this.produitservice.AjoutPanier(produit);
-        
+
     //this.produitservice.onReceive(produit.name + "(" + produit.nbr + ") ajouté au panier");
     this.openSnackBar(produit);
-    
   }
   ngOnDestroy() {
     this.subject.unsubscribe();
@@ -75,7 +75,6 @@ item : string[] = [];
 
   onBack() {
     this.route.navigate(['/produit']);
-
   }
 
   counter() {
@@ -83,23 +82,25 @@ item : string[] = [];
   }
 
   Dcounter() {
-    if (this.count > 1) { this.count--; }
-
+    if (this.count > 1) {
+      this.count--;
+    }
   }
   getProduit() {
     this.produitservice.getProduit().subscribe(
       (res: any) => {
         this.produitSelected = res;
 
-        this.subject = this.activeRoute.paramMap.subscribe(params => {
+        this.subject = this.activeRoute.paramMap.subscribe((params) => {
           this.id = params.get('id1');
         });
 
         /* Filtrer par nom*/
-        this.singleProduit = this.produitSelected.filter(i => i._id === this.id);
+        this.singleProduit = this.produitSelected.filter(
+          (i) => i._id === this.id
+        );
 
-        this.singleProduit.forEach(produit => {
-
+        this.singleProduit.forEach((produit) => {
           this.discount = produit.discount;
 
           if (!produit.photo) return;
@@ -109,10 +110,9 @@ item : string[] = [];
           } else {
             //produit.photo = produit.photo.substring(6);
           }
-        })
+        });
       },
       (err) => console.log(err)
-    )
+    );
   }
-
 }

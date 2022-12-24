@@ -1,0 +1,32 @@
+ <!-- The Modal -->
+ 
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Login</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form [formGroup]="LoginForm" (ngSubmit)="login()">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInputlogin" formControlName="email"  placeholder="name@example.com">
+              <label for="floatingInputlogin">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingpasswordlogin" formControlName="password"  placeholder="password">
+              <label for="floatingpasswordlogin">Password</label>
+            </div>
+            <button class="btn btn-primary" >Se Connecter</button>
+            </form>
+            <div [ngClass]="{'alert alert-info text-center m-2':message}">{{message}}</div>
+            
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+         <!-- <button type="button" class="btn btn-succes me-5" data-dismiss="modal">Enregistrer</button>-->
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+    

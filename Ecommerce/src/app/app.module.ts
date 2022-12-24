@@ -54,6 +54,7 @@ import { ModalmodifproduitComponent } from './operation/produit/modalmodifprodui
 import { ModalsupprproduitComponent } from './operation/produit/modalsupprproduit/modalsupprproduit.component';
 import { ModalsuppruserComponent } from './operation/user/modalsuppruser/modalsuppruser.component';
 import { ModalmodifuserComponent } from './operation/user/modalmodifuser/modalmodifuser.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { ModalmodifuserComponent } from './operation/user/modalmodifuser/modalmo
     ModalmodifproduitComponent,
     ModalsupprproduitComponent,
     ModalsuppruserComponent,
-    ModalmodifuserComponent
+    ModalmodifuserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

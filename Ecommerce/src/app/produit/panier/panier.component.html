@@ -30,7 +30,7 @@
              
                 <label class="alert alert-light card-text text-muted float-start mx-3" *ngIf="!produit.discount">
                  {{produit.prix}} * {{produit.nbr}} Dhs</label>
-                <button class="btn btn-danger float-end" aria-label="send" (click)="supprimer(produit)">-</button>
+                <button mat-mini-fab class="float-end" aria-label="send" (click)="supprimer(produit)"><mat-icon>delete</mat-icon></button>
 
             </div>
           </div>
@@ -47,11 +47,12 @@
         <hr>
 
         <div class="row alert-primary card-text">
-          <p class="col-md-8 mt-3">Sous-total </p>
-          <p class="col-md-4 mt-3">{{sommeGeneral }} </p>
-
-          <p class="col-md-8 mt-3">Frais de livraison </p>
-          <p class="col-md-4 mt-3">{{shipping}}</p>
+          <p class="col-md-7 mt-3">Sous-total </p>
+          <p class="col-md-5 mt-3">{{sommeGeneral }} </p>
+        </div>
+        <div class="row alert-primary card-text">
+          <p class="col-md-7 mt-3">Frais de livraison </p>
+          <p class="col-md-5 mt-3">{{shipping}}</p>
         </div>
         <div class="row alert-primary pt-3">
           <p class="col-md-12"><input type="text" class="form-control" (click)="RecupAllergene($event)"
@@ -66,7 +67,7 @@
         </div>
       </div>
       <button type="button" class="btn btn-success btn-lg mt-3 w-100" (click)="commander()" data-toggle="modal"
-        data-target="#myModal">
+        data-target="mymodal">
         Commander
       </button>
     </div>
@@ -85,54 +86,5 @@
 
 
 
-
-
-  <!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Infos Client</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <ng-container *ngIf="isConnected">
-            <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="floatingInput" value="{{client.email}}"
-                placeholder="name@example.com">
-              <label for="floatingInput">Email</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="tel" class="form-control" id="floatingtel" value="{{client.tel}}" placeholder="Téléphone">
-              <label for="floatingtel">Téléphone</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="floatingAdresse" value="{{client.adresse}}"
-                placeholder="Adresse">
-              <label for="floatingAdresse">Adresse</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="floatingrefAdresse" value="{{client.reference}}"
-                placeholder="Réference Adresse">
-              <label for="floatingrefAdresse">Réference Adresse</label>
-            </div>
-          </ng-container>
-
-
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-succes me-5" data-dismiss="modal">Enregistrer</button><button
-            type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
 
 </div>
