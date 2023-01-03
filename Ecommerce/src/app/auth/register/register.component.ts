@@ -12,8 +12,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  displayEnregistrer: boolean = true;
-  displayLogin: boolean = false;
   message: string = '';
   addform!: FormGroup;
   client: Personne = new Personne();

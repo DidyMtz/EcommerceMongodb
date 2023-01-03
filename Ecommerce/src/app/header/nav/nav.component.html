@@ -1,28 +1,28 @@
 <div class="nav navbar-dark justify-content-center bg-dark fixed-top">
-<ul class=" nav navbar-dark justify-content-center bg-dark mx-auto">
-      
-     <li class="nav-item ">
-      <a class="nav-link" (click)="goTo('/categorie/produits')" >Produits</a>
-    </li>
-   <li class="nav-item ">
-      <a class="nav-link" (click)="goTo('/contact')" >Contact</a>
+  <ul class=" nav navbar-dark justify-content-center bg-dark mx-auto">
+
+    <li class="nav-item ">
+      <a class="nav-link" (click)="goTo('/categorie/produits')">Produits</a>
     </li>
     <li class="nav-item ">
-      <a class="nav-link" (click)="goTo('/categorie/Promotion')" >Promotion</a>
+      <a class="nav-link" (click)="goTo('/contact')">Contact</a>
     </li>
-   <!-- <li *ngIf="isAdmin && islogged" class="nav-item ">
+    <li class="nav-item ">
+      <a class="nav-link" (click)="goTo('/categorie/Promotion')">Promotion</a>
+    </li>
+    <!-- <li *ngIf="isAdmin && islogged" class="nav-item ">
       <a class="nav-link" (click)="goTo('/op_produit')">Opération</a>
     </li>-->
     <li *ngIf="isAdmin && isloggued" class="nav-item ">
       <a class="nav-link" (click)="goTo('/admin')">Administration</a>
     </li>
- 
-   </ul>
-   <button  class="btn btn-outline-light me-2 mt-1 mb-2 btn-sm" (click)="changeMessage()">{{tel}}</button>
- 
-  </div>
-  
-<nav class="navbar navbar-expand-sm bg-light justify-content-center mt-5">
+
+  </ul>
+  <button class="btn btn-outline-light me-2 mt-1 mb-2 btn-sm" (click)="changeMessage()">{{tel}}</button>
+
+</div>
+
+<nav class="navbar navbar-expand-sm bg-light justify-content-center navbars">
   <a class="navbar-brand mx-3 " routerLink="/produit"><img class="logo" src="{{logo}}" alt="logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
@@ -30,62 +30,67 @@
   <div class="collapse navbar-collapse me-3 " id="collapsibleNavbar">
     <ul class="navbar-nav m-auto mb-2 mb-md-0 w-50">
       <div class="input-group ">
-        <input class="form-control me-2 " type="search" maxlength="10" minlength="5" required placeholder="Search"  aria-label="Search" #search>
+        <input class="form-control me-2 " type="search" maxlength="10" minlength="5" required placeholder="Search"
+          aria-label="Search" #search>
         <button mat-mini-fab (click)="openModal(search.value)"><mat-icon>search</mat-icon></button>
-     
-      </div>
-        <!-- <button class="btn btn-outline-success btn-md me-2" (click)="Search(search.value)" type="submit">Search</button>
-        <button class="btn btn-outline-dark btn-sm " (click)="openModal(search.value)">Recherche</button>-->
-       </ul>
 
-  
+      </div>
+      <!-- <button class="btn btn-outline-success btn-md me-2" (click)="Search(search.value)" type="submit">Search</button>
+        <button class="btn btn-outline-dark btn-sm " (click)="openModal(search.value)">Recherche</button>-->
+    </ul>
+
+
     <button *ngIf="isloggued" class="btn btn-outline-danger me-2 btn-sm" (click)="logout()" type="submit">
       Logout
     </button>
-   <button *ngIf="!isloggued" class="btn btn-outline-primary me-2 " (click)="login()" type="submit">LogIn</button>
-   <!--  <button type="button" *ngIf="!islogged" class="btn btn-outline-secondary btn-sm me-2" data-toggle="modal" data-target="#myModal">
+    <button *ngIf="!isloggued" class="btn btn-outline-secondary btn-sm me-2 " (click)="login()" type="submit">
+      LogIn
+    </button>
+    <!--  <button type="button" *ngIf="!islogged" class="btn btn-outline-secondary btn-sm me-2" data-toggle="modal" data-target="#myModal">
       Login
     </button> -->
     <button mat-mini-fab color="accent" routerLink="panier" type="submit"><mat-icon>shopping_cart</mat-icon></button>
-  
-  </div>  
+
+  </div>
 </nav>
 
 
- <!-- The Modal -->
- <div class="modal" id="myModal">
+<!-- The Modal -->
+<div class="modal" id="myModal">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
-    
+
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">Login</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      
+
       <!-- Modal body -->
       <div class="modal-body">
         <form [formGroup]="LoginForm" (ngSubmit)="login()">
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInputlogin" formControlName="email"  placeholder="name@example.com">
+            <input type="email" class="form-control" id="floatingInputlogin" formControlName="email"
+              placeholder="name@example.com">
             <label for="floatingInputlogin">Email</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingpasswordlogin" formControlName="password"  placeholder="password">
+            <input type="password" class="form-control" id="floatingpasswordlogin" formControlName="password"
+              placeholder="password">
             <label for="floatingpasswordlogin">Password</label>
           </div>
-          <button class="btn btn-primary" >Se Connecter</button>
-          </form>
-          <div [ngClass]="{'alert alert-info text-center m-2':message}">{{message}}</div>
-          
+          <button class="btn btn-primary">Se Connecter</button>
+        </form>
+        <div [ngClass]="{'alert alert-info text-center m-2':message}">{{message}}</div>
+
       </div>
-      
+
       <!-- Modal footer -->
       <div class="modal-footer">
-       <!-- <button type="button" class="btn btn-succes me-5" data-dismiss="modal">Enregistrer</button>-->
+        <!-- <button type="button" class="btn btn-succes me-5" data-dismiss="modal">Enregistrer</button>-->
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
-      
+
     </div>
   </div>
 </div>
