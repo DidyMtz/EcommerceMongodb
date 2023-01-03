@@ -39,6 +39,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ExportComponent } from './operation/produit/export/export.component';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
 import { CategorieProduitComponent } from './produit/categorie-produit/categorie-produit.component';
 import { CarouselsModule } from './carousels/carousels.module';
 import { ContactComponent } from './contact/contact.component';
@@ -55,6 +56,7 @@ import { ModalsupprproduitComponent } from './operation/produit/modalsupprprodui
 import { ModalsuppruserComponent } from './operation/user/modalsuppruser/modalsuppruser.component';
 import { ModalmodifuserComponent } from './operation/user/modalmodifuser/modalmodifuser.component';
 import { LoginComponent } from './auth/login/login.component';
+import { CommandeComponent } from './produit/commande/commande.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,8 @@ import { LoginComponent } from './auth/login/login.component';
     ModalsupprproduitComponent,
     ModalsuppruserComponent,
     ModalmodifuserComponent,
-    LoginComponent
+    LoginComponent,
+    CommandeComponent
   ],
   imports: [
     BrowserModule,
@@ -111,7 +114,8 @@ import { LoginComponent } from './auth/login/login.component';
     MatPaginatorModule,
     MatSortModule,
     MatGridListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
     
 
   ],

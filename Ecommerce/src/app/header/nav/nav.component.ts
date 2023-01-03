@@ -53,8 +53,6 @@ export class NavComponent implements OnInit {
       this.isloggued = value;
   });
 
-    console.log('isloggued',this.isloggued);
-    
   }
 
   //permet de recueillir stat sur appel par tel
@@ -151,6 +149,7 @@ export class NavComponent implements OnInit {
     sessionStorage.removeItem('email');
     sessionStorage.clear();
     this.isloggued = false;
+    this.datasharingservice.isUserLoggedIn.next(false);
     this.route.navigate(['/']);
   }
 

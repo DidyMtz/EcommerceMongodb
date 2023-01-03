@@ -1,3 +1,4 @@
+import { CommandeComponent } from './../commande/commande.component';
 import { RegisterComponent } from './../../auth/register/register.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { AuthService } from '../../services/auth.service';
@@ -113,7 +114,7 @@ commander(){
   codepromo%=""
   montantpaiement
 */
-const modalref = this.dialog.open(RegisterComponent, {
+const modalref = this.dialog.open(CommandeComponent, {
 panelClass:"my-dialog",
 data : { allergene : "", promo:"", montant:""}
 })

@@ -37,6 +37,11 @@ export class ProduitService {
   sommeGeneral = 0;
   discountPromo = 0;  
   
+  modepaiement : any[] = [
+    {name:'A la livraison', etat: 'false'}, 
+    {name: 'Carte de crédit', etat : 'false'},
+    {name : 'chèque', etat:'true'}];
+
   panier: Produit[] = [{ name: 'Viande Braisée', prix: 90, photo: '../../assets/img/slider/bbq-4373644_1280.jpg', description: 'Viande braisée au charbon avec la sauce de persil et mouscade.', categorie: 'Plat principal',nbr:1,discount:5 },
   { name: 'Saucisse Braisé', prix: 80, photo: '../../assets/img/slider/grilled-meat-6530766_1280.jpg', description: 'Saucisse braisé sur feu doux à la sauce de persil et mouscade.', categorie: 'Plat principal',nbr:1,discount:5 },
   { name: 'Frites', prix: 20, photo: '../../assets/img/slider/bowl-1842294_1280.jpg', description: 'Frites croustillantes, dorées à feu doux. Excellent accompagnement.',nbr:2,discount:5 },
