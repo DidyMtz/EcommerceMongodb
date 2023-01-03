@@ -1,11 +1,14 @@
 :host {
-   
-    width: 90%;
-    min-height: 20rem;
-    display: block;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 3%;
-    overflow-y: scroll;
-  }
-  
+  width: 100%;
+  min-width: 50vw;
+  min-height: 20vh;
+  display: block;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 3%;
+  overflow-y: scroll;
+}
+.full {
+  width: 30vw;
+  height: 20vh;
+}

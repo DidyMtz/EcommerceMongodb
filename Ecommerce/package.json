@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@googlemaps/js-api-loader": "^1.15.1",
     "@grapecity/spread-excelio": "^15.2.1",
     "@grapecity/spread-sheets": "^15.2.1",
     "@grapecity/spread-sheets-angular": "^15.2.1",

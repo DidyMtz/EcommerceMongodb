@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Personne } from '../model/personne';
-import { BehaviorSubject } from 'rxjs';
 import { Injectable, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,6 +14,7 @@ export class AuthService {
   API_deleteUser: string = environment.API_url + "/user/delete";
   API_updateUser: string = environment.API_url + "/user/update";
   API_getUser: string = environment.API_url + "/user";
+  isloggued : boolean = false;
 
 
   constructor(private http: HttpClient,
