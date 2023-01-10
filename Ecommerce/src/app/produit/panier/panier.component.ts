@@ -109,14 +109,10 @@ RecupAllergene(event: any){
 }  
 
 commander(){
-  /*
-  this.allergene = ""
-  codepromo%=""
-  montantpaiement
-*/
+
 const modalref = this.dialog.open(CommandeComponent, {
 panelClass:"my-dialog",
-data : { allergene : "", promo:"", montant:""}
+data : { allergene : this.panier}
 })
 
 }

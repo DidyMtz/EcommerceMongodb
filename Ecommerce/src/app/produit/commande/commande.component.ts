@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, INJECTOR, OnInit } from '@angular/core';
 import { DatasharingService } from 'src/app/services/datasharing.service';
-import { Dialog } from '@angular/cdk/dialog';
+import { Dialog, DIALOG_DATA } from '@angular/cdk/dialog';
 import { Personne } from 'src/app/model/personne';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,7 +18,11 @@ export class CommandeComponent implements OnInit {
   isConnected: boolean = true;
   //private map : google.maps.Map
 
-  constructor(private dialog: Dialog, private authservice: AuthService, private datasharingservice: DatasharingService) {}
+  constructor(
+    @Inject(DIALOG_DATA) public data: { produit: any[]},
+    private dialog: Dialog,
+     private authservice: AuthService,
+     private datasharingservice: DatasharingService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -28,6 +32,9 @@ export class CommandeComponent implements OnInit {
   
   }
 
+  getClient(){
+
+  }
   initForm() {
     this.addform = new FormGroup({
       name: new FormControl('', Validators.required),
