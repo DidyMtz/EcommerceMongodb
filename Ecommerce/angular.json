@@ -115,5 +115,8 @@
 
     
   },
-  "defaultProject": "Ecommerce"
+  "defaultProject": "Ecommerce",
+  "cli": {
+    "analytics": false
+  }
 }
